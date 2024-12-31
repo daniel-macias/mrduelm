@@ -1,3 +1,59 @@
-[gd_scene format=3 uid="uid://bdd3fhta1x0ln"]
+[gd_scene load_steps=9 format=3 uid="uid://bdd3fhta1x0ln"]
+
+[ext_resource type="Texture2D" uid="uid://dve3naqek7758" path="res://Sprites/Arms/default_arm_a.png" id="1_3e1da"]
+[ext_resource type="Texture2D" uid="uid://cls7vrevae352" path="res://Sprites/Body/default_bod.png" id="1_573ay"]
+[ext_resource type="Texture2D" uid="uid://bpu65joeuvnfr" path="res://Sprites/Arms/default_arm_b.png" id="2_54sae"]
+[ext_resource type="Texture2D" uid="uid://bei8jc63uvfap" path="res://Sprites/Screen/default_screen.png" id="2_tootx"]
+[ext_resource type="Texture2D" uid="uid://bsthyy1tl2lw3" path="res://Sprites/Eyes/default_eyes.png" id="3_glg16"]
+[ext_resource type="Texture2D" uid="uid://bigxfpxftkkkt" path="res://Sprites/Arms/default_arm_c.png" id="3_qa41u"]
+[ext_resource type="Texture2D" uid="uid://d2c1kf6s6bk7a" path="res://Sprites/Legs/default_leg_l.png" id="4_7ml4v"]
+[ext_resource type="Texture2D" uid="uid://cfjexx1kcrgn5" path="res://Sprites/Legs/default_leg_r.png" id="5_jqoqo"]
 
 [node name="Pet" type="Node2D"]
+
+[node name="Arms" type="Sprite2D" parent="."]
+
+[node name="DefaultArmA" type="Sprite2D" parent="Arms"]
+position = Vector2(-50, 0)
+texture = ExtResource("1_3e1da")
+
+[node name="DefaultArmA2" type="Sprite2D" parent="Arms"]
+position = Vector2(50, 0)
+rotation = 3.14159
+texture = ExtResource("1_3e1da")
+
+[node name="DefaultArmB" type="Sprite2D" parent="Arms"]
+position = Vector2(-40, -30)
+texture = ExtResource("2_54sae")
+
+[node name="DefaultArmB2" type="Sprite2D" parent="Arms"]
+position = Vector2(40, -30)
+rotation = 1.5708
+texture = ExtResource("2_54sae")
+
+[node name="DefaultArmC" type="Sprite2D" parent="Arms"]
+position = Vector2(0, -40)
+texture = ExtResource("3_qa41u")
+
+[node name="Legs" type="Sprite2D" parent="."]
+
+[node name="DefaultLegL" type="Sprite2D" parent="Legs"]
+position = Vector2(-28, 42)
+texture = ExtResource("4_7ml4v")
+
+[node name="DefaultLegR" type="Sprite2D" parent="Legs"]
+position = Vector2(29, 43)
+texture = ExtResource("5_jqoqo")
+
+[node name="Body" type="Sprite2D" parent="."]
+
+[node name="DefaultBod" type="Sprite2D" parent="Body"]
+texture = ExtResource("1_573ay")
+
+[node name="DefaultScreen" type="Sprite2D" parent="Body"]
+position = Vector2(0, 4)
+texture = ExtResource("2_tootx")
+
+[node name="DefaultEyes" type="Sprite2D" parent="Body"]
+position = Vector2(0, 4)
+texture = ExtResource("3_glg16")
