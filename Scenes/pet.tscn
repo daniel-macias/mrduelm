@@ -166,7 +166,7 @@ position = Vector2(-50, 0)
 texture = ExtResource("1_3e1da")
 
 [node name="DefaultArmA2" type="Sprite2D" parent="Arms"]
-position = Vector2(52.4686, 0)
+position = Vector2(50, 0)
 rotation = 3.14159
 texture = ExtResource("1_3e1da")
 
@@ -175,7 +175,7 @@ position = Vector2(-40, -30)
 texture = ExtResource("2_54sae")
 
 [node name="DefaultArmB2" type="Sprite2D" parent="Arms"]
-position = Vector2(42.5314, -32.5314)
+position = Vector2(45, -35)
 rotation = 1.5708
 texture = ExtResource("2_54sae")
 
