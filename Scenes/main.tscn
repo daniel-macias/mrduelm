@@ -10,7 +10,7 @@
 [node name="Node2D" type="Node2D"]
 
 [node name="Pet" parent="." instance=ExtResource("1_g06e1")]
-position = Vector2(362, 1237)
+position = Vector2(362, 1004)
 scale = Vector2(4, 4)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -21,28 +21,39 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = -40.0
-offset_right = 20.0
+offset_left = -258.0
+offset_top = -120.0
+offset_right = 258.0
+offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 0
 
 [node name="FoodBtn" type="TextureButton" parent="CanvasLayer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 texture_normal = ExtResource("2_t4d30")
+stretch_mode = 5
 
 [node name="ShowerBtn" type="TextureButton" parent="CanvasLayer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 texture_normal = ExtResource("3_vlkju")
+stretch_mode = 5
 
 [node name="PlayBtn" type="TextureButton" parent="CanvasLayer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 texture_normal = ExtResource("4_iuqi7")
+stretch_mode = 5
 
 [node name="SleepBtn" type="TextureButton" parent="CanvasLayer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 texture_normal = ExtResource("5_kml8w")
+stretch_mode = 5
 
 [node name="GarageBtn" type="TextureButton" parent="CanvasLayer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 texture_normal = ExtResource("6_lu5kk")
+stretch_mode = 5
