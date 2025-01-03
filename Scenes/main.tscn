@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://co8xhyknh7k7h"]
+[gd_scene load_steps=14 format=3 uid="uid://co8xhyknh7k7h"]
 
 [ext_resource type="PackedScene" uid="uid://bdd3fhta1x0ln" path="res://Scenes/pet.tscn" id="1_g06e1"]
 [ext_resource type="Texture2D" uid="uid://cyutd44gt6125" path="res://Sprites/UI/food_icon.png" id="2_t4d30"]
@@ -6,6 +6,13 @@
 [ext_resource type="Texture2D" uid="uid://b7hpmdjbf43oj" path="res://Sprites/UI/play_icon.png" id="4_iuqi7"]
 [ext_resource type="Texture2D" uid="uid://dsx4h3mdbn8i4" path="res://Sprites/UI/sleep_icon.png" id="5_kml8w"]
 [ext_resource type="Texture2D" uid="uid://ckiclgcvswhs7" path="res://Sprites/UI/garage_icon.png" id="6_lu5kk"]
+[ext_resource type="Texture2D" uid="uid://bxtusj4ktpwbh" path="res://icon.svg" id="7_edkl8"]
+[ext_resource type="Texture2D" uid="uid://c8xeqy87dpe6o" path="res://Sprites/UI/ProgressBars/bar_bg.png" id="8_sn7hm"]
+[ext_resource type="Texture2D" uid="uid://cvv5owqxqr3kl" path="res://Sprites/UI/ProgressBars/food.png" id="9_w1x0o"]
+[ext_resource type="Texture2D" uid="uid://llbq667nujq5" path="res://Sprites/UI/ProgressBars/bar_fill.png" id="10_3nn5s"]
+[ext_resource type="Texture2D" uid="uid://digdmvn5mg8gr" path="res://Sprites/UI/ProgressBars/health.png" id="11_dhajy"]
+[ext_resource type="Texture2D" uid="uid://bt43t0q64458k" path="res://Sprites/UI/ProgressBars/happy.png" id="12_5y17l"]
+[ext_resource type="Texture2D" uid="uid://dpj6taf4klhoy" path="res://Sprites/UI/ProgressBars/energy.png" id="13_igeth"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -57,3 +64,60 @@ custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 texture_normal = ExtResource("6_lu5kk")
 stretch_mode = 5
+
+[node name="TopBar" type="HBoxContainer" parent="CanvasLayer"]
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+size_flags_vertical = 0
+
+[node name="CoinBtn" type="TextureButton" parent="CanvasLayer/TopBar"]
+layout_mode = 2
+texture_normal = ExtResource("7_edkl8")
+
+[node name="Label" type="Label" parent="CanvasLayer/TopBar"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "99999"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/TopBar"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+
+[node name="FoodBar" type="TextureProgressBar" parent="CanvasLayer/TopBar/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+fill_mode = 2
+nine_patch_stretch = true
+texture_under = ExtResource("8_sn7hm")
+texture_over = ExtResource("9_w1x0o")
+texture_progress = ExtResource("10_3nn5s")
+
+[node name="HealthBar" type="TextureProgressBar" parent="CanvasLayer/TopBar/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+fill_mode = 2
+nine_patch_stretch = true
+texture_under = ExtResource("8_sn7hm")
+texture_over = ExtResource("11_dhajy")
+texture_progress = ExtResource("10_3nn5s")
+
+[node name="HappyBar" type="TextureProgressBar" parent="CanvasLayer/TopBar/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+fill_mode = 2
+nine_patch_stretch = true
+texture_under = ExtResource("8_sn7hm")
+texture_over = ExtResource("12_5y17l")
+texture_progress = ExtResource("10_3nn5s")
+
+[node name="EnergyBar" type="TextureProgressBar" parent="CanvasLayer/TopBar/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+fill_mode = 2
+nine_patch_stretch = true
+texture_under = ExtResource("8_sn7hm")
+texture_over = ExtResource("13_igeth")
+texture_progress = ExtResource("10_3nn5s")
