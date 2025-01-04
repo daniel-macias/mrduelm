@@ -2,12 +2,21 @@ extends Node
 
 # Player's starting money
 var player_money: int = 500
+var hunger: int = 50
+var health: int = 80
+var energy: int = 70
+var fun: int = 50
+
 
 # Inventory structure
 var inventory: Dictionary = {
 	"food": {},       # Stores food items and their quantities
 	"body_parts": {}  # Stores body parts and their quantities
 }
+
+func modify_stat(stat_name: String, amount: int):
+	if stat_name in self:
+		self[stat_name] = clamp(self[stat_name] + amount, 0, 100)
 
 # Check if the player can afford an item
 func can_afford(cost: int) -> bool:

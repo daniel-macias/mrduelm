@@ -1,5 +1,6 @@
-[gd_scene load_steps=14 format=3 uid="uid://co8xhyknh7k7h"]
+[gd_scene load_steps=15 format=3 uid="uid://co8xhyknh7k7h"]
 
+[ext_resource type="Script" path="res://Scripts/Main.gd" id="1_2ncyc"]
 [ext_resource type="PackedScene" uid="uid://bdd3fhta1x0ln" path="res://Scenes/pet.tscn" id="1_g06e1"]
 [ext_resource type="Texture2D" uid="uid://cyutd44gt6125" path="res://Sprites/UI/food_icon.png" id="2_t4d30"]
 [ext_resource type="Texture2D" uid="uid://chn7w0dkoqbus" path="res://Sprites/UI/shower_icon.png" id="3_vlkju"]
@@ -15,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://dpj6taf4klhoy" path="res://Sprites/UI/ProgressBars/energy.png" id="13_igeth"]
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_2ncyc")
 
 [node name="Pet" parent="." instance=ExtResource("1_g06e1")]
 position = Vector2(362, 1004)
@@ -89,7 +91,7 @@ size_flags_vertical = 4
 [node name="FoodBar" type="TextureProgressBar" parent="CanvasLayer/TopBar/HBoxContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-fill_mode = 2
+fill_mode = 3
 nine_patch_stretch = true
 texture_under = ExtResource("8_sn7hm")
 texture_over = ExtResource("9_w1x0o")
@@ -98,7 +100,7 @@ texture_progress = ExtResource("10_3nn5s")
 [node name="HealthBar" type="TextureProgressBar" parent="CanvasLayer/TopBar/HBoxContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-fill_mode = 2
+fill_mode = 3
 nine_patch_stretch = true
 texture_under = ExtResource("8_sn7hm")
 texture_over = ExtResource("11_dhajy")
@@ -107,7 +109,7 @@ texture_progress = ExtResource("10_3nn5s")
 [node name="HappyBar" type="TextureProgressBar" parent="CanvasLayer/TopBar/HBoxContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-fill_mode = 2
+fill_mode = 3
 nine_patch_stretch = true
 texture_under = ExtResource("8_sn7hm")
 texture_over = ExtResource("12_5y17l")
@@ -116,7 +118,7 @@ texture_progress = ExtResource("10_3nn5s")
 [node name="EnergyBar" type="TextureProgressBar" parent="CanvasLayer/TopBar/HBoxContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-fill_mode = 2
+fill_mode = 3
 nine_patch_stretch = true
 texture_under = ExtResource("8_sn7hm")
 texture_over = ExtResource("13_igeth")
