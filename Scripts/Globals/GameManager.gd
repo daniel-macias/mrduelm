@@ -3,8 +3,8 @@ extends Node
 # Player's starting money
 var player_money: int = 500
 var hunger: int = 50
-var health: int = 80
-var energy: int = 70
+var health: int = 50
+var energy: int = 50
 var fun: int = 50
 
 

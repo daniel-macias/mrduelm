@@ -1,18 +1,23 @@
-[gd_scene load_steps=15 format=3 uid="uid://co8xhyknh7k7h"]
+[gd_scene load_steps=20 format=3 uid="uid://co8xhyknh7k7h"]
 
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_2ncyc"]
 [ext_resource type="PackedScene" uid="uid://bdd3fhta1x0ln" path="res://Scenes/pet.tscn" id="1_g06e1"]
 [ext_resource type="Texture2D" uid="uid://cyutd44gt6125" path="res://Sprites/UI/food_icon.png" id="2_t4d30"]
 [ext_resource type="Texture2D" uid="uid://chn7w0dkoqbus" path="res://Sprites/UI/shower_icon.png" id="3_vlkju"]
+[ext_resource type="Texture2D" uid="uid://bwda35x8xer67" path="res://Sprites/UI/food_icon_pressed.png" id="4_2i2le"]
 [ext_resource type="Texture2D" uid="uid://b7hpmdjbf43oj" path="res://Sprites/UI/play_icon.png" id="4_iuqi7"]
 [ext_resource type="Texture2D" uid="uid://dsx4h3mdbn8i4" path="res://Sprites/UI/sleep_icon.png" id="5_kml8w"]
+[ext_resource type="Texture2D" uid="uid://bbfu11hb6lf4" path="res://Sprites/UI/shower_icon_pressed.png" id="6_0v3sx"]
 [ext_resource type="Texture2D" uid="uid://ckiclgcvswhs7" path="res://Sprites/UI/garage_icon.png" id="6_lu5kk"]
 [ext_resource type="Texture2D" uid="uid://bxtusj4ktpwbh" path="res://icon.svg" id="7_edkl8"]
 [ext_resource type="Texture2D" uid="uid://c8xeqy87dpe6o" path="res://Sprites/UI/ProgressBars/bar_bg.png" id="8_sn7hm"]
+[ext_resource type="Texture2D" uid="uid://c8un4x0mfdlfi" path="res://Sprites/UI/play_icon_pressed.png" id="8_sxbtx"]
 [ext_resource type="Texture2D" uid="uid://cvv5owqxqr3kl" path="res://Sprites/UI/ProgressBars/food.png" id="9_w1x0o"]
 [ext_resource type="Texture2D" uid="uid://llbq667nujq5" path="res://Sprites/UI/ProgressBars/bar_fill.png" id="10_3nn5s"]
+[ext_resource type="Texture2D" uid="uid://b3cdmltcbqcg5" path="res://Sprites/UI/sleep_icon_pressed.png" id="10_wapte"]
 [ext_resource type="Texture2D" uid="uid://digdmvn5mg8gr" path="res://Sprites/UI/ProgressBars/health.png" id="11_dhajy"]
 [ext_resource type="Texture2D" uid="uid://bt43t0q64458k" path="res://Sprites/UI/ProgressBars/happy.png" id="12_5y17l"]
+[ext_resource type="Texture2D" uid="uid://3asydacx345v" path="res://Sprites/UI/garage_icon_pressed.png" id="12_mlgj4"]
 [ext_resource type="Texture2D" uid="uid://dpj6taf4klhoy" path="res://Sprites/UI/ProgressBars/energy.png" id="13_igeth"]
 
 [node name="Node2D" type="Node2D"]
@@ -23,6 +28,220 @@ position = Vector2(362, 1004)
 scale = Vector2(4, 4)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="FoodGUI" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RoomTitle" type="Label" parent="CanvasLayer/FoodGUI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.131
+anchor_right = 0.5
+anchor_bottom = 0.131
+offset_left = -160.5
+offset_top = -42.12
+offset_right = 160.5
+offset_bottom = 40.88
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 60
+text = "Foodlandia"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/FoodGUI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.865
+anchor_right = 0.5
+anchor_bottom = 0.865
+offset_left = -20.0
+offset_top = -24.8
+offset_right = 20.0
+offset_bottom = 15.2
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureButton" type="TextureButton" parent="CanvasLayer/FoodGUI/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("7_edkl8")
+
+[node name="BathroomGUI" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RoomTitle" type="Label" parent="CanvasLayer/BathroomGUI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.131
+anchor_right = 0.5
+anchor_bottom = 0.131
+offset_left = -160.5
+offset_top = -42.12
+offset_right = 160.5
+offset_bottom = 40.88
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 60
+text = "Bathroomlandia"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/BathroomGUI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.865
+anchor_right = 0.5
+anchor_bottom = 0.865
+offset_left = -20.0
+offset_top = -24.8
+offset_right = 20.0
+offset_bottom = 15.2
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureButton" type="TextureButton" parent="CanvasLayer/BathroomGUI/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("7_edkl8")
+
+[node name="PlayGUI" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RoomTitle" type="Label" parent="CanvasLayer/PlayGUI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.131
+anchor_right = 0.5
+anchor_bottom = 0.131
+offset_left = -160.5
+offset_top = -42.12
+offset_right = 160.5
+offset_bottom = 40.88
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 60
+text = "Playlandia"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/PlayGUI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.865
+anchor_right = 0.5
+anchor_bottom = 0.865
+offset_left = -20.0
+offset_top = -24.8
+offset_right = 20.0
+offset_bottom = 15.2
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureButton" type="TextureButton" parent="CanvasLayer/PlayGUI/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("7_edkl8")
+
+[node name="SleepGUI" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RoomTitle" type="Label" parent="CanvasLayer/SleepGUI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.131
+anchor_right = 0.5
+anchor_bottom = 0.131
+offset_left = -160.5
+offset_top = -42.12
+offset_right = 160.5
+offset_bottom = 40.88
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 60
+text = "Sleepandia"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/SleepGUI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.865
+anchor_right = 0.5
+anchor_bottom = 0.865
+offset_left = -20.0
+offset_top = -24.8
+offset_right = 20.0
+offset_bottom = 15.2
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureButton" type="TextureButton" parent="CanvasLayer/SleepGUI/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("7_edkl8")
+
+[node name="GarageGUI" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RoomTitle" type="Label" parent="CanvasLayer/GarageGUI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.131
+anchor_right = 0.5
+anchor_bottom = 0.131
+offset_left = -160.5
+offset_top = -42.12
+offset_right = 160.5
+offset_bottom = 40.88
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 60
+text = "Garagelandia"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/GarageGUI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.865
+anchor_right = 0.5
+anchor_bottom = 0.865
+offset_left = -20.0
+offset_top = -24.8
+offset_right = 20.0
+offset_bottom = 15.2
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureButton" type="TextureButton" parent="CanvasLayer/GarageGUI/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("7_edkl8")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
 anchors_preset = 7
@@ -41,30 +260,35 @@ grow_vertical = 0
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 texture_normal = ExtResource("2_t4d30")
+texture_pressed = ExtResource("4_2i2le")
 stretch_mode = 5
 
 [node name="ShowerBtn" type="TextureButton" parent="CanvasLayer/HBoxContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 texture_normal = ExtResource("3_vlkju")
+texture_pressed = ExtResource("6_0v3sx")
 stretch_mode = 5
 
 [node name="PlayBtn" type="TextureButton" parent="CanvasLayer/HBoxContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 texture_normal = ExtResource("4_iuqi7")
+texture_pressed = ExtResource("8_sxbtx")
 stretch_mode = 5
 
 [node name="SleepBtn" type="TextureButton" parent="CanvasLayer/HBoxContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 texture_normal = ExtResource("5_kml8w")
+texture_pressed = ExtResource("10_wapte")
 stretch_mode = 5
 
 [node name="GarageBtn" type="TextureButton" parent="CanvasLayer/HBoxContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 texture_normal = ExtResource("6_lu5kk")
+texture_pressed = ExtResource("12_mlgj4")
 stretch_mode = 5
 
 [node name="TopBar" type="HBoxContainer" parent="CanvasLayer"]
