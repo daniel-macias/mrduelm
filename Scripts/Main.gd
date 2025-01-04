@@ -19,14 +19,39 @@ extends Node2D
 	"garage": $CanvasLayer/GarageGUI
 }
 
+@onready var buttons = {
+	"food": food_btn,
+	"bathroom": shower_btn,
+	"play": play_btn,
+	"sleep": sleep_btn,
+	"garage": garage_btn
+}
+
+var active_button = null
+
 func _ready():
-	food_btn.connect("pressed", Callable(self, "_on_button_pressed").bind("food"))
-	shower_btn.connect("pressed", Callable(self, "_on_button_pressed").bind("bathroom"))
-	play_btn.connect("pressed", Callable(self, "_on_button_pressed").bind("play"))
-	sleep_btn.connect("pressed", Callable(self, "_on_button_pressed").bind("sleep"))
-	garage_btn.connect("pressed", Callable(self, "_on_button_pressed").bind("garage"))
+	for name in buttons:
+		buttons[name].connect("pressed", Callable(self, "_on_button_pressed").bind(name))
+
+	# Start with "play" as the default active button
+	_set_default_active("play")
+
+func _set_default_active(gui_name: String):
+	active_button = buttons[gui_name]
+	active_button.disabled = true
+	_on_button_pressed(gui_name)
 
 func _on_button_pressed(gui_name: String):
 	print("Pressed:", gui_name.capitalize(), "Button")
+
+	# Toggle GUI visibility
 	for name in guis:
 		guis[name].visible = (name == gui_name)
+
+	# Re-enable previously active button
+	if active_button and active_button != buttons[gui_name]:
+		active_button.disabled = false
+
+	# Disable the new active button
+	active_button = buttons[gui_name]
+	active_button.disabled = true

@@ -261,6 +261,7 @@ custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 texture_normal = ExtResource("2_t4d30")
 texture_pressed = ExtResource("4_2i2le")
+texture_disabled = ExtResource("4_2i2le")
 stretch_mode = 5
 
 [node name="ShowerBtn" type="TextureButton" parent="CanvasLayer/HBoxContainer"]
@@ -268,6 +269,7 @@ custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 texture_normal = ExtResource("3_vlkju")
 texture_pressed = ExtResource("6_0v3sx")
+texture_disabled = ExtResource("6_0v3sx")
 stretch_mode = 5
 
 [node name="PlayBtn" type="TextureButton" parent="CanvasLayer/HBoxContainer"]
@@ -275,6 +277,7 @@ custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 texture_normal = ExtResource("4_iuqi7")
 texture_pressed = ExtResource("8_sxbtx")
+texture_disabled = ExtResource("8_sxbtx")
 stretch_mode = 5
 
 [node name="SleepBtn" type="TextureButton" parent="CanvasLayer/HBoxContainer"]
@@ -282,6 +285,7 @@ custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 texture_normal = ExtResource("5_kml8w")
 texture_pressed = ExtResource("10_wapte")
+texture_disabled = ExtResource("10_wapte")
 stretch_mode = 5
 
 [node name="GarageBtn" type="TextureButton" parent="CanvasLayer/HBoxContainer"]
@@ -289,6 +293,7 @@ custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 texture_normal = ExtResource("6_lu5kk")
 texture_pressed = ExtResource("12_mlgj4")
+texture_disabled = ExtResource("12_mlgj4")
 stretch_mode = 5
 
 [node name="TopBar" type="HBoxContainer" parent="CanvasLayer"]
