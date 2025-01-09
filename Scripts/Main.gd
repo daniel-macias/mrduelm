@@ -11,6 +11,11 @@ extends Node2D
 @onready var sleep_btn = $CanvasLayer/HBoxContainer/SleepBtn
 @onready var garage_btn = $CanvasLayer/HBoxContainer/GarageBtn
 
+@onready var debug_add_food_btn = $CanvasLayer/PlayGUI/HBoxContainer/TextureButton
+@onready var debug_add_energy_btn = $CanvasLayer/SleepGUI/HBoxContainer/TextureButton
+@onready var debug_add_fun_btn = $CanvasLayer/PlayGUI/HBoxContainer/TextureButton
+@onready var debug_add_health_btn = $CanvasLayer/GarageGUI/HBoxContainer/TextureButton
+
 @onready var guis = {
 	"food": $CanvasLayer/FoodGUI,
 	"bathroom": $CanvasLayer/BathroomGUI,
@@ -30,11 +35,29 @@ extends Node2D
 var active_button = null
 
 func _ready():
+	#Debug buttons
+	debug_add_food_btn.connect("pressed", Callable(self, "_on_debug_add_food_btn"))
+	debug_add_energy_btn.connect("pressed", Callable(self, "_on_debug_add_energy_btn"))
+	debug_add_fun_btn.connect("pressed", Callable(self, "_on_debug_add_fun_btn"))
+	debug_add_health_btn.connect("pressed", Callable(self, "_debug_add_health_btn"))
+	
 	for name in buttons:
 		buttons[name].connect("pressed", Callable(self, "_on_button_pressed").bind(name))
 
 	# Start with "play" as the default active button
 	_set_default_active("play")
+	
+func _on_debug_add_food_btn():
+	pass
+	
+func _on_debug_add_energy_btn():
+	pass
+
+func _on_debug_add_fun_btn():
+	pass
+	
+func _debug_add_health_btn():
+	pass
 
 func _set_default_active(gui_name: String):
 	active_button = buttons[gui_name]
