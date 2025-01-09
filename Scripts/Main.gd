@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var happiness_bar = $CanvasLayer/TopBar/HBoxContainer/HappyBar
+@onready var fun_bar = $CanvasLayer/TopBar/HBoxContainer/HappyBar
 @onready var hunger_bar = $CanvasLayer/TopBar/HBoxContainer/FoodBar
 @onready var health_bar = $CanvasLayer/TopBar/HBoxContainer/HealthBar
 @onready var energy_bar = $CanvasLayer/TopBar/HBoxContainer/EnergyBar
@@ -11,10 +11,10 @@ extends Node2D
 @onready var sleep_btn = $CanvasLayer/HBoxContainer/SleepBtn
 @onready var garage_btn = $CanvasLayer/HBoxContainer/GarageBtn
 
-@onready var debug_add_food_btn = $CanvasLayer/PlayGUI/HBoxContainer/TextureButton
+@onready var debug_add_food_btn = $CanvasLayer/FoodGUI/HBoxContainer/TextureButton
 @onready var debug_add_energy_btn = $CanvasLayer/SleepGUI/HBoxContainer/TextureButton
 @onready var debug_add_fun_btn = $CanvasLayer/PlayGUI/HBoxContainer/TextureButton
-@onready var debug_add_health_btn = $CanvasLayer/GarageGUI/HBoxContainer/TextureButton
+@onready var debug_add_health_btn = $CanvasLayer/BathroomGUI/HBoxContainer/TextureButton
 
 @onready var guis = {
 	"food": $CanvasLayer/FoodGUI,
@@ -39,7 +39,9 @@ func _ready():
 	debug_add_food_btn.connect("pressed", Callable(self, "_on_debug_add_food_btn"))
 	debug_add_energy_btn.connect("pressed", Callable(self, "_on_debug_add_energy_btn"))
 	debug_add_fun_btn.connect("pressed", Callable(self, "_on_debug_add_fun_btn"))
-	debug_add_health_btn.connect("pressed", Callable(self, "_debug_add_health_btn"))
+	debug_add_health_btn.connect("pressed", Callable(self, "_on_debug_add_health_btn"))
+	
+	GameManager.connect("stat_changed", Callable(self, "_on_stat_changed"))
 	
 	for name in buttons:
 		buttons[name].connect("pressed", Callable(self, "_on_button_pressed").bind(name))
@@ -47,17 +49,28 @@ func _ready():
 	# Start with "play" as the default active button
 	_set_default_active("play")
 	
+func _on_stat_changed(stat_name: String, new_value: int):
+	match stat_name:
+		"fun":
+			fun_bar.value = new_value
+		"hunger":
+			hunger_bar.value = new_value
+		"health":
+			health_bar.value = new_value
+		"energy":
+			energy_bar.value = new_value
+
 func _on_debug_add_food_btn():
-	pass
-	
+	GameManager.modify_stat("hunger", 10)
+
 func _on_debug_add_energy_btn():
-	pass
+	GameManager.modify_stat("energy", 10)
 
 func _on_debug_add_fun_btn():
-	pass
-	
-func _debug_add_health_btn():
-	pass
+	GameManager.modify_stat("fun", 10)
+
+func _on_debug_add_health_btn():
+	GameManager.modify_stat("health", 10)
 
 func _set_default_active(gui_name: String):
 	active_button = buttons[gui_name]

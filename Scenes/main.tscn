@@ -70,7 +70,7 @@ grow_vertical = 2
 
 [node name="TextureButton" type="TextureButton" parent="CanvasLayer/FoodGUI/HBoxContainer"]
 layout_mode = 2
-texture_normal = ExtResource("7_edkl8")
+texture_normal = ExtResource("2_t4d30")
 
 [node name="BathroomGUI" type="Control" parent="CanvasLayer"]
 visible = false
@@ -113,7 +113,7 @@ grow_vertical = 2
 
 [node name="TextureButton" type="TextureButton" parent="CanvasLayer/BathroomGUI/HBoxContainer"]
 layout_mode = 2
-texture_normal = ExtResource("7_edkl8")
+texture_normal = ExtResource("3_vlkju")
 
 [node name="PlayGUI" type="Control" parent="CanvasLayer"]
 layout_mode = 3
@@ -155,7 +155,7 @@ grow_vertical = 2
 
 [node name="TextureButton" type="TextureButton" parent="CanvasLayer/PlayGUI/HBoxContainer"]
 layout_mode = 2
-texture_normal = ExtResource("7_edkl8")
+texture_normal = ExtResource("4_iuqi7")
 
 [node name="SleepGUI" type="Control" parent="CanvasLayer"]
 visible = false
@@ -198,7 +198,7 @@ grow_vertical = 2
 
 [node name="TextureButton" type="TextureButton" parent="CanvasLayer/SleepGUI/HBoxContainer"]
 layout_mode = 2
-texture_normal = ExtResource("7_edkl8")
+texture_normal = ExtResource("5_kml8w")
 
 [node name="GarageGUI" type="Control" parent="CanvasLayer"]
 visible = false
@@ -241,7 +241,7 @@ grow_vertical = 2
 
 [node name="TextureButton" type="TextureButton" parent="CanvasLayer/GarageGUI/HBoxContainer"]
 layout_mode = 2
-texture_normal = ExtResource("7_edkl8")
+texture_normal = ExtResource("6_lu5kk")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
 anchors_preset = 7
