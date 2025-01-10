@@ -11,6 +11,8 @@ var current_food_index: int = 0
 
 var current_food_dragged_key : String = ""
 var dragging = false
+var drag_offset = Vector2.ZERO
+
 var drag_start_position = Vector2()
 var drag_threshold = 100  # Define the threshold in pixels
 
@@ -48,6 +50,7 @@ func _update_food_display():
 			food_selected.texture_normal = load(food_details.thumbnail)
 			var text_to_display = Catalog.get_food_details(current_food)["name"] + " : " + str(GameManager.inventory['food'][current_food])
 			food_selected_text.text = text_to_display
+			current_food_dragged_key = current_food
 		else:
 			print("Error: Thumbnail not found for food item:", current_food)
 	else:
@@ -62,18 +65,20 @@ func _input(event: InputEvent) -> void:
 			# When touch begins
 			dragging = true
 			drag_start_position = event.position
-			draggable_food.visible = true
-			draggable_food.position = food_selected.position  # Set sprite to the position of the button
+			draggable_food.visible = false  # Initially hidden until the threshold is met
+			draggable_food.texture = load(Catalog.get_food_details(current_food_dragged_key).thumbnail)
+			print(current_food_dragged_key)
 
-		if event.is_released():
+		elif event.is_released():
 			# When touch ends
 			dragging = false
-			draggable_food.visible = false
+			draggable_food.visible = false  # Hide draggable sprite when done dragging
 
-		if dragging:
-			var drag_distance = event.position - drag_start_position
-			draggable_food.position = food_selected.position + drag_distance
-			print(drag_distance)
-			if drag_distance.length() > drag_threshold:
-				# Change scale or any other action when threshold is reached
-				draggable_food.scale = 1.5 
+	elif event is InputEventScreenDrag and dragging:
+		var drag_distance = event.position - drag_start_position
+		
+		# Check if the drag has crossed the threshold
+		if drag_distance.length() > drag_threshold:
+			# Make the draggable food visible and follow the finger
+			draggable_food.visible = true
+			draggable_food.position = event.position
