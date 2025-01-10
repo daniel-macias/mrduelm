@@ -16,6 +16,8 @@ extends Node2D
 @onready var debug_add_fun_btn = $CanvasLayer/PlayGUI/HBoxContainer/TextureButton
 @onready var debug_add_health_btn = $CanvasLayer/BathroomGUI/HBoxContainer/TextureButton
 
+@onready var pet = $Pet
+
 @onready var guis = {
 	"food": $CanvasLayer/FoodGUI,
 	"bathroom": $CanvasLayer/BathroomGUI,
@@ -48,6 +50,7 @@ func _ready():
 
 	# Start with "play" as the default active button
 	_set_default_active("play")
+	
 	
 func _on_stat_changed(stat_name: String, new_value: int):
 	match stat_name:

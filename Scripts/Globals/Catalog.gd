@@ -1,8 +1,9 @@
 extends Node
 
 var food_catalog = {
-	"carrot": {"cost": 50, "thumbnail": "res://Sprites/table_normal.png","name":"Carrot","fill":10, "health":5},
-	"apple": {"cost": 100, "thumbnail": "res://Sprites/shelf_normal.png","name":"Apple","fill":10, "health":6}
+	"chicken": {"cost": 50, "thumbnail": "res://Sprites/Food/Chicken.png","name":"Chicken","fill":10, "health":5},
+	"broccoli": {"cost": 100, "thumbnail": "res://Sprites/Food/Broccolli.png","name":"Broccoli","fill":10, "health":6},
+	"pizza": {"cost": 100, "thumbnail": "res://Sprites/Food/Pizza.png","name":"Pizza","fill":10, "health":6}
 }
 
 var body_parts_catalog = {
