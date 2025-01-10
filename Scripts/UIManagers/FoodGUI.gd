@@ -2,7 +2,7 @@ extends Control
 
 @onready var food_arrow_left = $HBoxContainer/FoodArrowLeft
 @onready var food_arrow_right = $HBoxContainer/FoodArrowRight
-#@onready var food_selected_text = $HBoxContainer/FoodSelected
+@onready var food_selected_text = $HBoxContainer/FoodSelected/FoodSelectedName
 @onready var food_selected = $HBoxContainer/FoodSelected
 
 var food_list: Array = []
@@ -36,8 +36,10 @@ func _update_food_display():
 
 		if food_details and food_details.thumbnail:
 			food_selected.texture_normal = load(food_details.thumbnail)
+			var text_to_display = Catalog.get_food_details(current_food)["name"] + " : " + str(GameManager.inventory['food'][current_food])
+			food_selected_text.text = text_to_display
 		else:
 			print("Error: Thumbnail not found for food item:", current_food)
 	else:
 		print("No food items in inventory!")
-		#TODO: CHANGE BACK TO ORIGINAL EMPTY INVENTORY SPRITE
+		food_selected_text.text = "Empty"
