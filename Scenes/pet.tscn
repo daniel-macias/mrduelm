@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bdd3fhta1x0ln"]
+[gd_scene load_steps=20 format=3 uid="uid://bdd3fhta1x0ln"]
 
 [ext_resource type="Texture2D" uid="uid://dve3naqek7758" path="res://Sprites/Arms/default_arm_a.png" id="1_3e1da"]
 [ext_resource type="Texture2D" uid="uid://cls7vrevae352" path="res://Sprites/Body/default_bod.png" id="1_573ay"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bigxfpxftkkkt" path="res://Sprites/Arms/default_arm_c.png" id="3_qa41u"]
 [ext_resource type="Texture2D" uid="uid://d2c1kf6s6bk7a" path="res://Sprites/Legs/default_leg_l.png" id="4_7ml4v"]
 [ext_resource type="Texture2D" uid="uid://cfjexx1kcrgn5" path="res://Sprites/Legs/default_leg_r.png" id="5_jqoqo"]
+[ext_resource type="Texture2D" uid="uid://861jy6skyymc" path="res://Sprites/Eyes/default_eyes_closed.png" id="10_aj1g7"]
 
 [sub_resource type="Animation" id="Animation_8cuwo"]
 resource_name = "Idle"
@@ -120,6 +121,44 @@ _data = {
 "RESET": SubResource("Animation_kk5ud")
 }
 
+[sub_resource type="Animation" id="Animation_vktdx"]
+resource_name = "Idle"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DefaultEyes:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.83333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("3_glg16"), ExtResource("10_aj1g7")]
+}
+
+[sub_resource type="Animation" id="Animation_7hp8d"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DefaultEyes:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_glg16")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_plgiw"]
+_data = {
+"Idle": SubResource("Animation_vktdx"),
+"RESET": SubResource("Animation_7hp8d")
+}
+
 [sub_resource type="Animation" id="Animation_dy13n"]
 resource_name = "Idle"
 length = 2.0
@@ -213,7 +252,16 @@ texture = ExtResource("2_tootx")
 position = Vector2(0, 4)
 texture = ExtResource("3_glg16")
 
+[node name="AnimationPlayerEyes" type="AnimationPlayer" parent="Body"]
+libraries = {
+"": SubResource("AnimationLibrary_plgiw")
+}
+
 [node name="AnimationPlayerBody" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_755bm")
 }
+
+[node name="InteractSpace" type="Polygon2D" parent="."]
+color = Color(1, 1, 1, 0.533333)
+polygon = PackedVector2Array(40, -35, -40, -35, -40, 30, 40, 30)

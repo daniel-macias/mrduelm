@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://co8xhyknh7k7h"]
+[gd_scene load_steps=29 format=3 uid="uid://co8xhyknh7k7h"]
 
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_2ncyc"]
 [ext_resource type="PackedScene" uid="uid://bdd3fhta1x0ln" path="res://Scenes/pet.tscn" id="1_g06e1"]
@@ -27,6 +27,7 @@
 [ext_resource type="Texture2D" uid="uid://3asydacx345v" path="res://Sprites/UI/garage_icon_pressed.png" id="12_mlgj4"]
 [ext_resource type="Texture2D" uid="uid://dpj6taf4klhoy" path="res://Sprites/UI/ProgressBars/energy.png" id="13_igeth"]
 [ext_resource type="Script" path="res://Scripts/UIManagers/GarageGUI.gd" id="13_yx62g"]
+[ext_resource type="Texture2D" uid="uid://bb56aoher0ca0" path="res://Sprites/Food/Broccolli.png" id="28_ub37l"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_2ncyc")
@@ -89,7 +90,6 @@ texture_normal = ExtResource("4_t30x3")
 stretch_mode = 5
 
 [node name="FoodSelected" type="TextureButton" parent="CanvasLayer/FoodGUI/HBoxContainer"]
-visible = false
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 texture_normal = ExtResource("5_surhq")
@@ -408,3 +408,8 @@ nine_patch_stretch = true
 texture_under = ExtResource("8_sn7hm")
 texture_over = ExtResource("13_igeth")
 texture_progress = ExtResource("10_3nn5s")
+
+[node name="DraggableFood" type="Sprite2D" parent="."]
+position = Vector2(358, 477)
+scale = Vector2(5, 5)
+texture = ExtResource("28_ub37l")
