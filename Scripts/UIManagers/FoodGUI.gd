@@ -44,6 +44,8 @@ func _on_right_arrow_pressed() -> void:
 func _update_food_display():
 	if food_list.size() > 0:
 		food_selected.disabled = false
+		food_arrow_left.disabled = false
+		food_arrow_right.disabled = false
 		var current_food = food_list[current_food_index]
 		var food_details = Catalog.get_food_details(current_food) # Using the catalog to get food details
 	
@@ -55,15 +57,19 @@ func _update_food_display():
 				food_selected_text.text = text_to_display
 				current_food_dragged_key = current_food
 			else:
-				#You ran out of that food fix this
-				food_selected_text.text = "EMPTY XD"
-				pass
+				#You ran out of that food
+				food_list.remove_at(current_food_index)
+				print(food_list)
+				current_food_index = 0
+				_update_food_display()
 		else:
 			print("Error: Thumbnail not found for food item:", current_food)
 	else:
 		print("No food items in inventory!")
 		food_selected_text.text = "Empty"
 		food_selected.disabled = true
+		food_arrow_left.disabled = true
+		food_arrow_right.disabled = true
 
 # Input handling
 func _input(event: InputEvent) -> void:

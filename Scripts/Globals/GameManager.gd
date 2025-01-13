@@ -79,7 +79,8 @@ func _decrease_stat(stat_name: String):
 
 func _send_push_notification(message: String):
 	# Simulate sending a push notification
-	print("Push notification:", message)
+	pass
+	#print("Push notification:", message)
 
 func set_decrease_speed(stat_name: String, interval: float):
 	if stat_name in timers:
