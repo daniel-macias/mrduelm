@@ -107,6 +107,16 @@ func add_to_inventory(category: String, item_name: String, quantity: int = 1):
 			inventory[category][item_name] += quantity
 		else:
 			inventory[category][item_name] = quantity
+			
+
+func remove_from_inventory(category: String, item_name: String, quantity: int = 1):
+	if category in inventory:
+		if item_name in inventory[category] and quantity > 0:
+			inventory[category][item_name] -= quantity
+		else:
+			inventory[category][item_name] = quantity
+		if inventory[category][item_name] <= 0:
+			inventory[category].erase(item_name)
 
 # Handle purchasing an item
 func buy_item(category: String, item_name: String, quantity: int = 1) -> bool:

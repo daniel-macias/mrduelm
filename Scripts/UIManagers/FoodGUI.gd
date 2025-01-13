@@ -50,9 +50,14 @@ func _update_food_display():
 		#TODO: fix when you run out of food
 		if food_details and food_details.thumbnail:
 			food_selected.texture_normal = load(food_details.thumbnail)
-			var text_to_display = Catalog.get_food_details(current_food)["name"] + " : " + str(GameManager.inventory['food'][current_food])
-			food_selected_text.text = text_to_display
-			current_food_dragged_key = current_food
+			if current_food in GameManager.inventory["food"]:
+				var text_to_display = Catalog.get_food_details(current_food)["name"] + " : " + str(GameManager.inventory['food'][current_food])
+				food_selected_text.text = text_to_display
+				current_food_dragged_key = current_food
+			else:
+				#You ran out of that food fix this
+				food_selected_text.text = "EMPTY XD"
+				pass
 		else:
 			print("Error: Thumbnail not found for food item:", current_food)
 	else:
@@ -94,8 +99,5 @@ func _input(event: InputEvent) -> void:
 func process_food_drop():
 	print("Food dropped inside InteractSpace!")
 	# Deduct food from inventory, trigger animations, etc.
-	if current_food_dragged_key in GameManager.inventory["food"]:
-		GameManager.inventory["food"][current_food_dragged_key] -= 1
-		if GameManager.inventory["food"][current_food_dragged_key] <= 0:
-			GameManager.inventory["food"].erase(current_food_dragged_key)
+	GameManager.remove_from_inventory("food",current_food_dragged_key)
 	_update_food_display()
