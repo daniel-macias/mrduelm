@@ -5,6 +5,7 @@ extends Control
 @onready var food_selected_text = $HBoxContainer/FoodSelected/FoodSelectedName
 @onready var food_selected = $HBoxContainer/FoodSelected
 @onready var draggable_food = $"../../DraggableFood"
+@onready var pet = $"../../Pet"
 
 var food_list: Array = []
 var current_food_index: int = 0
@@ -45,7 +46,8 @@ func _update_food_display():
 		food_selected.disabled = false
 		var current_food = food_list[current_food_index]
 		var food_details = Catalog.get_food_details(current_food) # Using the catalog to get food details
-
+	
+		#TODO: fix when you run out of food
 		if food_details and food_details.thumbnail:
 			food_selected.texture_normal = load(food_details.thumbnail)
 			var text_to_display = Catalog.get_food_details(current_food)["name"] + " : " + str(GameManager.inventory['food'][current_food])
@@ -73,6 +75,12 @@ func _input(event: InputEvent) -> void:
 			# When touch ends
 			dragging = false
 			draggable_food.visible = false  # Hide draggable sprite when done dragging
+			# Check if the food was dropped inside the InteractSpace
+			if pet.is_point_inside_interact_space(event.position):
+				# Perform actions (e.g., feeding the pet)
+				process_food_drop()
+			else:
+				print("Food dropped outside InteractSpace")
 
 	elif event is InputEventScreenDrag and dragging:
 		var drag_distance = event.position - drag_start_position
@@ -82,3 +90,12 @@ func _input(event: InputEvent) -> void:
 			# Make the draggable food visible and follow the finger
 			draggable_food.visible = true
 			draggable_food.position = event.position
+
+func process_food_drop():
+	print("Food dropped inside InteractSpace!")
+	# Deduct food from inventory, trigger animations, etc.
+	if current_food_dragged_key in GameManager.inventory["food"]:
+		GameManager.inventory["food"][current_food_dragged_key] -= 1
+		if GameManager.inventory["food"][current_food_dragged_key] <= 0:
+			GameManager.inventory["food"].erase(current_food_dragged_key)
+	_update_food_display()
