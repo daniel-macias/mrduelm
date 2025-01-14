@@ -263,5 +263,5 @@ libraries = {
 }
 
 [node name="InteractSpace" type="Polygon2D" parent="."]
-color = Color(1, 1, 1, 0.533333)
+color = Color(1, 1, 1, 0)
 polygon = PackedVector2Array(40, -35, -40, -35, -40, 30, 40, 30)

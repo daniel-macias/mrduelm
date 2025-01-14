@@ -49,7 +49,6 @@ func _update_food_display():
 		var current_food = food_list[current_food_index]
 		var food_details = Catalog.get_food_details(current_food) # Using the catalog to get food details
 	
-		#TODO: fix when you run out of food
 		if food_details and food_details.thumbnail:
 			food_selected.texture_normal = load(food_details.thumbnail)
 			if current_food in GameManager.inventory["food"]:
@@ -76,11 +75,14 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventScreenTouch:
 		if event.is_pressed():
 			# When touch begins
-			dragging = true
-			drag_start_position = event.position
-			draggable_food.visible = false  # Initially hidden until the threshold is met
-			draggable_food.texture = load(Catalog.get_food_details(current_food_dragged_key).thumbnail)
-			print(current_food_dragged_key)
+			if not food_selected.disabled and food_selected.get_global_rect().has_point(event.position):
+				dragging = true
+				drag_start_position = event.position
+				draggable_food.visible = false  # Initially hidden until the threshold is met
+				draggable_food.texture = load(Catalog.get_food_details(current_food_dragged_key).thumbnail)
+				print(current_food_dragged_key)
+			else:
+				dragging = false
 
 		elif event.is_released():
 			# When touch ends
@@ -88,22 +90,20 @@ func _input(event: InputEvent) -> void:
 			draggable_food.visible = false  # Hide draggable sprite when done dragging
 			# Check if the food was dropped inside the InteractSpace
 			if pet.is_point_inside_interact_space(event.position):
-				# Perform actions (e.g., feeding the pet)
 				process_food_drop()
 			else:
-				print("Food dropped outside InteractSpace")
+				#print("Food dropped outside InteractSpace")
+				pass
+				#MAYBE LATER DO AN ANIMATION TO RETURN FOOD TO INVENTORY BUT IDK
 
 	elif event is InputEventScreenDrag and dragging:
 		var drag_distance = event.position - drag_start_position
-		
-		# Check if the drag has crossed the threshold
 		if drag_distance.length() > drag_threshold:
 			# Make the draggable food visible and follow the finger
 			draggable_food.visible = true
 			draggable_food.position = event.position
 
 func process_food_drop():
-	print("Food dropped inside InteractSpace!")
 	# Deduct food from inventory, trigger animations, etc.
 	GameManager.remove_from_inventory("food",current_food_dragged_key)
 	_update_food_display()
