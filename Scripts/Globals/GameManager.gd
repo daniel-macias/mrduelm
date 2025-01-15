@@ -7,6 +7,9 @@ var health: int = 50
 var energy: int = 50
 var fun: int = 50
 
+#Hidden atributes
+var cleanliness: int = 100
+
 signal stat_changed(stat_name: String, new_value: int)
 
 var decrease_amounts = {
@@ -60,6 +63,7 @@ func _decrease_stats():
 	_decrease_stat("fun")
 	_decrease_stat("health")
 	_decrease_stat("energy")
+	#_decrease_stat("cleanliness")
 
 func _decrease_stat(stat_name: String):
 	if stat_name in self:

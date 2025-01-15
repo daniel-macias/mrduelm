@@ -105,5 +105,7 @@ func _input(event: InputEvent) -> void:
 
 func process_food_drop():
 	# Deduct food from inventory, trigger animations, etc.
-	GameManager.remove_from_inventory("food",current_food_dragged_key)
-	_update_food_display()
+	if GameManager.hunger != 100:
+		GameManager.remove_from_inventory("food",current_food_dragged_key)
+		GameManager.modify_stat("hunger", Catalog.get_food_details(current_food_dragged_key).fill)
+		_update_food_display()
