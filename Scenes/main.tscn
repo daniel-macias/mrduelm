@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://co8xhyknh7k7h"]
+[gd_scene load_steps=30 format=3 uid="uid://co8xhyknh7k7h"]
 
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_2ncyc"]
 [ext_resource type="PackedScene" uid="uid://bdd3fhta1x0ln" path="res://Scenes/pet.tscn" id="1_g06e1"]
@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://cvv5owqxqr3kl" path="res://Sprites/UI/ProgressBars/food.png" id="9_w1x0o"]
 [ext_resource type="Texture2D" uid="uid://llbq667nujq5" path="res://Sprites/UI/ProgressBars/bar_fill.png" id="10_3nn5s"]
 [ext_resource type="Texture2D" uid="uid://b3cdmltcbqcg5" path="res://Sprites/UI/sleep_icon_pressed.png" id="10_wapte"]
+[ext_resource type="Texture2D" uid="uid://chaa0bocw2434" path="res://Sprites/UI/soap.png" id="10_xt54n"]
 [ext_resource type="Texture2D" uid="uid://digdmvn5mg8gr" path="res://Sprites/UI/ProgressBars/health.png" id="11_dhajy"]
 [ext_resource type="Script" path="res://Scripts/UIManagers/SleepGUI.gd" id="11_l60en"]
 [ext_resource type="Texture2D" uid="uid://bt43t0q64458k" path="res://Sprites/UI/ProgressBars/happy.png" id="12_5y17l"]
@@ -39,6 +40,7 @@ scale = Vector2(4, 4)
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="FoodGUI" type="Control" parent="CanvasLayer"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -124,7 +126,6 @@ texture_normal = ExtResource("2_t4d30")
 stretch_mode = 5
 
 [node name="BathroomGUI" type="Control" parent="CanvasLayer"]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -156,16 +157,24 @@ anchor_left = 0.5
 anchor_top = 0.865
 anchor_right = 0.5
 anchor_bottom = 0.865
-offset_left = -20.0
-offset_top = -24.8
-offset_right = 20.0
-offset_bottom = 15.2
+offset_left = -64.0
+offset_top = -34.8
+offset_right = 62.0
+offset_bottom = 49.2
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TextureButton" type="TextureButton" parent="CanvasLayer/BathroomGUI/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 texture_normal = ExtResource("3_vlkju")
+stretch_mode = 5
+
+[node name="Soap" type="TextureButton" parent="CanvasLayer/BathroomGUI/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+texture_normal = ExtResource("10_xt54n")
+stretch_mode = 5
 
 [node name="PlayGUI" type="Control" parent="CanvasLayer"]
 visible = false
