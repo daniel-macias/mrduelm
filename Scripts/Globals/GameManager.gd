@@ -27,6 +27,7 @@ var decrease_intervals = {
 }
 
 var timers = {}
+var current_room = "Play"
 
 
 

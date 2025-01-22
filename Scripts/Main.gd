@@ -82,6 +82,7 @@ func _set_default_active(gui_name: String):
 
 func _on_button_pressed(gui_name: String):
 	print("Pressed:", gui_name.capitalize(), "Button")
+	GameManager.current_room = gui_name.capitalize()
 
 	# Toggle GUI visibility
 	for name in guis:

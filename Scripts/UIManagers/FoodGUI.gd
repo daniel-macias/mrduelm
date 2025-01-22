@@ -72,7 +72,7 @@ func _update_food_display():
 
 # Input handling
 func _input(event: InputEvent) -> void:
-	if event is InputEventScreenTouch:
+	if event is InputEventScreenTouch and GameManager.current_room == "Food":
 		if event.is_pressed():
 			# When touch begins
 			if not food_selected.disabled and food_selected.get_global_rect().has_point(event.position):

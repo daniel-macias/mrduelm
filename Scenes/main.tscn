@@ -422,3 +422,8 @@ texture_progress = ExtResource("10_3nn5s")
 position = Vector2(358, 477)
 scale = Vector2(5, 5)
 texture = ExtResource("28_ub37l")
+
+[node name="DraggableSoap" type="Sprite2D" parent="."]
+position = Vector2(355, 348)
+scale = Vector2(5, 5)
+texture = ExtResource("10_xt54n")
