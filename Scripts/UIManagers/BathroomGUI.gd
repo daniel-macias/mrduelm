@@ -45,6 +45,8 @@ func _input(event: InputEvent) -> void:
 			# Make the draggable food visible and follow the finger
 			draggable_soap.visible = true
 			draggable_soap.position = event.position
+			if pet.is_point_inside_interact_space(event.position):
+				print("WASH WASH")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
