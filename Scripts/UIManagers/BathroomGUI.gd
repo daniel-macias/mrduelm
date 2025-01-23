@@ -50,7 +50,9 @@ func _input(event: InputEvent) -> void:
 				for i in range(steps):
 					var sample_position = drag_previous_position + direction * drag_step_distance * i
 					if pet.is_point_inside_interact_space(sample_position):
-						print("WASH WASH")
+						GameManager.clean()
+						print("WASH WASH ", GameManager.cleanliness)
+						#TODO: UI feedback to 100% clean
 
 			# Update the previous position
 			drag_previous_position = event.position

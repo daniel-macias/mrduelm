@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://co8xhyknh7k7h"]
+[gd_scene load_steps=32 format=3 uid="uid://co8xhyknh7k7h"]
 
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_2ncyc"]
 [ext_resource type="PackedScene" uid="uid://bdd3fhta1x0ln" path="res://Scenes/pet.tscn" id="1_g06e1"]
@@ -18,6 +18,7 @@
 [ext_resource type="Script" path="res://Scripts/UIManagers/BathroomGUI.gd" id="8_mtmdo"]
 [ext_resource type="Texture2D" uid="uid://c8xeqy87dpe6o" path="res://Sprites/UI/ProgressBars/bar_bg.png" id="8_sn7hm"]
 [ext_resource type="Texture2D" uid="uid://c8un4x0mfdlfi" path="res://Sprites/UI/play_icon_pressed.png" id="8_sxbtx"]
+[ext_resource type="FontFile" uid="uid://bhehtvc1by4td" path="res://Fonts/c64esque.ttf" id="8_tpqmy"]
 [ext_resource type="Texture2D" uid="uid://cvv5owqxqr3kl" path="res://Sprites/UI/ProgressBars/food.png" id="9_w1x0o"]
 [ext_resource type="Texture2D" uid="uid://llbq667nujq5" path="res://Sprites/UI/ProgressBars/bar_fill.png" id="10_3nn5s"]
 [ext_resource type="Texture2D" uid="uid://b3cdmltcbqcg5" path="res://Sprites/UI/sleep_icon_pressed.png" id="10_wapte"]
@@ -29,18 +30,24 @@
 [ext_resource type="Texture2D" uid="uid://dpj6taf4klhoy" path="res://Sprites/UI/ProgressBars/energy.png" id="13_igeth"]
 [ext_resource type="Script" path="res://Scripts/UIManagers/GarageGUI.gd" id="13_yx62g"]
 [ext_resource type="Texture2D" uid="uid://bb56aoher0ca0" path="res://Sprites/Food/Broccolli.png" id="28_ub37l"]
+[ext_resource type="Texture2D" uid="uid://5lvmfvex78sv" path="res://Sprites/RoomStuff/bg_walls.png" id="30_iwp8k"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_2ncyc")
 
+[node name="BG_Wall" type="Sprite2D" parent="."]
+self_modulate = Color(0, 0.501507, 0.556543, 1)
+position = Vector2(360, 1000)
+scale = Vector2(10, 10)
+texture = ExtResource("30_iwp8k")
+
 [node name="Pet" parent="." instance=ExtResource("1_g06e1")]
-position = Vector2(362, 900)
+position = Vector2(362, 950)
 scale = Vector2(4, 4)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="FoodGUI" type="Control" parent="CanvasLayer"]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -62,7 +69,8 @@ offset_right = 160.5
 offset_bottom = 40.88
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 60
+theme_override_fonts/font = ExtResource("8_tpqmy")
+theme_override_font_sizes/font_size = 80
 text = "Foodlandia"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/FoodGUI"]
@@ -111,6 +119,8 @@ offset_right = 25.0
 offset_bottom = 77.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("8_tpqmy")
+theme_override_font_sizes/font_size = 38
 text = "Empty"
 
 [node name="FoodArrowRight" type="TextureButton" parent="CanvasLayer/FoodGUI/HBoxContainer"]
@@ -126,6 +136,7 @@ texture_normal = ExtResource("2_t4d30")
 stretch_mode = 5
 
 [node name="BathroomGUI" type="Control" parent="CanvasLayer"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -147,7 +158,8 @@ offset_right = 160.5
 offset_bottom = 40.88
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 60
+theme_override_fonts/font = ExtResource("8_tpqmy")
+theme_override_font_sizes/font_size = 80
 text = "Bathroomlandia"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/BathroomGUI"]
@@ -199,7 +211,8 @@ offset_right = 160.5
 offset_bottom = 40.88
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 60
+theme_override_fonts/font = ExtResource("8_tpqmy")
+theme_override_font_sizes/font_size = 80
 text = "Playlandia"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/PlayGUI"]
@@ -243,7 +256,8 @@ offset_right = 160.5
 offset_bottom = 40.88
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 60
+theme_override_fonts/font = ExtResource("8_tpqmy")
+theme_override_font_sizes/font_size = 80
 text = "Sleepandia"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/SleepGUI"]
@@ -287,7 +301,8 @@ offset_right = 160.5
 offset_bottom = 40.88
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 60
+theme_override_fonts/font = ExtResource("8_tpqmy")
+theme_override_font_sizes/font_size = 80
 text = "Garagelandia"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/GarageGUI"]
@@ -373,7 +388,8 @@ texture_normal = ExtResource("7_edkl8")
 
 [node name="Label" type="Label" parent="CanvasLayer/TopBar"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 60
+theme_override_fonts/font = ExtResource("8_tpqmy")
+theme_override_font_sizes/font_size = 70
 text = "99999"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/TopBar"]

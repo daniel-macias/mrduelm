@@ -8,7 +8,7 @@ var energy: int = 50
 var fun: int = 50
 
 #Hidden atributes
-var cleanliness: int = 100
+var cleanliness: int = 100 #out of 1000
 
 signal stat_changed(stat_name: String, new_value: int)
 
@@ -123,6 +123,13 @@ func remove_from_inventory(category: String, item_name: String, quantity: int = 
 			inventory[category][item_name] = quantity
 		if inventory[category][item_name] <= 0:
 			inventory[category].erase(item_name)
+
+
+func clean(amount: int = 1):
+	if cleanliness + amount > 1000:
+		cleanliness = 1000
+	else:
+		cleanliness = cleanliness + amount
 
 # Handle purchasing an item
 func buy_item(category: String, item_name: String, quantity: int = 1) -> bool:
