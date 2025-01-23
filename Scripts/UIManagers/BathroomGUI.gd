@@ -5,10 +5,10 @@ extends Node
 @onready var soap_selected = $HBoxContainer/Soap
 
 var dragging = false
-var drag_offset = Vector2.ZERO
-
 var drag_start_position = Vector2()
-var drag_threshold = 100  # Define the threshold in pixels
+var drag_previous_position = Vector2()
+var drag_threshold = 100  # Threshold for the drag to begin
+var drag_step_distance = 5  # Step distance in pixels to sample along the drag path
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -18,36 +18,39 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if event is InputEventScreenTouch and GameManager.current_room == "Bathroom":
 		if event.is_pressed():
-			# When touch begins
+			# Start dragging if the touch begins on the soap
 			if not soap_selected.disabled and soap_selected.get_global_rect().has_point(event.position):
 				dragging = true
 				drag_start_position = event.position
-				draggable_soap.visible = false  # Initially hidden until the threshold is met
+				drag_previous_position = event.position  # Initialize the previous position
+				draggable_soap.visible = false  # Initially hidden
 			else:
 				dragging = false
 
 		elif event.is_released():
-			# When touch ends
+			# End dragging
 			dragging = false
-			draggable_soap.visible = false  # Hide draggable sprite when done dragging
-			# Check if the food was dropped inside the InteractSpace
-			if pet.is_point_inside_interact_space(event.position):
-				#process_food_drop()
-				pass
-			else:
-				#print("Food dropped outside InteractSpace")
-				pass
-				#MAYBE LATER DO AN ANIMATION TO RETURN FOOD TO INVENTORY BUT IDK
+			draggable_soap.visible = false  # Hide the draggable soap
+			# Additional logic for dropping the soap if needed
 
 	elif event is InputEventScreenDrag and dragging:
 		var drag_distance = event.position - drag_start_position
 		if drag_distance.length() > drag_threshold:
-			# Make the draggable food visible and follow the finger
+			# Make the draggable soap visible and follow the drag position
 			draggable_soap.visible = true
 			draggable_soap.position = event.position
-			if pet.is_point_inside_interact_space(event.position):
-				print("WASH WASH")
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+			# Sample the drag path between the last position and the current position
+			var path_vector = event.position - drag_previous_position
+			var path_length = path_vector.length()
+			if path_length > 0:
+				var direction = path_vector.normalized()
+				var steps = int(path_length / drag_step_distance)
+				
+				for i in range(steps):
+					var sample_position = drag_previous_position + direction * drag_step_distance * i
+					if pet.is_point_inside_interact_space(sample_position):
+						print("WASH WASH")
+
+			# Update the previous position
+			drag_previous_position = event.position
