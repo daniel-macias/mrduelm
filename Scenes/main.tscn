@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://co8xhyknh7k7h"]
+[gd_scene load_steps=33 format=3 uid="uid://co8xhyknh7k7h"]
 
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_2ncyc"]
 [ext_resource type="PackedScene" uid="uid://bdd3fhta1x0ln" path="res://Scenes/pet.tscn" id="1_g06e1"]
@@ -31,6 +31,7 @@
 [ext_resource type="Script" path="res://Scripts/UIManagers/GarageGUI.gd" id="13_yx62g"]
 [ext_resource type="Texture2D" uid="uid://bb56aoher0ca0" path="res://Sprites/Food/Broccolli.png" id="28_ub37l"]
 [ext_resource type="Texture2D" uid="uid://5lvmfvex78sv" path="res://Sprites/RoomStuff/bg_walls.png" id="30_iwp8k"]
+[ext_resource type="Script" path="res://Scripts/UIManagers/ShopTemplate.gd" id="32_k4rhv"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_2ncyc")
@@ -445,9 +446,9 @@ scale = Vector2(5, 5)
 texture = ExtResource("10_xt54n")
 
 [node name="Outside" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="OutsideMenu" type="Control" parent="Outside"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -536,6 +537,68 @@ ignore_texture_size = true
 stretch_mode = 5
 
 [node name="HouseBtn" type="TextureButton" parent="Outside/OutsideMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -87.0
+offset_top = 464.0
+offset_right = -47.0
+offset_bottom = 504.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(5, 5)
+texture_normal = ExtResource("4_iuqi7")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="ShopTemplate" type="Control" parent="Outside"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("32_k4rhv")
+
+[node name="BGColor" type="ColorRect" parent="Outside/ShopTemplate"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.483544, 0, 0.219302, 1)
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Outside/ShopTemplate"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Outside/ShopTemplate/ScrollContainer"]
+layout_mode = 2
+
+[node name="Price" type="Label" parent="Outside/ShopTemplate"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -81.0
+offset_top = -55.0
+offset_right = 81.0
+offset_bottom = 55.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 80
+text = "Test"
+
+[node name="BuyBtn" type="TextureButton" parent="Outside/ShopTemplate"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
