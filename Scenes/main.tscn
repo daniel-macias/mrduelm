@@ -39,17 +39,26 @@
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_2ncyc")
 
-[node name="BG_Wall" type="Sprite2D" parent="."]
-self_modulate = Color(0, 0.501507, 0.556543, 1)
-position = Vector2(360, 900)
-scale = Vector2(8, 8)
-texture = ExtResource("30_iwp8k")
-
 [node name="Pet" parent="." instance=ExtResource("1_g06e1")]
 position = Vector2(362, 950)
 scale = Vector2(4, 4)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="BG_Wall" type="TextureRect" parent="CanvasLayer"]
+self_modulate = Color(0, 0.501507, 0.556543, 1)
+anchors_preset = -1
+anchor_left = 0.497
+anchor_top = 0.5
+anchor_right = 0.497
+anchor_bottom = 0.5
+offset_left = -1274.84
+offset_top = -830.0
+offset_right = -954.84
+offset_bottom = -590.0
+scale = Vector2(8, 8)
+texture = ExtResource("30_iwp8k")
 
 [node name="FoodGUI" type="Control" parent="CanvasLayer"]
 visible = false
@@ -343,62 +352,10 @@ grow_vertical = 2
 layout_mode = 2
 texture_normal = ExtResource("6_lu5kk")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -258.0
-offset_top = -120.0
-offset_right = 258.0
-offset_bottom = -20.0
-grow_horizontal = 2
-grow_vertical = 0
-
-[node name="FoodBtn" type="TextureButton" parent="CanvasLayer/HBoxContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-texture_normal = ExtResource("2_t4d30")
-texture_pressed = ExtResource("4_2i2le")
-texture_disabled = ExtResource("4_2i2le")
-stretch_mode = 5
-
-[node name="ShowerBtn" type="TextureButton" parent="CanvasLayer/HBoxContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-texture_normal = ExtResource("3_vlkju")
-texture_pressed = ExtResource("6_0v3sx")
-texture_disabled = ExtResource("6_0v3sx")
-stretch_mode = 5
-
-[node name="PlayBtn" type="TextureButton" parent="CanvasLayer/HBoxContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-texture_normal = ExtResource("4_iuqi7")
-texture_pressed = ExtResource("8_sxbtx")
-texture_disabled = ExtResource("8_sxbtx")
-stretch_mode = 5
-
-[node name="SleepBtn" type="TextureButton" parent="CanvasLayer/HBoxContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-texture_normal = ExtResource("5_kml8w")
-texture_pressed = ExtResource("10_wapte")
-texture_disabled = ExtResource("10_wapte")
-stretch_mode = 5
-
-[node name="GarageBtn" type="TextureButton" parent="CanvasLayer/HBoxContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-texture_normal = ExtResource("6_lu5kk")
-texture_pressed = ExtResource("12_mlgj4")
-texture_disabled = ExtResource("12_mlgj4")
-stretch_mode = 5
-
 [node name="TopBar" type="HBoxContainer" parent="CanvasLayer"]
 anchors_preset = 10
 anchor_right = 1.0
+offset_bottom = 128.0
 grow_horizontal = 2
 size_flags_vertical = 0
 
@@ -453,6 +410,59 @@ nine_patch_stretch = true
 texture_under = ExtResource("8_sn7hm")
 texture_over = ExtResource("13_igeth")
 texture_progress = ExtResource("10_3nn5s")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -258.0
+offset_top = -120.0
+offset_right = 258.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="FoodBtn" type="TextureButton" parent="CanvasLayer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture_normal = ExtResource("2_t4d30")
+texture_pressed = ExtResource("4_2i2le")
+texture_disabled = ExtResource("4_2i2le")
+stretch_mode = 5
+
+[node name="ShowerBtn" type="TextureButton" parent="CanvasLayer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture_normal = ExtResource("3_vlkju")
+texture_pressed = ExtResource("6_0v3sx")
+texture_disabled = ExtResource("6_0v3sx")
+stretch_mode = 5
+
+[node name="PlayBtn" type="TextureButton" parent="CanvasLayer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture_normal = ExtResource("4_iuqi7")
+texture_pressed = ExtResource("8_sxbtx")
+texture_disabled = ExtResource("8_sxbtx")
+stretch_mode = 5
+
+[node name="SleepBtn" type="TextureButton" parent="CanvasLayer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture_normal = ExtResource("5_kml8w")
+texture_pressed = ExtResource("10_wapte")
+texture_disabled = ExtResource("10_wapte")
+stretch_mode = 5
+
+[node name="GarageBtn" type="TextureButton" parent="CanvasLayer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture_normal = ExtResource("6_lu5kk")
+texture_pressed = ExtResource("12_mlgj4")
+texture_disabled = ExtResource("12_mlgj4")
+stretch_mode = 5
 
 [node name="DraggableFood" type="Sprite2D" parent="."]
 position = Vector2(358, 477)
