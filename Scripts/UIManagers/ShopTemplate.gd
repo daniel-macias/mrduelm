@@ -24,6 +24,8 @@ extends Node
 @onready var doctor_shop_btn: TextureButton = $"../OutsideMenu/DoctorBtn"
 @onready var body_shop_btn: TextureButton = $"../OutsideMenu/BodyShopBtn"
 
+@onready var return_home: TextureButton = $"../OutsideMenu/HouseBtn"
+
 var selected_item_key: String = ""  # Store the key of the selected item
 var selected_item_details: Dictionary = {}  # Store the details of the selected item
 var current_page: int = 0
@@ -45,6 +47,8 @@ func _ready() -> void:
 	doctor_shop_btn.connect("pressed", Callable(self, "_on_shop_load").bind("doctor"))
 	body_shop_btn.connect("pressed", Callable(self, "_on_shop_load").bind("body_parts"))
 	
+	return_home.connect("pressed", Callable(self, "_on_return_home"))
+	
 	# Connect the BuyBtn signal
 	buy_button.connect("pressed", Callable(self, "_on_buy_button_pressed"))
 	buy_button.disabled = true  # Disable BuyBtn initially
@@ -56,6 +60,9 @@ func _on_shop_load(shop_type_selected: String):
 	item_template.visible = false
 	load_items()
 	update_buttons()
+
+func _on_return_home() -> void:
+	outside_menu.visible = false
 
 func load_items() -> void:
 	all_items.clear()

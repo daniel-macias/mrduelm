@@ -18,9 +18,6 @@ var drag_start_position = Vector2()
 var drag_threshold = 100  # Define the threshold in pixels
 
 func _ready() -> void:
-	# Load the food inventory from the GameManager
-	food_list = GameManager.inventory["food"].keys()
-	
 	# Set up arrow button signals
 	food_arrow_left.connect("pressed", Callable(self, "_on_left_arrow_pressed"))
 	food_arrow_right.connect("pressed", Callable(self, "_on_right_arrow_pressed"))
@@ -42,6 +39,7 @@ func _on_right_arrow_pressed() -> void:
 	_update_food_display()
 
 func _update_food_display():
+	food_list = GameManager.inventory["food"].keys()
 	if food_list.size() > 0:
 		food_selected.disabled = false
 		food_arrow_left.disabled = false

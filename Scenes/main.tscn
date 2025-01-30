@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://co8xhyknh7k7h"]
+[gd_scene load_steps=36 format=3 uid="uid://co8xhyknh7k7h"]
 
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_2ncyc"]
 [ext_resource type="PackedScene" uid="uid://bdd3fhta1x0ln" path="res://Scenes/pet.tscn" id="1_g06e1"]
@@ -29,6 +29,7 @@
 [ext_resource type="Texture2D" uid="uid://3asydacx345v" path="res://Sprites/UI/garage_icon_pressed.png" id="12_mlgj4"]
 [ext_resource type="Texture2D" uid="uid://dpj6taf4klhoy" path="res://Sprites/UI/ProgressBars/energy.png" id="13_igeth"]
 [ext_resource type="Script" path="res://Scripts/UIManagers/GarageGUI.gd" id="13_yx62g"]
+[ext_resource type="Texture2D" uid="uid://bpcjw0w3t65ym" path="res://Sprites/RoomStuff/doors/default_door.png" id="15_so62a"]
 [ext_resource type="Texture2D" uid="uid://bb56aoher0ca0" path="res://Sprites/Food/Broccolli.png" id="28_ub37l"]
 [ext_resource type="Texture2D" uid="uid://5lvmfvex78sv" path="res://Sprites/RoomStuff/bg_walls.png" id="30_iwp8k"]
 [ext_resource type="Script" path="res://Scripts/UIManagers/ShopTemplate.gd" id="32_k4rhv"]
@@ -51,6 +52,7 @@ scale = Vector2(4, 4)
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="FoodGUI" type="Control" parent="CanvasLayer"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -192,7 +194,6 @@ texture_normal = ExtResource("10_xt54n")
 stretch_mode = 5
 
 [node name="PlayGUI" type="Control" parent="CanvasLayer"]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -235,6 +236,22 @@ grow_vertical = 2
 [node name="TextureButton" type="TextureButton" parent="CanvasLayer/PlayGUI/HBoxContainer"]
 layout_mode = 2
 texture_normal = ExtResource("4_iuqi7")
+
+[node name="Door" type="TextureButton" parent="CanvasLayer/PlayGUI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -314.0
+offset_top = -475.0
+offset_right = -85.0
+offset_bottom = -81.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("15_so62a")
+stretch_mode = 5
 
 [node name="SleepGUI" type="Control" parent="CanvasLayer"]
 visible = false
@@ -450,6 +467,7 @@ texture = ExtResource("10_xt54n")
 [node name="Outside" type="CanvasLayer" parent="."]
 
 [node name="OutsideMenu" type="Control" parent="Outside"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
