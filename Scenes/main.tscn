@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://co8xhyknh7k7h"]
+[gd_scene load_steps=35 format=3 uid="uid://co8xhyknh7k7h"]
 
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_2ncyc"]
 [ext_resource type="PackedScene" uid="uid://bdd3fhta1x0ln" path="res://Scenes/pet.tscn" id="1_g06e1"]
@@ -33,6 +33,7 @@
 [ext_resource type="Texture2D" uid="uid://5lvmfvex78sv" path="res://Sprites/RoomStuff/bg_walls.png" id="30_iwp8k"]
 [ext_resource type="Script" path="res://Scripts/UIManagers/ShopTemplate.gd" id="32_k4rhv"]
 [ext_resource type="FontFile" uid="uid://26j2gmbprlxk" path="res://Fonts/BIOSfontII.ttf" id="33_syv31"]
+[ext_resource type="Texture2D" uid="uid://b17at48ossvk6" path="res://Sprites/Food/Pizza.png" id="33_yhbi5"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_2ncyc")
@@ -597,11 +598,12 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="ItemPicture" type="TextureRect" parent="Outside/ShopTemplate/InventoryContainer/List/ItemTemplate"]
+[node name="ItemPicture" type="TextureButton" parent="Outside/ShopTemplate/InventoryContainer/List/ItemTemplate"]
 layout_mode = 2
 offset_right = 128.0
 offset_bottom = 128.0
-texture = ExtResource("7_edkl8")
+texture_normal = ExtResource("33_yhbi5")
+stretch_mode = 5
 
 [node name="ItemName" type="Label" parent="Outside/ShopTemplate/InventoryContainer/List/ItemTemplate/ItemPicture"]
 layout_mode = 1
