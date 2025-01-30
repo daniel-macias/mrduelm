@@ -555,14 +555,6 @@ texture_normal = ExtResource("4_iuqi7")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="BGColor" type="ColorRect" parent="Outside"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.483544, 0, 0.219302, 1)
-
 [node name="ShopTemplate" type="Control" parent="Outside"]
 layout_mode = 3
 anchors_preset = 15
@@ -571,6 +563,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("32_k4rhv")
+
+[node name="BGColor" type="ColorRect" parent="Outside/ShopTemplate"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.483544, 0, 0.219302, 1)
 
 [node name="InventoryContainer" type="Control" parent="Outside/ShopTemplate"]
 layout_mode = 1
@@ -812,4 +813,17 @@ offset_bottom = 133.0
 grow_horizontal = 2
 grow_vertical = 2
 texture_normal = ExtResource("6_i04jy")
+stretch_mode = 5
+
+[node name="Back" type="TextureButton" parent="Outside/ShopTemplate"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -83.0
+offset_top = 23.0
+offset_right = -12.0
+offset_bottom = 94.0
+grow_horizontal = 0
+texture_normal = ExtResource("4_t30x3")
 stretch_mode = 5

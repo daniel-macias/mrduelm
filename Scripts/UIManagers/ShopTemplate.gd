@@ -1,6 +1,10 @@
 extends Node
 
+@onready var back_button: TextureButton = $Back
+@onready var outside_menu: Control = $"../OutsideMenu"
+
 @export var shop_type = "food"  # "food", "body_parts", etc.
+@onready var shop_template: Control = $"."
 @onready var inventory_container: Control = $InventoryContainer/List
 @onready var item_template: Control = $InventoryContainer/List/ItemTemplate
 
@@ -13,13 +17,34 @@ extends Node
 @onready var left_button: TextureButton = $BrowserButtons/Left
 @onready var right_button: TextureButton = $BrowserButtons/Right
 
+#Shop types buttons
+@onready var food_shop_btn: TextureButton = $"../OutsideMenu/FoodShopBtn"
+@onready var furniture_shop_btn: TextureButton = $"../OutsideMenu/FurnitureShopBtn"
+@onready var doctor_shop_btn: TextureButton = $"../OutsideMenu/DoctorBtn"
+@onready var body_shop_btn: TextureButton = $"../OutsideMenu/BodyShopBtn"
+
 var selected_item: Dictionary = {}
 var current_page: int = 0
 var items_per_page: int = 12
 var all_items: Array = []
 
 func _ready() -> void:
-	# Hide the template initially
+	# Hide the template initially, this is for debuging
+	_on_shop_load("food")
+	
+	back_button.connect("pressed",Callable(self,"_on_back_button_pressed"))
+	
+	left_button.connect("pressed",Callable(self,"_on_left_button_pressed"))
+	right_button.connect("pressed",Callable(self,"_on_right_button_pressed"))
+	
+	#Make the outside buttons connect to the correct shop
+	food_shop_btn.connect("pressed",Callable(self,"_on_shop_load").bind("food"))
+	furniture_shop_btn.connect("pressed",Callable(self,"_on_shop_load").bind("furniture"))
+	doctor_shop_btn.connect("pressed",Callable(self,"_on_shop_load").bind("doctor"))
+	body_shop_btn.connect("pressed",Callable(self,"_on_shop_load").bind("body"))
+
+func _on_shop_load(shop_type_selected: String):
+	shop_type = shop_type_selected
 	item_template.visible = false
 	load_items()
 	update_buttons()
@@ -91,3 +116,9 @@ func _on_right_button_pressed() -> void:
 	if (current_page + 1) * items_per_page < all_items.size():
 		current_page += 1
 		display_page(current_page)
+		
+
+func _on_back_button_pressed() -> void:
+	outside_menu.visible = true
+	shop_template.visible = false
+	
