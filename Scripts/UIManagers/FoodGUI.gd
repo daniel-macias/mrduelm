@@ -4,8 +4,9 @@ extends Control
 @onready var food_arrow_right = $HBoxContainer/FoodArrowRight
 @onready var food_selected_text = $HBoxContainer/FoodSelected/FoodSelectedName
 @onready var food_selected = $HBoxContainer/FoodSelected
-@onready var draggable_food = $"../../DraggableFood"
-@onready var pet = $"../../Pet"
+@onready var draggable_food = $"../../Camera2D/DraggableFood"
+@onready var pet = $"../../Camera2D/Pet"
+@onready var camera = $"../../Camera2D"
 
 var food_list: Array = []
 var current_food_index: int = 0
@@ -86,20 +87,29 @@ func _input(event: InputEvent) -> void:
 			# When touch ends
 			dragging = false
 			draggable_food.visible = false  # Hide draggable sprite when done dragging
+			
+			# Convert screen position to world coordinates
+			var world_position = camera.get_screen_transform().affine_inverse() * event.position
+			
 			# Check if the food was dropped inside the InteractSpace
-			if pet.is_point_inside_interact_space(event.position):
+			if pet.is_point_inside_interact_space(world_position):
 				process_food_drop()
 			else:
 				#print("Food dropped outside InteractSpace")
 				pass
-				#MAYBE LATER DO AN ANIMATION TO RETURN FOOD TO INVENTORY BUT IDK
+				# MAYBE LATER DO AN ANIMATION TO RETURN FOOD TO INVENTORY BUT IDK
 
 	elif event is InputEventScreenDrag and dragging:
 		var drag_distance = event.position - drag_start_position
 		if drag_distance.length() > drag_threshold:
 			# Make the draggable food visible and follow the finger
 			draggable_food.visible = true
-			draggable_food.position = event.position
+			
+			# Convert screen position to world coordinates
+			var world_position = camera.get_screen_transform().affine_inverse() * event.position
+			
+			# Set the position of DraggableFood in world coordinates
+			draggable_food.position = world_position
 
 func process_food_drop():
 	# Deduct food from inventory, trigger animations, etc.

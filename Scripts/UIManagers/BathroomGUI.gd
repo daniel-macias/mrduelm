@@ -1,8 +1,9 @@
 extends Node
 
-@onready var draggable_soap = $"../../DraggableSoap"
-@onready var pet = $"../../Pet"
+@onready var draggable_soap = $"../../Camera2D/DraggableSoap"
+@onready var pet = $"../../Camera2D/Pet"
 @onready var soap_selected = $HBoxContainer/Soap
+@onready var camera = $"../../Camera2D"
 
 var dragging = false
 var drag_start_position = Vector2()
@@ -38,7 +39,10 @@ func _input(event: InputEvent) -> void:
 		if drag_distance.length() > drag_threshold:
 			# Make the draggable soap visible and follow the drag position
 			draggable_soap.visible = true
-			draggable_soap.position = event.position
+			
+			# Convert screen position to world coordinates
+			var world_position = camera.get_screen_transform().affine_inverse() * event.position
+			draggable_soap.position = world_position
 
 			# Sample the drag path between the last position and the current position
 			var path_vector = event.position - drag_previous_position
@@ -49,7 +53,9 @@ func _input(event: InputEvent) -> void:
 				
 				for i in range(steps):
 					var sample_position = drag_previous_position + direction * drag_step_distance * i
-					if pet.is_point_inside_interact_space(sample_position):
+					# Convert sample position to world coordinates
+					var world_sample_position = camera.get_screen_transform().affine_inverse() * sample_position
+					if pet.is_point_inside_interact_space(world_sample_position):
 						GameManager.clean()
 						print("WASH WASH ", GameManager.cleanliness)
 						#TODO: UI feedback to 100% clean
