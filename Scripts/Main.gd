@@ -15,7 +15,6 @@ extends Node2D
 
 @onready var debug_add_food_btn = $CanvasLayer/FoodGUI/HBoxContainer/TextureButton
 @onready var debug_add_energy_btn = $CanvasLayer/SleepGUI/HBoxContainer/TextureButton
-@onready var debug_add_fun_btn = $CanvasLayer/PlayGUI/HBoxContainer/TextureButton
 @onready var debug_add_health_btn = $CanvasLayer/BathroomGUI/HBoxContainer/TextureButton
 
 @onready var pet = $Pet
@@ -43,7 +42,6 @@ func _ready():
 
 	debug_add_food_btn.connect("pressed", Callable(self, "_on_debug_add_food_btn"))
 	debug_add_energy_btn.connect("pressed", Callable(self, "_on_debug_add_energy_btn"))
-	debug_add_fun_btn.connect("pressed", Callable(self, "_on_debug_add_fun_btn"))
 	debug_add_health_btn.connect("pressed", Callable(self, "_on_debug_add_health_btn"))
 	
 	GameManager.connect("stat_changed", Callable(self, "_on_stat_changed"))
@@ -71,9 +69,6 @@ func _on_debug_add_food_btn():
 
 func _on_debug_add_energy_btn():
 	GameManager.modify_stat("energy", 10)
-
-func _on_debug_add_fun_btn():
-	GameManager.modify_stat("fun", 10)
 
 func _on_debug_add_health_btn():
 	GameManager.modify_stat("health", 10)

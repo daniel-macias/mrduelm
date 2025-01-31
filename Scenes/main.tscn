@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://co8xhyknh7k7h"]
+[gd_scene load_steps=38 format=3 uid="uid://co8xhyknh7k7h"]
 
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_2ncyc"]
 [ext_resource type="PackedScene" uid="uid://bdd3fhta1x0ln" path="res://Scenes/pet.tscn" id="1_g06e1"]
@@ -29,7 +29,9 @@
 [ext_resource type="Texture2D" uid="uid://3asydacx345v" path="res://Sprites/UI/garage_icon_pressed.png" id="12_mlgj4"]
 [ext_resource type="Texture2D" uid="uid://dpj6taf4klhoy" path="res://Sprites/UI/ProgressBars/energy.png" id="13_igeth"]
 [ext_resource type="Script" path="res://Scripts/UIManagers/GarageGUI.gd" id="13_yx62g"]
-[ext_resource type="Texture2D" uid="uid://bpcjw0w3t65ym" path="res://Sprites/RoomStuff/doors/default_door.png" id="15_so62a"]
+[ext_resource type="Texture2D" uid="uid://h2d5whrlmrg" path="res://Sprites/RoomStuff/doors/birch_door.png" id="16_c1neu"]
+[ext_resource type="Texture2D" uid="uid://8vh3ya5384n6" path="res://Sprites/RoomStuff/toybox/mahogany.png" id="17_nmb5h"]
+[ext_resource type="Texture2D" uid="uid://ba6cp58md2oq5" path="res://Sprites/RoomStuff/windows/birch_window.png" id="18_t61ui"]
 [ext_resource type="Texture2D" uid="uid://bb56aoher0ca0" path="res://Sprites/Food/Broccolli.png" id="28_ub37l"]
 [ext_resource type="Texture2D" uid="uid://5lvmfvex78sv" path="res://Sprites/RoomStuff/bg_walls.png" id="30_iwp8k"]
 [ext_resource type="Script" path="res://Scripts/UIManagers/ShopTemplate.gd" id="32_k4rhv"]
@@ -50,7 +52,6 @@ scale = Vector2(5, 5)
 texture = ExtResource("28_ub37l")
 
 [node name="DraggableSoap" type="Sprite2D" parent="Camera2D"]
-position = Vector2(355, 348)
 scale = Vector2(5, 5)
 texture = ExtResource("10_xt54n")
 
@@ -270,8 +271,25 @@ offset_right = -85.0
 offset_bottom = -81.0
 grow_horizontal = 2
 grow_vertical = 2
-texture_normal = ExtResource("15_so62a")
+texture_normal = ExtResource("16_c1neu")
 stretch_mode = 5
+
+[node name="ToyBox" type="TextureButton" parent="CanvasLayer/PlayGUI"]
+layout_mode = 0
+offset_left = 393.0
+offset_top = 463.0
+offset_right = 663.0
+offset_bottom = 707.0
+texture_normal = ExtResource("17_nmb5h")
+stretch_mode = 5
+
+[node name="Window" type="TextureRect" parent="CanvasLayer/PlayGUI"]
+layout_mode = 0
+offset_left = 459.0
+offset_top = 296.0
+offset_right = 616.0
+offset_bottom = 453.0
+texture = ExtResource("18_t61ui")
 
 [node name="SleepGUI" type="Control" parent="CanvasLayer"]
 visible = false
