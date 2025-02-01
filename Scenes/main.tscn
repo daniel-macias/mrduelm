@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://co8xhyknh7k7h"]
+[gd_scene load_steps=40 format=3 uid="uid://co8xhyknh7k7h"]
 
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_2ncyc"]
 [ext_resource type="PackedScene" uid="uid://bdd3fhta1x0ln" path="res://Scenes/pet.tscn" id="1_g06e1"]
@@ -29,9 +29,11 @@
 [ext_resource type="Texture2D" uid="uid://3asydacx345v" path="res://Sprites/UI/garage_icon_pressed.png" id="12_mlgj4"]
 [ext_resource type="Texture2D" uid="uid://dpj6taf4klhoy" path="res://Sprites/UI/ProgressBars/energy.png" id="13_igeth"]
 [ext_resource type="Script" path="res://Scripts/UIManagers/GarageGUI.gd" id="13_yx62g"]
+[ext_resource type="Texture2D" uid="uid://b5ooj72vvufkx" path="res://Sprites/RoomStuff/showerhead/metal.png" id="14_6wp1h"]
 [ext_resource type="Texture2D" uid="uid://h2d5whrlmrg" path="res://Sprites/RoomStuff/doors/birch_door.png" id="16_c1neu"]
 [ext_resource type="Texture2D" uid="uid://8vh3ya5384n6" path="res://Sprites/RoomStuff/toybox/mahogany.png" id="17_nmb5h"]
 [ext_resource type="Texture2D" uid="uid://ba6cp58md2oq5" path="res://Sprites/RoomStuff/windows/birch_window.png" id="18_t61ui"]
+[ext_resource type="Texture2D" uid="uid://c6q4symd1etrr" path="res://Sprites/UI/buy_money.png" id="22_pgui7"]
 [ext_resource type="Texture2D" uid="uid://bb56aoher0ca0" path="res://Sprites/Food/Broccolli.png" id="28_ub37l"]
 [ext_resource type="Texture2D" uid="uid://5lvmfvex78sv" path="res://Sprites/RoomStuff/bg_walls.png" id="30_iwp8k"]
 [ext_resource type="Script" path="res://Scripts/UIManagers/ShopTemplate.gd" id="32_k4rhv"]
@@ -171,23 +173,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("8_mtmdo")
 
-[node name="RoomTitle" type="Label" parent="CanvasLayer/BathroomGUI"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.131
-anchor_right = 0.5
-anchor_bottom = 0.131
-offset_left = -160.5
-offset_top = -42.12
-offset_right = 160.5
-offset_bottom = 40.88
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("8_tpqmy")
-theme_override_font_sizes/font_size = 80
-text = "Bathroomlandia"
-
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/BathroomGUI"]
 layout_mode = 1
 anchors_preset = -1
@@ -214,7 +199,37 @@ layout_mode = 2
 texture_normal = ExtResource("10_xt54n")
 stretch_mode = 5
 
+[node name="ShowerHead" type="TextureButton" parent="CanvasLayer/BathroomGUI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -184.0
+offset_top = -43.0
+offset_right = 187.0
+offset_bottom = 419.0
+texture_normal = ExtResource("14_6wp1h")
+stretch_mode = 5
+
+[node name="RoomTitle" type="Label" parent="CanvasLayer/BathroomGUI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.131
+anchor_right = 0.5
+anchor_bottom = 0.131
+offset_left = -227.5
+offset_top = -42.12
+offset_right = 227.5
+offset_bottom = 40.88
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("8_tpqmy")
+theme_override_font_sizes/font_size = 80
+text = "Bathroomlandia"
+
 [node name="PlayGUI" type="Control" parent="CanvasLayer"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -240,24 +255,6 @@ theme_override_fonts/font = ExtResource("8_tpqmy")
 theme_override_font_sizes/font_size = 80
 text = "Playlandia"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/PlayGUI"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.865
-anchor_right = 0.5
-anchor_bottom = 0.865
-offset_left = -20.0
-offset_top = -24.8
-offset_right = 20.0
-offset_bottom = 15.2
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="TextureButton" type="TextureButton" parent="CanvasLayer/PlayGUI/HBoxContainer"]
-layout_mode = 2
-texture_normal = ExtResource("4_iuqi7")
-
 [node name="Door" type="TextureButton" parent="CanvasLayer/PlayGUI"]
 layout_mode = 1
 anchors_preset = 8
@@ -275,24 +272,35 @@ texture_normal = ExtResource("16_c1neu")
 stretch_mode = 5
 
 [node name="ToyBox" type="TextureButton" parent="CanvasLayer/PlayGUI"]
-layout_mode = 0
-offset_left = 393.0
-offset_top = 463.0
-offset_right = 663.0
-offset_bottom = 707.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 33.0
+offset_top = -297.0
+offset_right = 303.0
+offset_bottom = -53.0
+grow_horizontal = 2
+grow_vertical = 2
 texture_normal = ExtResource("17_nmb5h")
 stretch_mode = 5
 
 [node name="Window" type="TextureRect" parent="CanvasLayer/PlayGUI"]
-layout_mode = 0
-offset_left = 459.0
-offset_top = 296.0
-offset_right = 616.0
-offset_bottom = 453.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 99.0
+offset_top = -464.0
+offset_right = 256.0
+offset_bottom = -307.0
 texture = ExtResource("18_t61ui")
 
 [node name="SleepGUI" type="Control" parent="CanvasLayer"]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -335,6 +343,11 @@ grow_vertical = 2
 [node name="TextureButton" type="TextureButton" parent="CanvasLayer/SleepGUI/HBoxContainer"]
 layout_mode = 2
 texture_normal = ExtResource("5_kml8w")
+
+[node name="Wire" type="TextureButton" parent="CanvasLayer/SleepGUI"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="GarageGUI" type="Control" parent="CanvasLayer"]
 visible = false
@@ -390,7 +403,9 @@ size_flags_vertical = 0
 
 [node name="CoinBtn" type="TextureButton" parent="CanvasLayer/TopBar"]
 layout_mode = 2
-texture_normal = ExtResource("7_edkl8")
+size_flags_horizontal = 3
+texture_normal = ExtResource("22_pgui7")
+stretch_mode = 5
 
 [node name="Label" type="Label" parent="CanvasLayer/TopBar"]
 layout_mode = 2

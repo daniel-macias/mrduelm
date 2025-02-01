@@ -17,7 +17,7 @@ extends Node2D
 @onready var debug_add_energy_btn = $CanvasLayer/SleepGUI/HBoxContainer/TextureButton
 @onready var debug_add_health_btn = $CanvasLayer/BathroomGUI/HBoxContainer/TextureButton
 
-@onready var pet = $Pet
+@onready var pet = $Camera2D/Pet
 
 @onready var guis = {
 	"food": $CanvasLayer/FoodGUI,
