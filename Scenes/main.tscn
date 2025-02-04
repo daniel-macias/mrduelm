@@ -103,6 +103,15 @@ script = ExtResource("1_2ncyc")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
+[node name="Cable" type="Sprite2D" parent="Camera2D"]
+position = Vector2(-1000, 200)
+scale = Vector2(5.06, 5.06)
+texture = ExtResource("2_uu0w8")
+
+[node name="Pet" parent="Camera2D" instance=ExtResource("1_g06e1")]
+position = Vector2(0, 150)
+scale = Vector2(4, 4)
+
 [node name="Water" type="Node2D" parent="Camera2D"]
 
 [node name="Water" type="CPUParticles2D" parent="Camera2D/Water"]
@@ -140,15 +149,6 @@ tangential_accel_min = -100.0
 tangential_accel_max = 100.0
 scale_amount_min = 2.0
 scale_amount_max = 5.0
-
-[node name="Cable" type="Sprite2D" parent="Camera2D"]
-position = Vector2(-1000, 200)
-scale = Vector2(5.06, 5.06)
-texture = ExtResource("2_uu0w8")
-
-[node name="Pet" parent="Camera2D" instance=ExtResource("1_g06e1")]
-position = Vector2(0, 150)
-scale = Vector2(4, 4)
 
 [node name="DraggableFood" type="Sprite2D" parent="Camera2D"]
 scale = Vector2(5, 5)

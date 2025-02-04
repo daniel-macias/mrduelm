@@ -5,6 +5,8 @@ extends Node
 @onready var soap_selected = $HBoxContainer/Soap
 @onready var camera = $"../../Camera2D"
 @onready var shower_head = $ShowerHead
+@onready var bubble_parent = $"../../Camera2D/Bubbles"
+@onready var bubble = $"../../Camera2D/Bubbles/Bubble"
 
 var dragging = false
 var drag_start_position = Vector2()
@@ -57,9 +59,27 @@ func _input(event: InputEvent) -> void:
 					# Convert sample position to world coordinates
 					var world_sample_position = camera.get_screen_transform().affine_inverse() * sample_position
 					if pet.is_point_inside_interact_space(world_sample_position):
-						GameManager.clean()
+						var clean_amount = GameManager.clean()
 						print("WASH WASH ", GameManager.cleanliness)
-						#TODO: UI feedback to 100% clean
+						if clean_amount != 1000:
+							print("I am displaying bubbles") 
+							display_bubble(world_sample_position)
 
 			# Update the previous position
 			drag_previous_position = event.position
+			
+
+# Function to display a bubble at the given position
+func display_bubble(position: Vector2) -> void:
+	if GameManager.cleanliness < 1000:
+		# Duplicate the bubble
+		var new_bubble = bubble.duplicate()
+		new_bubble.visible = true  # Make the bubble visible
+		new_bubble.position = position  # Set the bubble's position
+		bubble_parent.add_child(new_bubble)  # Add the bubble to the bubble parent
+
+# Function to clear all bubbles except the original one
+func clear_bubbles() -> void:
+	for child in bubble_parent.get_children():
+		if child != bubble:  # Skip the original bubble
+			child.queue_free()  # Remove the bubble

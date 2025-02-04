@@ -130,6 +130,8 @@ func clean(amount: int = 1):
 		cleanliness = 1000
 	else:
 		cleanliness = cleanliness + amount
+	
+	return cleanliness
 
 # Handle purchasing an item
 func buy_item(category: String, item_name: String, quantity: int = 1) -> bool:
