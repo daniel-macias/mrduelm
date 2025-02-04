@@ -7,6 +7,7 @@ extends Node
 @onready var shower_head = $ShowerHead
 @onready var bubble_parent = $"../../Camera2D/Bubbles"
 @onready var bubble = $"../../Camera2D/Bubbles/Bubble"
+@onready var water_parent = $"../../Camera2D/Water"
 
 var dragging = false
 var drag_start_position = Vector2()
@@ -14,9 +15,20 @@ var drag_previous_position = Vector2()
 var drag_threshold = 100  # Threshold for the drag to begin
 var drag_step_distance = 5  # Step distance in pixels to sample along the drag path
 
+var last_bubble_time: float = 0.0  # Track the last time a bubble was created
+var bubble_cooldown: float = 0.1  # Cooldown time in seconds
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	draggable_soap.visible = false
+	bubble.visible = false  # Hide the original bubble initially
+	
+	shower_head.connect("pressed", Callable(self, "clear_bubbles"))
+	
+	
+	for child in water_parent.get_children():
+		if child is CPUParticles2D:
+			child.emitting = false
 
 # Input handling
 func _input(event: InputEvent) -> void:
@@ -62,8 +74,12 @@ func _input(event: InputEvent) -> void:
 						var clean_amount = GameManager.clean()
 						print("WASH WASH ", GameManager.cleanliness)
 						if clean_amount != 1000:
-							print("I am displaying bubbles") 
-							display_bubble(world_sample_position)
+							# Check if enough time has passed since the last bubble
+							var current_time = Time.get_ticks_msec() / 1000.0  # Convert milliseconds to seconds
+							if current_time - last_bubble_time >= bubble_cooldown:
+								# Display bubbles at the washed position
+								display_bubble(world_sample_position)
+								last_bubble_time = current_time  
 
 			# Update the previous position
 			drag_previous_position = event.position
@@ -77,9 +93,36 @@ func display_bubble(position: Vector2) -> void:
 		new_bubble.visible = true  # Make the bubble visible
 		new_bubble.position = position  # Set the bubble's position
 		bubble_parent.add_child(new_bubble)  # Add the bubble to the bubble parent
+		new_bubble.get_child(0).play("Birth")
 
-# Function to clear all bubbles except the original one
 func clear_bubbles() -> void:
+	# Play "Death" animation on each bubble with a random delay
 	for child in bubble_parent.get_children():
 		if child != bubble:  # Skip the original bubble
+			var animation_player = child.get_child(0)  # Get the AnimationPlayer
+			if animation_player is AnimationPlayer:
+				var random_delay = randf_range(0, 1)  # Random delay between 0 and 1 second
+				get_tree().create_timer(random_delay).timeout.connect(func():
+					animation_player.play("Death")
+				)
+
+	# Start all water particles immediately
+	for child in water_parent.get_children():
+		if child is CPUParticles2D:
+			child.emitting = true  # Start particles
+
+	# Wait for a set duration before removing the bubbles
+	await get_tree().create_timer(1.5).timeout  # Adjust time as needed
+
+	# Remove all bubbles after animations have played
+	for child in bubble_parent.get_children():
+		if child != bubble:
 			child.queue_free()  # Remove the bubble
+
+	# Wait for a set duration before stopping the particles
+	await get_tree().create_timer(2.0).timeout  # Adjust time as needed
+
+	# Stop all water particles
+	for child in water_parent.get_children():
+		if child is CPUParticles2D:
+			child.emitting = false  # Stop particles

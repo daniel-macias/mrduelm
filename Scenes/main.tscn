@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://co8xhyknh7k7h"]
+[gd_scene load_steps=52 format=3 uid="uid://co8xhyknh7k7h"]
 
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_2ncyc"]
 [ext_resource type="PackedScene" uid="uid://bdd3fhta1x0ln" path="res://Scenes/pet.tscn" id="1_g06e1"]
@@ -98,6 +98,59 @@ _data = {
 "RESET": SubResource("Animation_a8vy7")
 }
 
+[sub_resource type="Animation" id="Animation_gxnwh"]
+resource_name = "Birth"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 0.566667, 1),
+"transitions": PackedFloat32Array(1, 1, 0.307786),
+"update": 0,
+"values": [Vector2(0.375, 0.375), Vector2(2.5, 2.5), Vector2(2, 2)]
+}
+
+[sub_resource type="Animation" id="Animation_s5ua3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.375, 0.375)]
+}
+
+[sub_resource type="Animation" id="Animation_4vnpk"]
+resource_name = "Death"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.966667, 1.53333, 1.96667),
+"transitions": PackedFloat32Array(0.307786, 1, 1),
+"update": 0,
+"values": [Vector2(2, 2), Vector2(2.5, 2.5), Vector2(0.375, 0.375)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xa4by"]
+_data = {
+"Birth": SubResource("Animation_gxnwh"),
+"Death": SubResource("Animation_4vnpk"),
+"RESET": SubResource("Animation_s5ua3")
+}
+
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_2ncyc")
 
@@ -166,9 +219,14 @@ libraries = {
 [node name="Bubbles" type="Node2D" parent="Camera2D"]
 
 [node name="Bubble" type="Sprite2D" parent="Camera2D/Bubbles"]
-visible = false
-scale = Vector2(3, 3)
+scale = Vector2(0.375, 0.375)
 texture = ExtResource("6_yrfrm")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera2D/Bubbles/Bubble"]
+libraries = {
+"": SubResource("AnimationLibrary_xa4by")
+}
+speed_scale = 4.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -1
