@@ -1,8 +1,9 @@
-[gd_scene load_steps=40 format=3 uid="uid://co8xhyknh7k7h"]
+[gd_scene load_steps=46 format=3 uid="uid://co8xhyknh7k7h"]
 
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_2ncyc"]
 [ext_resource type="PackedScene" uid="uid://bdd3fhta1x0ln" path="res://Scenes/pet.tscn" id="1_g06e1"]
 [ext_resource type="Texture2D" uid="uid://cyutd44gt6125" path="res://Sprites/UI/food_icon.png" id="2_t4d30"]
+[ext_resource type="Texture2D" uid="uid://bg7ortroqo1q" path="res://Sprites/UI/Effects/cable.png" id="2_uu0w8"]
 [ext_resource type="Script" path="res://Scripts/UIManagers/PlayGUI.gd" id="3_n2q6m"]
 [ext_resource type="Script" path="res://Scripts/UIManagers/FoodGUI.gd" id="3_pdd0t"]
 [ext_resource type="Texture2D" uid="uid://chn7w0dkoqbus" path="res://Sprites/UI/shower_icon.png" id="3_vlkju"]
@@ -33,6 +34,7 @@
 [ext_resource type="Texture2D" uid="uid://h2d5whrlmrg" path="res://Sprites/RoomStuff/doors/birch_door.png" id="16_c1neu"]
 [ext_resource type="Texture2D" uid="uid://8vh3ya5384n6" path="res://Sprites/RoomStuff/toybox/mahogany.png" id="17_nmb5h"]
 [ext_resource type="Texture2D" uid="uid://ba6cp58md2oq5" path="res://Sprites/RoomStuff/windows/birch_window.png" id="18_t61ui"]
+[ext_resource type="Texture2D" uid="uid://c7duollkt1d7e" path="res://Sprites/UI/charging_off.png" id="21_qcu7c"]
 [ext_resource type="Texture2D" uid="uid://c6q4symd1etrr" path="res://Sprites/UI/buy_money.png" id="22_pgui7"]
 [ext_resource type="Texture2D" uid="uid://bb56aoher0ca0" path="res://Sprites/Food/Broccolli.png" id="28_ub37l"]
 [ext_resource type="Texture2D" uid="uid://5lvmfvex78sv" path="res://Sprites/RoomStuff/bg_walls.png" id="30_iwp8k"]
@@ -40,10 +42,69 @@
 [ext_resource type="FontFile" uid="uid://26j2gmbprlxk" path="res://Fonts/BIOSfontII.ttf" id="33_syv31"]
 [ext_resource type="Texture2D" uid="uid://b17at48ossvk6" path="res://Sprites/Food/Pizza.png" id="33_yhbi5"]
 
+[sub_resource type="Animation" id="Animation_3vylq"]
+resource_name = "Conecting"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cable:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 0.466667),
+"transitions": PackedFloat32Array(1, 23.4254),
+"update": 0,
+"values": [Vector2(-1000, 200), Vector2(-500, 200)]
+}
+
+[sub_resource type="Animation" id="Animation_a8vy7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cable:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1000, 200)]
+}
+
+[sub_resource type="Animation" id="Animation_1xdq5"]
+resource_name = "Deconecting"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cable:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(23.4254, 1),
+"update": 0,
+"values": [Vector2(-500, 200), Vector2(-1000, 200)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cgtgj"]
+_data = {
+"Conecting": SubResource("Animation_3vylq"),
+"Deconecting": SubResource("Animation_1xdq5"),
+"RESET": SubResource("Animation_a8vy7")
+}
+
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_2ncyc")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Cable" type="Sprite2D" parent="Camera2D"]
+position = Vector2(-1000, 200)
+scale = Vector2(5.06, 5.06)
+texture = ExtResource("2_uu0w8")
 
 [node name="Pet" parent="Camera2D" instance=ExtResource("1_g06e1")]
 position = Vector2(0, 150)
@@ -56,6 +117,11 @@ texture = ExtResource("28_ub37l")
 [node name="DraggableSoap" type="Sprite2D" parent="Camera2D"]
 scale = Vector2(5, 5)
 texture = ExtResource("10_xt54n")
+
+[node name="AnimationPlayerCable" type="AnimationPlayer" parent="Camera2D"]
+libraries = {
+"": SubResource("AnimationLibrary_cgtgj")
+}
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -1
@@ -340,9 +406,11 @@ offset_bottom = 15.2
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureButton" type="TextureButton" parent="CanvasLayer/SleepGUI/HBoxContainer"]
+[node name="ChargeBtn" type="TextureButton" parent="CanvasLayer/SleepGUI/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-texture_normal = ExtResource("5_kml8w")
+texture_normal = ExtResource("21_qcu7c")
+stretch_mode = 5
 
 [node name="Wire" type="TextureButton" parent="CanvasLayer/SleepGUI"]
 layout_mode = 0

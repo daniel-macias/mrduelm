@@ -4,6 +4,7 @@ extends Node
 @onready var pet = $"../../Camera2D/Pet"
 @onready var soap_selected = $HBoxContainer/Soap
 @onready var camera = $"../../Camera2D"
+@onready var shower_head = $ShowerHead
 
 var dragging = false
 var drag_start_position = Vector2()
