@@ -1,7 +1,8 @@
-[gd_scene load_steps=46 format=3 uid="uid://co8xhyknh7k7h"]
+[gd_scene load_steps=48 format=3 uid="uid://co8xhyknh7k7h"]
 
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_2ncyc"]
 [ext_resource type="PackedScene" uid="uid://bdd3fhta1x0ln" path="res://Scenes/pet.tscn" id="1_g06e1"]
+[ext_resource type="Texture2D" uid="uid://bexrkpi6oj6os" path="res://Sprites/UI/Effects/drop.png" id="2_qqoox"]
 [ext_resource type="Texture2D" uid="uid://cyutd44gt6125" path="res://Sprites/UI/food_icon.png" id="2_t4d30"]
 [ext_resource type="Texture2D" uid="uid://bg7ortroqo1q" path="res://Sprites/UI/Effects/cable.png" id="2_uu0w8"]
 [ext_resource type="Script" path="res://Scripts/UIManagers/PlayGUI.gd" id="3_n2q6m"]
@@ -15,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://bbfu11hb6lf4" path="res://Sprites/UI/shower_icon_pressed.png" id="6_0v3sx"]
 [ext_resource type="Texture2D" uid="uid://bjdeygiukkuec" path="res://Sprites/UI/arrow_right.png" id="6_i04jy"]
 [ext_resource type="Texture2D" uid="uid://ckiclgcvswhs7" path="res://Sprites/UI/garage_icon.png" id="6_lu5kk"]
+[ext_resource type="Texture2D" uid="uid://lkmfrvkmu8g6" path="res://Sprites/UI/Effects/bubble.png" id="6_yrfrm"]
 [ext_resource type="Texture2D" uid="uid://bxtusj4ktpwbh" path="res://icon.svg" id="7_edkl8"]
 [ext_resource type="Script" path="res://Scripts/UIManagers/BathroomGUI.gd" id="8_mtmdo"]
 [ext_resource type="Texture2D" uid="uid://c8xeqy87dpe6o" path="res://Sprites/UI/ProgressBars/bar_bg.png" id="8_sn7hm"]
@@ -101,6 +103,44 @@ script = ExtResource("1_2ncyc")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
+[node name="Water" type="Node2D" parent="Camera2D"]
+
+[node name="Water" type="CPUParticles2D" parent="Camera2D/Water"]
+position = Vector2(0, -400)
+lifetime = 1.5
+texture = ExtResource("2_qqoox")
+spread = 101.36
+radial_accel_min = -64.65
+radial_accel_max = 62.8
+tangential_accel_min = -100.0
+tangential_accel_max = 100.0
+scale_amount_min = 2.0
+scale_amount_max = 5.0
+
+[node name="Water2" type="CPUParticles2D" parent="Camera2D/Water"]
+position = Vector2(-100, -400)
+lifetime = 1.5
+texture = ExtResource("2_qqoox")
+spread = 101.36
+radial_accel_min = -64.65
+radial_accel_max = 62.8
+tangential_accel_min = -100.0
+tangential_accel_max = 100.0
+scale_amount_min = 2.0
+scale_amount_max = 5.0
+
+[node name="Water3" type="CPUParticles2D" parent="Camera2D/Water"]
+position = Vector2(100, -400)
+lifetime = 1.5
+texture = ExtResource("2_qqoox")
+spread = 101.36
+radial_accel_min = -64.65
+radial_accel_max = 62.8
+tangential_accel_min = -100.0
+tangential_accel_max = 100.0
+scale_amount_min = 2.0
+scale_amount_max = 5.0
+
 [node name="Cable" type="Sprite2D" parent="Camera2D"]
 position = Vector2(-1000, 200)
 scale = Vector2(5.06, 5.06)
@@ -122,6 +162,13 @@ texture = ExtResource("10_xt54n")
 libraries = {
 "": SubResource("AnimationLibrary_cgtgj")
 }
+
+[node name="Bubbles" type="Node2D" parent="Camera2D"]
+
+[node name="Bubble" type="Sprite2D" parent="Camera2D/Bubbles"]
+visible = false
+scale = Vector2(3, 3)
+texture = ExtResource("6_yrfrm")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -1
