@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c333af0gl136a"
-path="res://.godot/imported/default_eyes_surprised.png-ed29a03cc57590b000c50a76e59f4ae6.ctex"
+uid="uid://cps40jrxaeyp5"
+path="res://.godot/imported/plain_arm.png-3d325aa9432795241455e24cc8109370.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Eyes/default_eyes_surprised.png"
-dest_files=["res://.godot/imported/default_eyes_surprised.png-ed29a03cc57590b000c50a76e59f4ae6.ctex"]
+source_file="res://Sprites/Arms/plain_arm.png"
+dest_files=["res://.godot/imported/plain_arm.png-3d325aa9432795241455e24cc8109370.ctex"]
 
 [params]
 

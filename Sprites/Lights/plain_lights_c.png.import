@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://861jy6skyymc"
-path="res://.godot/imported/default_eyes_closed.png-3d3046f09d67b2011dcf0d0616f67c7e.ctex"
+uid="uid://dfmxtwjvtinym"
+path="res://.godot/imported/plain_lights_c.png-82c14a537f5c154720da7667cae6e4ea.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Eyes/default_eyes_closed.png"
-dest_files=["res://.godot/imported/default_eyes_closed.png-3d3046f09d67b2011dcf0d0616f67c7e.ctex"]
+source_file="res://Sprites/Lights/plain_lights_c.png"
+dest_files=["res://.godot/imported/plain_lights_c.png-82c14a537f5c154720da7667cae6e4ea.ctex"]
 
 [params]
 

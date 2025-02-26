@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bei8jc63uvfap"
-path="res://.godot/imported/default_screen.png-60633d9568f74bed2a5469b12ebf6a9c.ctex"
+uid="uid://dqryo2s5vfals"
+path="res://.godot/imported/plain_leg_r.png-68195ae345c17c5ff39c3e6f55719d42.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Screen/default_screen.png"
-dest_files=["res://.godot/imported/default_screen.png-60633d9568f74bed2a5469b12ebf6a9c.ctex"]
+source_file="res://Sprites/Legs/plain_leg_r.png"
+dest_files=["res://.godot/imported/plain_leg_r.png-68195ae345c17c5ff39c3e6f55719d42.ctex"]
 
 [params]
 

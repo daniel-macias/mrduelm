@@ -1,15 +1,15 @@
-[gd_scene load_steps=20 format=3 uid="uid://bdd3fhta1x0ln"]
+[gd_scene load_steps=22 format=3 uid="uid://bdd3fhta1x0ln"]
 
-[ext_resource type="Texture2D" uid="uid://dve3naqek7758" path="res://Sprites/Arms/default_arm_a.png" id="1_3e1da"]
-[ext_resource type="Texture2D" uid="uid://cls7vrevae352" path="res://Sprites/Body/default_bod.png" id="1_573ay"]
 [ext_resource type="Script" path="res://Scripts/Pet.gd" id="1_ej6y2"]
-[ext_resource type="Texture2D" uid="uid://bpu65joeuvnfr" path="res://Sprites/Arms/default_arm_b.png" id="2_54sae"]
-[ext_resource type="Texture2D" uid="uid://bei8jc63uvfap" path="res://Sprites/Screen/default_screen.png" id="2_tootx"]
-[ext_resource type="Texture2D" uid="uid://bsthyy1tl2lw3" path="res://Sprites/Eyes/default_eyes.png" id="3_glg16"]
-[ext_resource type="Texture2D" uid="uid://bigxfpxftkkkt" path="res://Sprites/Arms/default_arm_c.png" id="3_qa41u"]
-[ext_resource type="Texture2D" uid="uid://d2c1kf6s6bk7a" path="res://Sprites/Legs/default_leg_l.png" id="4_7ml4v"]
-[ext_resource type="Texture2D" uid="uid://cfjexx1kcrgn5" path="res://Sprites/Legs/default_leg_r.png" id="5_jqoqo"]
-[ext_resource type="Texture2D" uid="uid://861jy6skyymc" path="res://Sprites/Eyes/default_eyes_closed.png" id="10_aj1g7"]
+[ext_resource type="Texture2D" uid="uid://cps40jrxaeyp5" path="res://Sprites/Arms/plain_arm.png" id="4_64hwj"]
+[ext_resource type="Texture2D" uid="uid://xenvevkj1e7o" path="res://Sprites/Legs/plain_leg_l.png" id="5_voarc"]
+[ext_resource type="Texture2D" uid="uid://dqryo2s5vfals" path="res://Sprites/Legs/plain_leg_r.png" id="6_0q2ed"]
+[ext_resource type="Texture2D" uid="uid://d4a6g8dtv6awo" path="res://Sprites/Body/plain_body.png" id="7_jwxc8"]
+[ext_resource type="Shader" path="res://Shaders/screen.gdshader" id="8_3ohaj"]
+[ext_resource type="Texture2D" uid="uid://dgisajl6ji234" path="res://Sprites/Screen/plain_screen.png" id="9_oi5q2"]
+[ext_resource type="Texture2D" uid="uid://5ny15asbii3g" path="res://Sprites/ScreenBorder/plain_border.png" id="10_5el28"]
+[ext_resource type="Texture2D" uid="uid://dw8is4vb0dygq" path="res://Sprites/Eyes/plain_eyes.png" id="10_85g04"]
+[ext_resource type="Texture2D" uid="uid://bia8rdicryklq" path="res://Sprites/Eyes/plain_eyes_closed.png" id="11_jbhjj"]
 
 [sub_resource type="Animation" id="Animation_8cuwo"]
 resource_name = "Idle"
@@ -121,6 +121,14 @@ _data = {
 "RESET": SubResource("Animation_kk5ud")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p8gjc"]
+shader = ExtResource("8_3ohaj")
+shader_parameter/scanline_intensity = 0.372
+shader_parameter/scanline_speed = 0.278
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_lojj3"]
+load_path = "res://.godot/imported/default_eyes.png-268a8549bdcf2e733e72e4bec95d37bb.ctex"
+
 [sub_resource type="Animation" id="Animation_vktdx"]
 resource_name = "Idle"
 length = 3.0
@@ -135,7 +143,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 2.83333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [ExtResource("3_glg16"), ExtResource("10_aj1g7")]
+"values": [ExtResource("10_85g04"), ExtResource("11_jbhjj")]
 }
 
 [sub_resource type="Animation" id="Animation_7hp8d"]
@@ -150,7 +158,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("3_glg16")]
+"values": [SubResource("CompressedTexture2D_lojj3")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_plgiw"]
@@ -204,25 +212,32 @@ script = ExtResource("1_ej6y2")
 
 [node name="DefaultArmA" type="Sprite2D" parent="Arms"]
 position = Vector2(-50, 0)
-texture = ExtResource("1_3e1da")
+rotation = -1.5708
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("4_64hwj")
 
 [node name="DefaultArmA2" type="Sprite2D" parent="Arms"]
-position = Vector2(50, 0)
-rotation = 3.14159
-texture = ExtResource("1_3e1da")
+position = Vector2(51, 0)
+rotation = 1.5708
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("4_64hwj")
 
 [node name="DefaultArmB" type="Sprite2D" parent="Arms"]
 position = Vector2(-40, -30)
-texture = ExtResource("2_54sae")
+rotation = -0.785398
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("4_64hwj")
 
 [node name="DefaultArmB2" type="Sprite2D" parent="Arms"]
-position = Vector2(45, -35)
-rotation = 1.5708
-texture = ExtResource("2_54sae")
+position = Vector2(44, -34)
+rotation = 0.785398
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("4_64hwj")
 
 [node name="DefaultArmC" type="Sprite2D" parent="Arms"]
 position = Vector2(0, -40)
-texture = ExtResource("3_qa41u")
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("4_64hwj")
 
 [node name="AnimationPlayerArms" type="AnimationPlayer" parent="Arms"]
 libraries = {
@@ -232,25 +247,34 @@ libraries = {
 [node name="Legs" type="Sprite2D" parent="."]
 
 [node name="DefaultLegL" type="Sprite2D" parent="Legs"]
-position = Vector2(-28, 42)
-texture = ExtResource("4_7ml4v")
+position = Vector2(-28, 38)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("5_voarc")
 
 [node name="DefaultLegR" type="Sprite2D" parent="Legs"]
-position = Vector2(29, 43)
-texture = ExtResource("5_jqoqo")
+position = Vector2(28, 38)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("6_0q2ed")
 
 [node name="Body" type="Sprite2D" parent="."]
 
-[node name="DefaultBod" type="Sprite2D" parent="Body"]
-texture = ExtResource("1_573ay")
-
 [node name="DefaultScreen" type="Sprite2D" parent="Body"]
+material = SubResource("ShaderMaterial_p8gjc")
 position = Vector2(0, 4)
-texture = ExtResource("2_tootx")
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("9_oi5q2")
+
+[node name="DefaultBod" type="Sprite2D" parent="Body"]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("7_jwxc8")
+
+[node name="DefaultBorder" type="Sprite2D" parent="Body"]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("10_5el28")
 
 [node name="DefaultEyes" type="Sprite2D" parent="Body"]
-position = Vector2(0, 4)
-texture = ExtResource("3_glg16")
+scale = Vector2(0.2, 0.2)
+texture = SubResource("CompressedTexture2D_lojj3")
 
 [node name="AnimationPlayerEyes" type="AnimationPlayer" parent="Body"]
 libraries = {
