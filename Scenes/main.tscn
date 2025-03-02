@@ -110,7 +110,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0.0333333, 0.566667, 1),
 "transitions": PackedFloat32Array(1, 1, 0.307786),
 "update": 0,
-"values": [Vector2(0.375, 0.375), Vector2(2.5, 2.5), Vector2(2, 2)]
+"values": [Vector2(0.05, 0.05), Vector2(0.5, 0.5), Vector2(0.35, 0.35)]
 }
 
 [sub_resource type="Animation" id="Animation_4vnpk"]
@@ -126,7 +126,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0.966667, 1.53333, 1.96667),
 "transitions": PackedFloat32Array(0.307786, 1, 1),
 "update": 0,
-"values": [Vector2(2, 2), Vector2(2.5, 2.5), Vector2(0.375, 0.375)]
+"values": [Vector2(0.35, 0.35), Vector2(1, 1), Vector2(0.05, 0.05)]
 }
 
 [sub_resource type="Animation" id="Animation_s5ua3"]
@@ -176,8 +176,8 @@ radial_accel_min = -64.65
 radial_accel_max = 62.8
 tangential_accel_min = -100.0
 tangential_accel_max = 100.0
-scale_amount_min = 2.0
-scale_amount_max = 5.0
+scale_amount_min = 0.2
+scale_amount_max = 0.5
 
 [node name="Water2" type="CPUParticles2D" parent="Camera2D/Water"]
 position = Vector2(-100, -400)
@@ -188,8 +188,8 @@ radial_accel_min = -64.65
 radial_accel_max = 62.8
 tangential_accel_min = -100.0
 tangential_accel_max = 100.0
-scale_amount_min = 2.0
-scale_amount_max = 5.0
+scale_amount_min = 0.2
+scale_amount_max = 0.5
 
 [node name="Water3" type="CPUParticles2D" parent="Camera2D/Water"]
 position = Vector2(100, -400)
@@ -200,8 +200,8 @@ radial_accel_min = -64.65
 radial_accel_max = 62.8
 tangential_accel_min = -100.0
 tangential_accel_max = 100.0
-scale_amount_min = 2.0
-scale_amount_max = 5.0
+scale_amount_min = 0.2
+scale_amount_max = 0.5
 
 [node name="DraggableFood" type="Sprite2D" parent="Camera2D"]
 scale = Vector2(5, 5)
@@ -561,14 +561,18 @@ texture_normal = ExtResource("6_lu5kk")
 [node name="TopBar" type="HBoxContainer" parent="CanvasLayer"]
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 128.0
+offset_bottom = 100.0
 grow_horizontal = 2
-size_flags_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 2
 
 [node name="CoinBtn" type="TextureButton" parent="CanvasLayer/TopBar"]
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 4
+size_flags_vertical = 4
 texture_normal = ExtResource("22_pgui7")
+ignore_texture_size = true
 stretch_mode = 5
 
 [node name="Label" type="Label" parent="CanvasLayer/TopBar"]
@@ -584,7 +588,7 @@ size_flags_horizontal = 10
 size_flags_vertical = 4
 
 [node name="FoodBar" type="TextureProgressBar" parent="CanvasLayer/TopBar/HBoxContainer"]
-custom_minimum_size = Vector2(100, 100)
+custom_minimum_size = Vector2(80, 100)
 layout_mode = 2
 fill_mode = 3
 nine_patch_stretch = true
@@ -593,7 +597,7 @@ texture_over = ExtResource("9_w1x0o")
 texture_progress = ExtResource("10_3nn5s")
 
 [node name="HealthBar" type="TextureProgressBar" parent="CanvasLayer/TopBar/HBoxContainer"]
-custom_minimum_size = Vector2(100, 100)
+custom_minimum_size = Vector2(80, 100)
 layout_mode = 2
 fill_mode = 3
 nine_patch_stretch = true
@@ -602,7 +606,7 @@ texture_over = ExtResource("11_dhajy")
 texture_progress = ExtResource("10_3nn5s")
 
 [node name="HappyBar" type="TextureProgressBar" parent="CanvasLayer/TopBar/HBoxContainer"]
-custom_minimum_size = Vector2(100, 100)
+custom_minimum_size = Vector2(80, 100)
 layout_mode = 2
 fill_mode = 3
 nine_patch_stretch = true
@@ -611,7 +615,7 @@ texture_over = ExtResource("12_5y17l")
 texture_progress = ExtResource("10_3nn5s")
 
 [node name="EnergyBar" type="TextureProgressBar" parent="CanvasLayer/TopBar/HBoxContainer"]
-custom_minimum_size = Vector2(100, 100)
+custom_minimum_size = Vector2(80, 100)
 layout_mode = 2
 fill_mode = 3
 nine_patch_stretch = true
