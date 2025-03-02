@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://h2d5whrlmrg"
-path="res://.godot/imported/birch_door.png-acc7da1b3efff374b37c72161b9e40bc.ctex"
+uid="uid://b6i0tdw3d4nss"
+path="res://.godot/imported/mahogany_toybox.png-970ed0cc2b6478470389d904a8bb8a5d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/RoomStuff/doors/birch_door.png"
-dest_files=["res://.godot/imported/birch_door.png-acc7da1b3efff374b37c72161b9e40bc.ctex"]
+source_file="res://Sprites/RoomStuff/toybox/mahogany_toybox.png"
+dest_files=["res://.godot/imported/mahogany_toybox.png-970ed0cc2b6478470389d904a8bb8a5d.ctex"]
 
 [params]
 

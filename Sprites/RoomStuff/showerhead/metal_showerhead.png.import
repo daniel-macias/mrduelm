@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bp5auw6a04vhc"
-path="res://.godot/imported/default_window.png-d5b3c67cdc41b3a23ebc14a02939915d.ctex"
+uid="uid://gh4om6nvi26n"
+path="res://.godot/imported/metal_showerhead.png-ad3177fe1ac3bc7456ad054f1a4b2c11.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/RoomStuff/windows/default_window.png"
-dest_files=["res://.godot/imported/default_window.png-d5b3c67cdc41b3a23ebc14a02939915d.ctex"]
+source_file="res://Sprites/RoomStuff/showerhead/metal_showerhead.png"
+dest_files=["res://.godot/imported/metal_showerhead.png-ad3177fe1ac3bc7456ad054f1a4b2c11.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ba6cp58md2oq5"
-path="res://.godot/imported/birch_window.png-62a1a1d1935cb24bf0f30959249f83af.ctex"
+uid="uid://daco81bq84qqs"
+path="res://.godot/imported/normal_window.png-9cb7d777823705b1f75bd672188e1f75.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/RoomStuff/windows/birch_window.png"
-dest_files=["res://.godot/imported/birch_window.png-62a1a1d1935cb24bf0f30959249f83af.ctex"]
+source_file="res://Sprites/RoomStuff/windows/normal_window.png"
+dest_files=["res://.godot/imported/normal_window.png-9cb7d777823705b1f75bd672188e1f75.ctex"]
 
 [params]
 

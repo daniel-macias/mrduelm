@@ -32,10 +32,10 @@
 [ext_resource type="Texture2D" uid="uid://3asydacx345v" path="res://Sprites/UI/garage_icon_pressed.png" id="12_mlgj4"]
 [ext_resource type="Texture2D" uid="uid://dpj6taf4klhoy" path="res://Sprites/UI/ProgressBars/energy.png" id="13_igeth"]
 [ext_resource type="Script" path="res://Scripts/UIManagers/GarageGUI.gd" id="13_yx62g"]
-[ext_resource type="Texture2D" uid="uid://b5ooj72vvufkx" path="res://Sprites/RoomStuff/showerhead/metal.png" id="14_6wp1h"]
-[ext_resource type="Texture2D" uid="uid://h2d5whrlmrg" path="res://Sprites/RoomStuff/doors/birch_door.png" id="16_c1neu"]
-[ext_resource type="Texture2D" uid="uid://8vh3ya5384n6" path="res://Sprites/RoomStuff/toybox/mahogany.png" id="17_nmb5h"]
-[ext_resource type="Texture2D" uid="uid://ba6cp58md2oq5" path="res://Sprites/RoomStuff/windows/birch_window.png" id="18_t61ui"]
+[ext_resource type="Texture2D" uid="uid://gh4om6nvi26n" path="res://Sprites/RoomStuff/showerhead/metal_showerhead.png" id="16_aocou"]
+[ext_resource type="Texture2D" uid="uid://dur5vqs0sqmtd" path="res://Sprites/RoomStuff/doors/normal_door.png" id="18_5j8d4"]
+[ext_resource type="Texture2D" uid="uid://b6i0tdw3d4nss" path="res://Sprites/RoomStuff/toybox/mahogany_toybox.png" id="19_6oscq"]
+[ext_resource type="Texture2D" uid="uid://daco81bq84qqs" path="res://Sprites/RoomStuff/windows/normal_window.png" id="20_qlawt"]
 [ext_resource type="Texture2D" uid="uid://c7duollkt1d7e" path="res://Sprites/UI/charging_off.png" id="21_qcu7c"]
 [ext_resource type="Texture2D" uid="uid://c6q4symd1etrr" path="res://Sprites/UI/buy_money.png" id="22_pgui7"]
 [ext_resource type="Texture2D" uid="uid://bb56aoher0ca0" path="res://Sprites/Food/Broccolli.png" id="28_ub37l"]
@@ -231,21 +231,23 @@ speed_scale = 4.0
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -1
 
-[node name="BG_Wall" type="TextureRect" parent="CanvasLayer"]
-self_modulate = Color(0, 0.501507, 0.556543, 1)
-anchors_preset = -1
-anchor_left = 0.497
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+self_modulate = Color(0, 0.575002, 0.575006, 1)
+anchors_preset = 8
+anchor_left = 0.5
 anchor_top = 0.5
-anchor_right = 0.497
+anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -1274.84
-offset_top = -830.0
-offset_right = -954.84
-offset_bottom = -590.0
-scale = Vector2(8, 8)
+offset_left = -1180.0
+offset_top = -774.0
+offset_right = 1180.0
+offset_bottom = 866.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("30_iwp8k")
 
 [node name="FoodGUI" type="Control" parent="CanvasLayer"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -323,7 +325,6 @@ texture_normal = ExtResource("6_i04jy")
 stretch_mode = 5
 
 [node name="BathroomGUI" type="Control" parent="CanvasLayer"]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -369,7 +370,8 @@ offset_left = -184.0
 offset_top = -43.0
 offset_right = 187.0
 offset_bottom = 419.0
-texture_normal = ExtResource("14_6wp1h")
+texture_normal = ExtResource("16_aocou")
+ignore_texture_size = true
 stretch_mode = 5
 
 [node name="RoomTitle" type="Label" parent="CanvasLayer/BathroomGUI"]
@@ -425,11 +427,12 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -314.0
 offset_top = -475.0
-offset_right = -85.0
-offset_bottom = -81.0
+offset_right = -84.0
+offset_bottom = -75.0
 grow_horizontal = 2
 grow_vertical = 2
-texture_normal = ExtResource("16_c1neu")
+texture_normal = ExtResource("18_5j8d4")
+ignore_texture_size = true
 stretch_mode = 5
 
 [node name="ToyBox" type="TextureButton" parent="CanvasLayer/PlayGUI"]
@@ -439,13 +442,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 33.0
-offset_top = -297.0
-offset_right = 303.0
-offset_bottom = -53.0
+offset_left = 50.0
+offset_top = -306.0
+offset_right = 307.0
+offset_bottom = -33.0
 grow_horizontal = 2
 grow_vertical = 2
-texture_normal = ExtResource("17_nmb5h")
+texture_normal = ExtResource("19_6oscq")
+ignore_texture_size = true
 stretch_mode = 5
 
 [node name="Window" type="TextureRect" parent="CanvasLayer/PlayGUI"]
@@ -455,11 +459,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 99.0
-offset_top = -464.0
-offset_right = 256.0
-offset_bottom = -307.0
-texture = ExtResource("18_t61ui")
+offset_left = 103.0
+offset_top = -500.0
+offset_right = 332.0
+offset_bottom = -221.0
+scale = Vector2(0.675, 0.675)
+texture = ExtResource("20_qlawt")
+stretch_mode = 5
 
 [node name="SleepGUI" type="Control" parent="CanvasLayer"]
 visible = false
