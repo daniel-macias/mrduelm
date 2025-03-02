@@ -208,7 +208,7 @@ scale = Vector2(5, 5)
 texture = ExtResource("28_ub37l")
 
 [node name="DraggableSoap" type="Sprite2D" parent="Camera2D"]
-scale = Vector2(5, 5)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("10_xt54n")
 
 [node name="AnimationPlayerCable" type="AnimationPlayer" parent="Camera2D"]
@@ -246,7 +246,6 @@ scale = Vector2(8, 8)
 texture = ExtResource("30_iwp8k")
 
 [node name="FoodGUI" type="Control" parent="CanvasLayer"]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -280,17 +279,12 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -157.0
-offset_top = 504.0
+offset_top = 490.0
 offset_right = 157.0
-offset_bottom = 604.0
+offset_bottom = 590.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="TextureButton" type="TextureButton" parent="CanvasLayer/FoodGUI/HBoxContainer"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-texture_normal = ExtResource("2_t4d30")
-stretch_mode = 5
+alignment = 1
 
 [node name="FoodArrowLeft" type="TextureButton" parent="CanvasLayer/FoodGUI/HBoxContainer"]
 custom_minimum_size = Vector2(50, 0)
@@ -328,12 +322,6 @@ layout_mode = 2
 texture_normal = ExtResource("6_i04jy")
 stretch_mode = 5
 
-[node name="ShopFood" type="TextureButton" parent="CanvasLayer/FoodGUI/HBoxContainer"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-texture_normal = ExtResource("2_t4d30")
-stretch_mode = 5
-
 [node name="BathroomGUI" type="Control" parent="CanvasLayer"]
 visible = false
 layout_mode = 3
@@ -347,16 +335,18 @@ script = ExtResource("8_mtmdo")
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/BathroomGUI"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.5
+anchor_left = 0.51
 anchor_top = 0.865
-anchor_right = 0.5
+anchor_right = 0.51
 anchor_bottom = 0.865
-offset_left = -64.0
-offset_top = -34.8
-offset_right = 62.0
-offset_bottom = 49.2
+offset_left = -178.0
+offset_top = -94.8
+offset_right = 176.0
+offset_bottom = 109.2
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(180, 100)
 
 [node name="TextureButton" type="TextureButton" parent="CanvasLayer/BathroomGUI/HBoxContainer"]
 custom_minimum_size = Vector2(100, 0)
@@ -472,6 +462,7 @@ offset_bottom = -307.0
 texture = ExtResource("18_t61ui")
 
 [node name="SleepGUI" type="Control" parent="CanvasLayer"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -499,20 +490,20 @@ text = "Sleepandia"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/SleepGUI"]
 layout_mode = 1
-anchors_preset = -1
+anchors_preset = 7
 anchor_left = 0.5
-anchor_top = 0.865
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.865
-offset_left = -20.0
-offset_top = -24.8
-offset_right = 20.0
-offset_bottom = 15.2
+anchor_bottom = 1.0
+offset_left = -96.5
+offset_top = -203.0
+offset_right = 96.5
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(100, -100)
 
 [node name="ChargeBtn" type="TextureButton" parent="CanvasLayer/SleepGUI/HBoxContainer"]
-custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 texture_normal = ExtResource("21_qcu7c")
 stretch_mode = 5
@@ -634,15 +625,15 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -258.0
-offset_top = -120.0
-offset_right = 258.0
-offset_bottom = -20.0
+offset_left = -418.5
+offset_top = -204.0
+offset_right = 418.5
 grow_horizontal = 2
 grow_vertical = 0
+scale = Vector2(0.655, 0.655)
+pivot_offset = Vector2(420, 200)
 
 [node name="FoodBtn" type="TextureButton" parent="CanvasLayer/HBoxContainer"]
-custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 texture_normal = ExtResource("2_t4d30")
 texture_pressed = ExtResource("4_2i2le")
@@ -650,7 +641,6 @@ texture_disabled = ExtResource("4_2i2le")
 stretch_mode = 5
 
 [node name="ShowerBtn" type="TextureButton" parent="CanvasLayer/HBoxContainer"]
-custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 texture_normal = ExtResource("3_vlkju")
 texture_pressed = ExtResource("6_0v3sx")
@@ -658,7 +648,6 @@ texture_disabled = ExtResource("6_0v3sx")
 stretch_mode = 5
 
 [node name="PlayBtn" type="TextureButton" parent="CanvasLayer/HBoxContainer"]
-custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 texture_normal = ExtResource("4_iuqi7")
 texture_pressed = ExtResource("8_sxbtx")
@@ -666,7 +655,6 @@ texture_disabled = ExtResource("8_sxbtx")
 stretch_mode = 5
 
 [node name="SleepBtn" type="TextureButton" parent="CanvasLayer/HBoxContainer"]
-custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 texture_normal = ExtResource("5_kml8w")
 texture_pressed = ExtResource("10_wapte")
@@ -674,12 +662,11 @@ texture_disabled = ExtResource("10_wapte")
 stretch_mode = 5
 
 [node name="GarageBtn" type="TextureButton" parent="CanvasLayer/HBoxContainer"]
-custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 texture_normal = ExtResource("6_lu5kk")
 texture_pressed = ExtResource("12_mlgj4")
 texture_disabled = ExtResource("12_mlgj4")
-stretch_mode = 5
+stretch_mode = 4
 
 [node name="Outside" type="CanvasLayer" parent="."]
 

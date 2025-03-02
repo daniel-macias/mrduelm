@@ -13,9 +13,6 @@ extends Node2D
 @onready var sleep_btn = $CanvasLayer/HBoxContainer/SleepBtn
 @onready var garage_btn = $CanvasLayer/HBoxContainer/GarageBtn
 
-@onready var debug_add_food_btn = $CanvasLayer/FoodGUI/HBoxContainer/TextureButton
-@onready var debug_add_health_btn = $CanvasLayer/BathroomGUI/HBoxContainer/TextureButton
-
 @onready var pet = $Camera2D/Pet
 
 @onready var guis = {
@@ -37,10 +34,6 @@ extends Node2D
 var active_button = null
 
 func _ready():
-	#Debug buttons
-
-	debug_add_food_btn.connect("pressed", Callable(self, "_on_debug_add_food_btn"))
-	debug_add_health_btn.connect("pressed", Callable(self, "_on_debug_add_health_btn"))
 	
 	GameManager.connect("stat_changed", Callable(self, "_on_stat_changed"))
 	
