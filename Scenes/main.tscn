@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://co8xhyknh7k7h"]
+[gd_scene load_steps=54 format=3 uid="uid://co8xhyknh7k7h"]
 
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_2ncyc"]
 [ext_resource type="PackedScene" uid="uid://bdd3fhta1x0ln" path="res://Scenes/pet.tscn" id="1_g06e1"]
@@ -24,6 +24,7 @@
 [ext_resource type="FontFile" uid="uid://bhehtvc1by4td" path="res://Fonts/c64esque.ttf" id="8_tpqmy"]
 [ext_resource type="Texture2D" uid="uid://cvv5owqxqr3kl" path="res://Sprites/UI/ProgressBars/food.png" id="9_w1x0o"]
 [ext_resource type="Texture2D" uid="uid://llbq667nujq5" path="res://Sprites/UI/ProgressBars/bar_fill.png" id="10_3nn5s"]
+[ext_resource type="FontFile" uid="uid://biglirdu86eux" path="res://Fonts/ArsenalSC-Bold.ttf" id="10_l4g7b"]
 [ext_resource type="Texture2D" uid="uid://b3cdmltcbqcg5" path="res://Sprites/UI/sleep_icon_pressed.png" id="10_wapte"]
 [ext_resource type="Texture2D" uid="uid://chaa0bocw2434" path="res://Sprites/UI/soap.png" id="10_xt54n"]
 [ext_resource type="Texture2D" uid="uid://digdmvn5mg8gr" path="res://Sprites/UI/ProgressBars/health.png" id="11_dhajy"]
@@ -41,8 +42,9 @@
 [ext_resource type="Texture2D" uid="uid://bb56aoher0ca0" path="res://Sprites/Food/Broccolli.png" id="28_ub37l"]
 [ext_resource type="Texture2D" uid="uid://5lvmfvex78sv" path="res://Sprites/RoomStuff/bg_walls.png" id="30_iwp8k"]
 [ext_resource type="Script" path="res://Scripts/UIManagers/ShopTemplate.gd" id="32_k4rhv"]
-[ext_resource type="FontFile" uid="uid://26j2gmbprlxk" path="res://Fonts/BIOSfontII.ttf" id="33_syv31"]
 [ext_resource type="Texture2D" uid="uid://b17at48ossvk6" path="res://Sprites/Food/Pizza.png" id="33_yhbi5"]
+[ext_resource type="FontFile" uid="uid://0ck5qg3fvfmb" path="res://Fonts/ArsenalSC-Regular.ttf" id="43_modri"]
+[ext_resource type="FontFile" uid="uid://cdvk6e5mwlwn4" path="res://Fonts/ArsenalSC-Italic.ttf" id="44_0f0s0"]
 
 [sub_resource type="Animation" id="Animation_3vylq"]
 resource_name = "Conecting"
@@ -269,7 +271,7 @@ offset_right = 160.5
 offset_bottom = 40.88
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("8_tpqmy")
+theme_override_fonts/font = ExtResource("10_l4g7b")
 theme_override_font_sizes/font_size = 80
 text = "Foodlandia"
 
@@ -348,12 +350,7 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.5, 0.5)
 pivot_offset = Vector2(180, 100)
-
-[node name="TextureButton" type="TextureButton" parent="CanvasLayer/BathroomGUI/HBoxContainer"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-texture_normal = ExtResource("3_vlkju")
-stretch_mode = 5
+alignment = 1
 
 [node name="Soap" type="TextureButton" parent="CanvasLayer/BathroomGUI/HBoxContainer"]
 custom_minimum_size = Vector2(100, 0)
@@ -387,7 +384,7 @@ offset_right = 227.5
 offset_bottom = 40.88
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("8_tpqmy")
+theme_override_fonts/font = ExtResource("10_l4g7b")
 theme_override_font_sizes/font_size = 80
 text = "Bathroomlandia"
 
@@ -414,7 +411,7 @@ offset_right = 160.5
 offset_bottom = 40.88
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("8_tpqmy")
+theme_override_fonts/font = ExtResource("10_l4g7b")
 theme_override_font_sizes/font_size = 80
 text = "Playlandia"
 
@@ -490,7 +487,7 @@ offset_right = 160.5
 offset_bottom = 40.88
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("8_tpqmy")
+theme_override_fonts/font = ExtResource("10_l4g7b")
 theme_override_font_sizes/font_size = 80
 text = "Sleepandia"
 
@@ -542,7 +539,7 @@ offset_right = 160.5
 offset_bottom = 40.88
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("8_tpqmy")
+theme_override_fonts/font = ExtResource("10_l4g7b")
 theme_override_font_sizes/font_size = 80
 text = "Garagelandia"
 
@@ -583,7 +580,7 @@ stretch_mode = 5
 
 [node name="Label" type="Label" parent="CanvasLayer/TopBar"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("8_tpqmy")
+theme_override_fonts/font = ExtResource("10_l4g7b")
 theme_override_font_sizes/font_size = 70
 text = "99999"
 
@@ -854,7 +851,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 16
-theme_override_fonts/font = ExtResource("33_syv31")
+theme_override_fonts/font = ExtResource("43_modri")
 theme_override_font_sizes/font_size = 24
 text = "Food Name"
 horizontal_alignment = 1
@@ -873,7 +870,7 @@ offset_right = 34.0
 offset_bottom = 27.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_fonts/font = ExtResource("33_syv31")
+theme_override_fonts/font = ExtResource("44_0f0s0")
 theme_override_font_sizes/font_size = 20
 text = "999 Gold"
 horizontal_alignment = 1
@@ -892,7 +889,7 @@ offset_right = 54.0
 offset_bottom = 50.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_fonts/font = ExtResource("33_syv31")
+theme_override_fonts/font = ExtResource("44_0f0s0")
 theme_override_font_sizes/font_size = 20
 text = "Other Stat"
 horizontal_alignment = 1
@@ -908,7 +905,7 @@ offset_top = 31.0
 offset_right = 215.0
 offset_bottom = 141.0
 grow_horizontal = 2
-theme_override_fonts/font = ExtResource("33_syv31")
+theme_override_fonts/font = ExtResource("10_l4g7b")
 theme_override_font_sizes/font_size = 80
 text = "ShopName
 "
@@ -924,7 +921,7 @@ offset_top = 122.0
 offset_right = 215.0
 offset_bottom = 232.0
 grow_horizontal = 2
-theme_override_fonts/font = ExtResource("33_syv31")
+theme_override_fonts/font = ExtResource("10_l4g7b")
 theme_override_font_sizes/font_size = 45
 text = "Current Gold: 999"
 horizontal_alignment = 1
@@ -975,7 +972,7 @@ offset_right = 81.0
 offset_bottom = 113.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_fonts/font = ExtResource("33_syv31")
+theme_override_fonts/font = ExtResource("10_l4g7b")
 theme_override_font_sizes/font_size = 80
 text = "Test"
 
@@ -992,7 +989,7 @@ offset_right = 90.0
 offset_bottom = 235.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_fonts/font = ExtResource("33_syv31")
+theme_override_fonts/font = ExtResource("43_modri")
 theme_override_font_sizes/font_size = 60
 text = "Test"
 horizontal_alignment = 1
@@ -1010,7 +1007,7 @@ offset_right = 90.0
 offset_bottom = 173.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_fonts/font = ExtResource("33_syv31")
+theme_override_fonts/font = ExtResource("43_modri")
 theme_override_font_sizes/font_size = 60
 text = "Test"
 horizontal_alignment = 1
