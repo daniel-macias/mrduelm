@@ -23,6 +23,10 @@ var body_parts_catalog = {
 	"body_01_eggshell": {"cost": 100, "thumbnail": "res://Sprites/shelf_normal.png","name":"Vintage 80s", "category":"body"}
 }
 
+var minigame_catalog = {
+	"detector" : {"name": "Detector", "thumbnail": "res://Sprites/table_normal.png", "scene": "res://Scenes/detector.tscn"}
+}
+
 func get_food_details(name):
 	return food_catalog[name] if name in food_catalog else null
 	
