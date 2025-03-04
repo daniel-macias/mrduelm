@@ -158,3 +158,8 @@ func buy_item(category: String, item_name: String, quantity: int = 1) -> bool:
 	
 	print("Not enough money to buy", item_details["name"])
 	return false
+
+# Pause or resume all timers
+func set_timers_paused(paused: bool):
+	for timer in timers.values():
+		timer.set_paused(paused)

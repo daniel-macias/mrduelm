@@ -3,13 +3,12 @@ extends Node
 @onready var back_button: TextureButton = $Back
 @onready var outside_menu: Control = $"../OutsideMenu"
 
-@export var shop_type = "food"  # "food", "body_parts", etc.
+@export var shop_type = "minigame_catalog"
 @onready var shop_template: Control = $"."
 @onready var inventory_container: Control = $InventoryContainer/List
 @onready var item_template: Control = $InventoryContainer/List/ItemTemplate
 @onready var current_gold: Label = $CurrentGold
 
-@onready var buy_button: TextureButton = $BuyBtn
 @onready var left_button: TextureButton = $BrowserButtons/Left
 @onready var right_button: TextureButton = $BrowserButtons/Right
 
@@ -23,13 +22,10 @@ var all_items: Array = []
 
 func _ready() -> void:
 	# Hide the template initially, this is for debugging
-	#_on_shop_load("food")
-	
 	back_button.connect("pressed", Callable(self, "_on_back_button_pressed"))
 	
 	left_button.connect("pressed", Callable(self, "_on_left_button_pressed"))
 	right_button.connect("pressed", Callable(self, "_on_right_button_pressed"))
-
 	
 	return_home.connect("pressed", Callable(self, "_on_return_home"))
 	
@@ -37,7 +33,6 @@ func _ready() -> void:
 func _on_shop_load(shop_type_selected: String):
 	shop_type = shop_type_selected
 	print("OPENED ", shop_type_selected, " SHOP")
-	shop_template.visible = true
 	item_template.visible = false
 	load_items()
 	update_buttons()
@@ -73,11 +68,10 @@ func display_page(page: int) -> void:
 		new_item.get_node("ItemPicture").texture_normal = load(item_details["thumbnail"])
 		
 		new_item.get_node("ItemPicture").get_child(0).text = item_details["name"]
-		new_item.get_node("ItemPicture").get_child(1).text = "$" + str(item_details["cost"])
 		
 		# Connect the item's button signal to update the "Currently Selected" section
 		var item_button = new_item  # Assuming the entire item is clickable
-		item_button.get_node("ItemPicture").connect("pressed", Callable(self, "_on_item_selected").bind(item_key))
+		item_button.get_node("ItemPicture").connect("pressed", Callable(self, "_open_game").bind(item_details["scene"]))
 		
 		# Add the new item to the container
 		inventory_container.add_child(new_item)
@@ -91,9 +85,7 @@ func update_buttons() -> void:
 func _on_item_selected(item_key: String) -> void:
 	selected_item_key = item_key  # Store the key of the selected item
 	selected_item_details = Catalog.get(shop_type + "_catalog")[item_key]  # Store the details
-	
-	# Enable BuyBtn if the player can afford the item
-	buy_button.disabled = !GameManager.can_afford(selected_item_details["cost"])
+
 
 func _on_left_button_pressed() -> void:
 	if current_page > 0:
@@ -106,5 +98,9 @@ func _on_right_button_pressed() -> void:
 		display_page(current_page)
 
 func _on_back_button_pressed() -> void:
-	outside_menu.visible = true
-	shop_template.visible = false
+	self.visible = false
+
+func _open_game(scene_path: String) -> void:
+	var minigame_scene = load(scene_path).instantiate()
+	get_tree().current_scene.add_child(minigame_scene) 
+	GameManager.set_timers_paused(true) 
