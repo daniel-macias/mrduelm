@@ -39,6 +39,7 @@ func _on_shop_load(shop_type_selected: String):
 
 func _on_return_home() -> void:
 	outside_menu.visible = false
+	GameManager.set_timers_paused(false) 
 
 func load_items() -> void:
 	all_items.clear()
@@ -82,10 +83,6 @@ func update_buttons() -> void:
 	left_button.disabled = current_page == 0
 	right_button.disabled = (current_page + 1) * items_per_page >= all_items.size()
 
-func _on_item_selected(item_key: String) -> void:
-	selected_item_key = item_key  # Store the key of the selected item
-	selected_item_details = Catalog.get(shop_type + "_catalog")[item_key]  # Store the details
-
 
 func _on_left_button_pressed() -> void:
 	if current_page > 0:
@@ -103,4 +100,11 @@ func _on_back_button_pressed() -> void:
 func _open_game(scene_path: String) -> void:
 	var minigame_scene = load(scene_path).instantiate()
 	get_tree().current_scene.add_child(minigame_scene) 
+	self.visible = false
 	GameManager.set_timers_paused(true) 
+	
+	if minigame_scene.has_signal("game_closed"):
+		minigame_scene.game_closed.connect(_on_game_closed)
+
+func _on_game_closed():
+	self.visible = true
