@@ -51,29 +51,52 @@ func _ready() -> void:
 func _start_game() -> void:
 	menu.visible = false
 	game.visible = true
-	_generate_people(4)
+	generate_grid(4)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 
-func _generate_people(amount: int):
-	# Clear existing people
+var grid_sizes = {
+	2: 250,
+	3: 200,
+	4: 150
+}
+
+func generate_grid(grid_size: int):
+	# Clear previous people
 	for child in people_grid.get_children():
 		if child != person_template:
 			child.queue_free()
+	
+	# Set the correct grid columns
+	people_grid.columns = grid_size
 
-	# Generate new people
-	for i in range(amount):
+	# Get the correct character size
+	var character_size = grid_sizes.get(grid_size, 200) # Default to 3x3 size
+
+	# Hide template
+	person_template.hide()
+
+	# Create people for the grid
+	var total_people = grid_size * grid_size
+	for i in range(total_people):
 		var new_person = person_template.duplicate()
-		new_person.visible = true
 		new_person.show()
-
-		var children = new_person.get_children()
-		children[1].texture = load(mouth_textures.pick_random()) # Mouth
-		children[2].texture = load(hair_textures.pick_random())  # Hair
-		children[3].texture = load(eyes_textures.pick_random())  # Eyes
-		children[4].texture = load(brows_textures.pick_random()) # Brows
-		children[5].texture = load(nose_textures.pick_random())  # Nose
-
 		people_grid.add_child(new_person)
+
+		# Resize person
+		new_person.set_custom_minimum_size(Vector2(character_size, character_size))
+
+		# Get children
+		var parts = new_person.get_children()
+		if parts.size() >= 6:  # Ensure correct structure
+			parts[1].texture = load(mouth_textures.pick_random()) 
+			parts[2].texture = load(hair_textures.pick_random())  
+			parts[3].texture = load(eyes_textures.pick_random())  
+			parts[4].texture = load(brows_textures.pick_random())  
+			parts[5].texture = load(nose_textures.pick_random()) 
+
+			# Resize each part
+			for part in parts:
+				part.set_custom_minimum_size(Vector2(character_size, character_size))
