@@ -51,7 +51,7 @@ func _ready() -> void:
 func _start_game() -> void:
 	menu.visible = false
 	game.visible = true
-	generate_grid(4)
+	generate_grid(2)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -99,4 +99,4 @@ func generate_grid(grid_size: int):
 
 			# Resize each part
 			for part in parts:
-				part.set_custom_minimum_size(Vector2(character_size, character_size))
+				part.set_size(Vector2(character_size, character_size))
