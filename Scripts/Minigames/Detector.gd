@@ -9,8 +9,9 @@ extends Node
 @onready var person_template = $CanvasLayer/Game/GridContainer/Person
 @onready var menu = $CanvasLayer/GameMenu
 @onready var game = $CanvasLayer/Game
+@onready var instruction = $CanvasLayer/Game/Instruction
 
-var mouth_textures = ["res://Sprites/Games/Detector/Mouth_0.png",
+var mouth_textures = [
 "res://Sprites/Games/Detector/Mouth_1.png",
 "res://Sprites/Games/Detector/Mouth_2.png",
 "res://Sprites/Games/Detector/Mouth_3.png"]
@@ -29,14 +30,22 @@ var hair_textures = ["res://Sprites/Games/Detector/Hair_0.png",
 
 var eyes_textures = ["res://Sprites/Games/Detector/Eyes_0.png",
 "res://Sprites/Games/Detector/Eyes_1.png",
-"res://Sprites/Games/Detector/Eyes_2.png",
-"res://Sprites/Games/Detector/Eyes_3.png"]
+"res://Sprites/Games/Detector/Eyes_2.png"]
 
 var brows_textures = ["res://Sprites/Games/Detector/Brows_0.png",
 "res://Sprites/Games/Detector/Brows_1.png",
 "res://Sprites/Games/Detector/Brows_2.png"]
 
 signal game_closed  # Signal to notify when the game is closed
+
+var standout_conditions = {
+	"sad": {"name": "Sad", "apply_condition": "_apply_sad"},
+	"eyes_closed": {"name": "Eyes Closed", "apply_condition": "_apply_eyes_closed"},
+	"no_mouth": {"name": "No Mouth", "apply_condition": "_apply_no_mouth"},
+	"no_nose": {"name": "No Nose", "apply_condition": "_apply_no_nose"},
+	"no_brows": {"name": "No Brows", "apply_condition": "_apply_no_brows"},
+	"no_eyes": {"name": "No Eyes", "apply_condition": "_apply_no_eyes"}
+}
 
 func _exit_game():
 	game_closed.emit()  # Emit signal when exiting
@@ -51,7 +60,8 @@ func _ready() -> void:
 func _start_game() -> void:
 	menu.visible = false
 	game.visible = true
-	generate_grid(2)
+	instruction.bbcode_text = "Detect [color=red]" + str(2) + "[/color] people with the standout feature: " + standout_conditions.keys()[2] + "\nGood luck!"
+	generate_grid(2,1,2,2)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -63,11 +73,14 @@ var grid_sizes = {
 	4: 150
 }
 
-func generate_grid(grid_size: int):
+var all_people = []
+
+func generate_grid(grid_size: int, flip_amount: int, people_to_detect: int, standout_type: int):
 	# Clear previous people
 	for child in people_grid.get_children():
 		if child != person_template:
 			child.queue_free()
+	all_people.clear()
 	
 	# Set the correct grid columns
 	people_grid.columns = grid_size
@@ -84,6 +97,7 @@ func generate_grid(grid_size: int):
 		var new_person = person_template.duplicate()
 		new_person.show()
 		people_grid.add_child(new_person)
+		all_people.append(new_person)
 
 		# Resize person
 		new_person.set_custom_minimum_size(Vector2(character_size, character_size))
@@ -100,3 +114,61 @@ func generate_grid(grid_size: int):
 			# Resize each part
 			for part in parts:
 				part.set_size(Vector2(character_size, character_size))
+				
+		if i < people_to_detect:
+			apply_standout_feature(new_person, standout_type)
+	flip_random_people(flip_amount)
+
+
+func flip_random_people(flip_amount: int):
+	if flip_amount <= 0 or all_people.size() == 0:
+		return
+	
+	var flipped_indices = []
+	while flipped_indices.size() < flip_amount:
+		var random_index = randi() % all_people.size()
+		if random_index not in flipped_indices:
+			flipped_indices.append(random_index)
+	
+	for index in flipped_indices:
+		var person = all_people[index]
+		var flip_h = randi() % 2 == 0  # Randomly decide if horizontal flip
+		var flip_v = randi() % 2 == 0  # Randomly decide if vertical flip
+
+		# Apply flipping to all parts
+		for part in person.get_children():
+			part.flip_h = flip_h
+			part.flip_v = flip_v
+
+# Function to apply standout feature (e.g., sad, eyes closed, etc.)
+func apply_standout_feature(person, standout_type):
+	var condition_name = standout_conditions.keys()[standout_type]  # Get the condition from the type
+	var condition = standout_conditions[condition_name]
+	var apply_method = condition["apply_condition"]
+	call_deferred(apply_method, person)  # Apply the standout condition method
+
+# Example condition function: apply sad face
+func _apply_sad(person):
+	var parts = person.get_children()
+	parts[1].texture = load("res://Sprites/Games/Detector/Mouth_0.png")  # Set a sad mouth
+
+# Example condition function: apply eyes closed
+func _apply_eyes_closed(person):
+	var parts = person.get_children()
+	parts[3].texture = load("res://Sprites/Games/Detector/Eyes_3.png")  # Set eyes closed texture
+	
+func _apply_no_mouth(person):
+	var parts = person.get_children()
+	parts[1].texture = null 
+
+func _apply_no_nose(person):
+	var parts = person.get_children()
+	parts[4].texture = null 
+
+func _apply_no_brows(person):
+	var parts = person.get_children()
+	parts[5].texture = null 
+
+func _apply_no_eyes(person):
+	var parts = person.get_children()
+	parts[3].texture = null 

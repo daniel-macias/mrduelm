@@ -145,6 +145,7 @@ text = "0"
 horizontal_alignment = 1
 
 [node name="Game" type="Control" parent="CanvasLayer"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -172,6 +173,19 @@ value = 20.0
 fill_mode = 4
 nine_patch_stretch = true
 texture_progress = ExtResource("1_fvrs2")
+
+[node name="Instruction" type="RichTextLabel" parent="CanvasLayer/Game"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -112.0
+offset_top = 132.0
+offset_right = 112.0
+offset_bottom = 224.0
+grow_horizontal = 2
+theme_override_font_sizes/normal_font_size = 27
+text = "Find:"
 
 [node name="GridContainer" type="GridContainer" parent="CanvasLayer/Game"]
 layout_mode = 1
