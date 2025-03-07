@@ -93,6 +93,14 @@ func generate_grid(grid_size: int, flip_amount: int, people_to_detect: int, stan
 
 	# Create people for the grid
 	var total_people = grid_size * grid_size
+	var selected_people = []  # Store indices of affected people
+
+	# Randomly select unique people to be affected
+	while selected_people.size() < people_to_detect:
+		var random_index = randi() % total_people
+		if random_index not in selected_people:
+			selected_people.append(random_index)
+	
 	for i in range(total_people):
 		var new_person = person_template.duplicate()
 		new_person.show()
@@ -115,8 +123,9 @@ func generate_grid(grid_size: int, flip_amount: int, people_to_detect: int, stan
 			for part in parts:
 				part.set_size(Vector2(character_size, character_size))
 				
-		if i < people_to_detect:
+		if i in selected_people:
 			apply_standout_feature(new_person, standout_type)
+		
 	flip_random_people(flip_amount)
 
 
