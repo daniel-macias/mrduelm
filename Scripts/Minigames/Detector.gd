@@ -60,7 +60,7 @@ func _ready() -> void:
 func _start_game() -> void:
 	menu.visible = false
 	game.visible = true
-	instruction.bbcode_text = "Detect [color=red]" + str(2) + "[/color] people with the standout feature: " + standout_conditions.keys()[2] + "\nGood luck!"
+	
 	generate_grid(2,1,2,2)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -74,6 +74,8 @@ var grid_sizes = {
 }
 
 var all_people = []
+var selected_people = []
+var correct_clicks = 0 
 
 func generate_grid(grid_size: int, flip_amount: int, people_to_detect: int, standout_type: int):
 	# Clear previous people
@@ -81,6 +83,12 @@ func generate_grid(grid_size: int, flip_amount: int, people_to_detect: int, stan
 		if child != person_template:
 			child.queue_free()
 	all_people.clear()
+	
+	instruction.bbcode_text = "Detect [color=red]" + str(people_to_detect) + "[/color] people with the standout feature: " + standout_conditions.keys()[standout_type] + "\nGood luck!"
+	
+	#Restart select tracker
+	selected_people.clear()
+	correct_clicks = 0
 	
 	# Set the correct grid columns
 	people_grid.columns = grid_size
@@ -93,7 +101,7 @@ func generate_grid(grid_size: int, flip_amount: int, people_to_detect: int, stan
 
 	# Create people for the grid
 	var total_people = grid_size * grid_size
-	var selected_people = []  # Store indices of affected people
+	
 
 	# Randomly select unique people to be affected
 	while selected_people.size() < people_to_detect:
@@ -125,6 +133,7 @@ func generate_grid(grid_size: int, flip_amount: int, people_to_detect: int, stan
 				
 		if i in selected_people:
 			apply_standout_feature(new_person, standout_type)
+		new_person.connect("gui_input", Callable(self, "_on_person_clicked").bind(i))
 		
 	flip_random_people(flip_amount)
 
@@ -180,4 +189,14 @@ func _apply_no_brows(person):
 
 func _apply_no_eyes(person):
 	var parts = person.get_children()
-	parts[3].texture = null 
+	parts[3].texture = null
+
+func _on_person_clicked(event: InputEvent, index: int):
+	if event is InputEventMouseButton and event.pressed:
+		if index in selected_people:
+			correct_clicks += 1
+			people_grid.get_child(index).modulate = Color(0, 1, 0)  # Highlight correct person
+
+			if correct_clicks == selected_people.size():
+				await get_tree().create_timer(1.0).timeout  # Small delay before next round
+				generate_grid(3, 2, 2, randi() % 6) 
