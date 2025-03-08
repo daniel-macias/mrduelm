@@ -75,7 +75,7 @@ var grid_sizes = {
 
 var all_people = []
 var selected_people = []
-var correct_clicks = 0 
+var clicked_people = {}
 
 func generate_grid(grid_size: int, flip_amount: int, people_to_detect: int, standout_type: int):
 	# Clear previous people
@@ -88,7 +88,7 @@ func generate_grid(grid_size: int, flip_amount: int, people_to_detect: int, stan
 	
 	#Restart select tracker
 	selected_people.clear()
-	correct_clicks = 0
+	clicked_people.clear()
 	
 	# Set the correct grid columns
 	people_grid.columns = grid_size
@@ -193,10 +193,13 @@ func _apply_no_eyes(person):
 
 func _on_person_clicked(event: InputEvent, index: int):
 	if event is InputEventMouseButton and event.pressed:
+		# Ignore if this person was already clicked
+		if index in clicked_people:
+			return
+		
+		# Check if the person is in the correct ones
 		if index in selected_people:
-			correct_clicks += 1
-			people_grid.get_child(index).modulate = Color(0, 1, 0)  # Highlight correct person
-
-			if correct_clicks == selected_people.size():
-				await get_tree().create_timer(1.0).timeout  # Small delay before next round
-				generate_grid(3, 2, 2, randi() % 6) 
+			clicked_people[index] = true
+			if clicked_people.size() == selected_people.size():
+				# If all correct people were clicked, generate a new round
+				generate_grid(3, 1, 2, 0)  # Example: New 3x3 round with different settings
