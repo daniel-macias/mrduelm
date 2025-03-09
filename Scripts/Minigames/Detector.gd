@@ -10,6 +10,7 @@ extends Node
 @onready var menu = $CanvasLayer/GameMenu
 @onready var game = $CanvasLayer/Game
 @onready var instruction = $CanvasLayer/Game/Instruction
+@onready var timer_progress_bar = $CanvasLayer/Game/Timer
 
 var mouth_textures = [
 "res://Sprites/Games/Detector/Mouth_1.png",
@@ -38,6 +39,12 @@ var brows_textures = ["res://Sprites/Games/Detector/Brows_0.png",
 
 signal game_closed  # Signal to notify when the game is closed
 
+var round_duration = 10.0
+var elapsed_time = 0.0
+var timer_running = false
+
+
+
 var standout_conditions = {
 	"sad": {"name": "Sad", "apply_condition": "_apply_sad"},
 	"eyes_closed": {"name": "Eyes Closed", "apply_condition": "_apply_eyes_closed"},
@@ -50,6 +57,11 @@ var standout_conditions = {
 func _exit_game():
 	game_closed.emit()  # Emit signal when exiting
 	queue_free()  # Remove this minigame scene
+	
+func start_timer():
+	elapsed_time = 0.0
+	timer_progress_bar.value = 100  # Start full
+	timer_running = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -65,7 +77,14 @@ func _start_game() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	if timer_running:
+		elapsed_time += delta
+		var time_left = round_duration - elapsed_time
+		timer_progress_bar.value = (time_left / round_duration) * 100 
+
+		if elapsed_time >= round_duration:
+			timer_running = false
+			on_time_up()
 
 var grid_sizes = {
 	2: 250,
@@ -85,7 +104,8 @@ func generate_grid(grid_size: int, flip_amount: int, people_to_detect: int, stan
 	all_people.clear()
 	
 	instruction.bbcode_text = "Detect [color=red]" + str(people_to_detect) + "[/color] people with the standout feature: " + standout_conditions.keys()[standout_type] + "\nGood luck!"
-	
+	start_timer()
+
 	#Restart select tracker
 	selected_people.clear()
 	clicked_people.clear()
@@ -190,6 +210,9 @@ func _apply_no_brows(person):
 func _apply_no_eyes(person):
 	var parts = person.get_children()
 	parts[3].texture = null
+
+func on_time_up():
+	print("Time's up!")
 
 func _on_person_clicked(event: InputEvent, index: int):
 	if event is InputEventMouseButton and event.pressed:
