@@ -58,9 +58,10 @@ func _exit_game():
 	game_closed.emit()  # Emit signal when exiting
 	queue_free()  # Remove this minigame scene
 	
-func start_timer():
+func start_timer(duration: float):
+	round_duration = duration
 	elapsed_time = 0.0
-	timer_progress_bar.value = 100  # Start full
+	timer_progress_bar.value = 100
 	timer_running = true
 
 # Called when the node enters the scene tree for the first time.
@@ -73,7 +74,7 @@ func _start_game() -> void:
 	menu.visible = false
 	game.visible = true
 	
-	generate_grid(2,1,2,2)
+	generate_grid(2,1,2,2, 2)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -96,7 +97,7 @@ var all_people = []
 var selected_people = []
 var clicked_people = {}
 
-func generate_grid(grid_size: int, flip_amount: int, people_to_detect: int, standout_type: int):
+func generate_grid(grid_size: int, flip_amount: int, people_to_detect: int, standout_type: int, seconds_amount: float):
 	# Clear previous people
 	for child in people_grid.get_children():
 		if child != person_template:
@@ -104,7 +105,9 @@ func generate_grid(grid_size: int, flip_amount: int, people_to_detect: int, stan
 	all_people.clear()
 	
 	instruction.bbcode_text = "Detect [color=red]" + str(people_to_detect) + "[/color] people with the standout feature: " + standout_conditions.keys()[standout_type] + "\nGood luck!"
-	start_timer()
+	start_timer(seconds_amount)
+	
+	round_duration = round_duration
 
 	#Restart select tracker
 	selected_people.clear()
@@ -225,4 +228,4 @@ func _on_person_clicked(event: InputEvent, index: int):
 			clicked_people[index] = true
 			if clicked_people.size() == selected_people.size():
 				# If all correct people were clicked, generate a new round
-				generate_grid(3, 1, 2, 0)  # Example: New 3x3 round with different settings
+				generate_grid(3, 1, 2, 0, 10)  # Example: New 3x3 round with different settings
