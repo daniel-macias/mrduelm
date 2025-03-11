@@ -54,13 +54,6 @@ var standout_conditions = {
 	"no_eyes": {"name": "No Eyes", "apply_condition": "_apply_no_eyes"}
 }
 
-var rounds = [
-	{ "grid_size": 2, "flip_amount": 1, "people_to_detect": 2, "standout_type": 2, "duration": 20 },
-	{ "grid_size": 2, "flip_amount": 1, "people_to_detect": 2, "standout_type": 2, "duration": 15 },
-	{ "grid_size": 2, "flip_amount": 1, "people_to_detect": 2, "standout_type": 2, "duration": 10 },
-	{ "grid_size": 3, "flip_amount": randi_range(2, 3), "people_to_detect": 2, "standout_type": 2, "duration": 25 }
-]
-
 var current_round = 0
 
 func _exit_game():
@@ -228,8 +221,8 @@ func on_time_up():
 	
 
 func start_next_round():
-	if current_round < rounds.size():
-		var round_data = rounds[current_round]
+	if current_round < DetectorRounds.get_rounds().size():
+		var round_data = DetectorRounds.get_rounds()[current_round]
 		generate_grid(
 			round_data["grid_size"],
 			round_data["flip_amount"],

@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Catalog="*res://Scripts/Globals/Catalog.gd"
 GameManager="*res://Scripts/Globals/GameManager.gd"
+DetectorRounds="*res://Scripts/Data/DetectorRounds.gd"
 
 [display]
 
