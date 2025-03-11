@@ -54,6 +54,15 @@ var standout_conditions = {
 	"no_eyes": {"name": "No Eyes", "apply_condition": "_apply_no_eyes"}
 }
 
+var rounds = [
+	{ "grid_size": 2, "flip_amount": 1, "people_to_detect": 2, "standout_type": 2, "duration": 20 },
+	{ "grid_size": 2, "flip_amount": 1, "people_to_detect": 2, "standout_type": 2, "duration": 15 },
+	{ "grid_size": 2, "flip_amount": 1, "people_to_detect": 2, "standout_type": 2, "duration": 10 },
+	{ "grid_size": 3, "flip_amount": randi_range(2, 3), "people_to_detect": 2, "standout_type": 2, "duration": 25 }
+]
+
+var current_round = 0
+
 func _exit_game():
 	game_closed.emit()  # Emit signal when exiting
 	queue_free()  # Remove this minigame scene
@@ -74,7 +83,7 @@ func _start_game() -> void:
 	menu.visible = false
 	game.visible = true
 	
-	generate_grid(2,1,2,2, 2)
+	start_next_round()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -216,6 +225,22 @@ func _apply_no_eyes(person):
 
 func on_time_up():
 	print("Time's up!")
+	
+
+func start_next_round():
+	if current_round < rounds.size():
+		var round_data = rounds[current_round]
+		generate_grid(
+			round_data["grid_size"],
+			round_data["flip_amount"],
+			round_data["people_to_detect"],
+			round_data["standout_type"],
+			round_data["duration"]
+		)
+		start_timer(round_data["duration"]) 
+		current_round += 1
+	else:
+		print("Game Over! No more rounds.")
 
 func _on_person_clicked(event: InputEvent, index: int):
 	if event is InputEventMouseButton and event.pressed:
@@ -227,5 +252,4 @@ func _on_person_clicked(event: InputEvent, index: int):
 		if index in selected_people:
 			clicked_people[index] = true
 			if clicked_people.size() == selected_people.size():
-				# If all correct people were clicked, generate a new round
-				generate_grid(3, 1, 2, 0, 10)  # Example: New 3x3 round with different settings
+				start_next_round()
