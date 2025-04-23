@@ -12,7 +12,7 @@ extends Node
 @onready var instruction = $CanvasLayer/Game/Instruction
 @onready var timer_progress_bar = $CanvasLayer/Game/Machine/Clock
 @onready var check_btn = $CanvasLayer/Game/CheckBtn
-
+@onready var cat_anim = $CanvasLayer/Game/AngryCat/AnimationPlayerCat
 @onready var bulbs = [$CanvasLayer/Game/Bulbs/Control/Light,$CanvasLayer/Game/Bulbs/Control2/Light,$CanvasLayer/Game/Bulbs/Control3/Light]
 var mistakes = 0
 
@@ -76,6 +76,9 @@ func _ready() -> void:
 	back_to_game_menu_btn.connect("pressed", Callable(self, "_exit_game"))
 	start_game_btn.connect("pressed", Callable(self, "_start_game"))
 	check_btn.connect("pressed", Callable(self, "_on_check_btn_pressed"))
+	cat_anim.get_parent().visible = false
+	cat_anim.get_parent().mouse_filter = Control.MOUSE_FILTER_IGNORE
+	cat_anim.animation_finished.connect(_on_cat_anim_finished)
 	
 func _start_game() -> void:
 	menu.visible = false
@@ -124,7 +127,7 @@ func generate_grid(grid_size: int, flip_amount: int, people_to_detect: int, stan
 			child.queue_free()
 	all_people.clear()
 	
-	instruction.bbcode_text = "Detect [color=red]" + str(people_to_detect) + "[/color] people with the standout feature: " + standout_conditions.keys()[standout_type] + "\nGood luck!"
+	instruction.bbcode_text = "Detect [color=red]" + str(people_to_detect) + "[/color] people with the feature: " + standout_conditions.keys()[standout_type]
 	start_timer(seconds_amount)
 	
 	round_duration = round_duration
@@ -268,8 +271,16 @@ func _on_person_clicked(event: InputEvent, index: int):
 
 func register_mistake():
 	if mistakes < bulbs.size():
-		bulbs[mistakes].visible = false  # Turn off one light
+		bulbs[mistakes].visible = false
 		mistakes += 1
+		var cat_node = cat_anim.get_parent()
+		cat_node.visible = true
+		cat_anim.play("angry_cat")
+		
 		if mistakes >= bulbs.size():
 			print("Game Over: too many mistakes")
-			_exit_game()  # Or show some 'game over' screen
+			_exit_game()
+
+func _on_cat_anim_finished(anim_name: String) -> void:
+	if anim_name == "angry_cat":
+		cat_anim.get_parent().visible = false
