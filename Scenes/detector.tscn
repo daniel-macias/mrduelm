@@ -1,15 +1,24 @@
-[gd_scene load_steps=11 format=3 uid="uid://ncb2ucumm2h5"]
+[gd_scene load_steps=20 format=3 uid="uid://ncb2ucumm2h5"]
 
 [ext_resource type="Texture2D" uid="uid://dtr6sl6i4ngy2" path="res://Sprites/UI/arrow_left.png" id="1_e6sl5"]
-[ext_resource type="Texture2D" uid="uid://bxtusj4ktpwbh" path="res://icon.svg" id="1_fvrs2"]
 [ext_resource type="Script" path="res://Scripts/Minigames/Detector.gd" id="1_kurny"]
 [ext_resource type="FontFile" uid="uid://biglirdu86eux" path="res://Fonts/ArsenalSC-Bold.ttf" id="3_bv54c"]
+[ext_resource type="Texture2D" uid="uid://bum6vjo5u88q1" path="res://Sprites/Games/Detector/Items/paper.png" id="5_whbib"]
 [ext_resource type="Texture2D" uid="uid://ynjnjtwhxv3f" path="res://Sprites/Games/Detector/Jaw.png" id="5_y2uyw"]
 [ext_resource type="Texture2D" uid="uid://diiv0g0horu1m" path="res://Sprites/Games/Detector/Mouth_0.png" id="6_iy4y1"]
 [ext_resource type="Texture2D" uid="uid://tofs6fppof7a" path="res://Sprites/Games/Detector/Hair_3.png" id="7_xd6h5"]
 [ext_resource type="Texture2D" uid="uid://cic5rkvvi3cie" path="res://Sprites/Games/Detector/Eyes_0.png" id="8_hkov6"]
 [ext_resource type="Texture2D" uid="uid://k7m1a2kqyovs" path="res://Sprites/Games/Detector/Brows_0.png" id="9_nnfpy"]
 [ext_resource type="Texture2D" uid="uid://cq0loqyp4b856" path="res://Sprites/Games/Detector/Nose_0.png" id="10_itdvt"]
+[ext_resource type="Texture2D" uid="uid://bqddyt88c12i" path="res://Sprites/Games/Detector/Items/circle.png" id="11_lk27t"]
+[ext_resource type="Texture2D" uid="uid://d15csuudqo3fm" path="res://Sprites/Games/Detector/Items/machine_bg.png" id="12_24flr"]
+[ext_resource type="Texture2D" uid="uid://bpewwme3pvp0s" path="res://Sprites/Games/Detector/Items/machine.png" id="13_0ignt"]
+[ext_resource type="Texture2D" uid="uid://cuma6i1o661bt" path="res://Sprites/Games/Detector/Items/machine_clock.png" id="13_2unfj"]
+[ext_resource type="Texture2D" uid="uid://c4aas2p37vawc" path="res://Sprites/Games/Detector/Items/button_0.png" id="14_2fegv"]
+[ext_resource type="Texture2D" uid="uid://cmiouomhrmtmk" path="res://Sprites/Games/Detector/Items/light_base.png" id="15_re682"]
+[ext_resource type="Texture2D" uid="uid://clg458tyh4ivu" path="res://Sprites/Games/Detector/Items/light.png" id="16_d1wfy"]
+[ext_resource type="Texture2D" uid="uid://bw24m3ovyrcfe" path="res://Sprites/Games/Detector/Items/button_1.png" id="16_p0mj2"]
+[ext_resource type="Texture2D" uid="uid://gyxs15ls7s6c" path="res://Sprites/Games/Detector/Items/light_bulb.png" id="17_t4rav"]
 
 [node name="Detector" type="Node2D"]
 script = ExtResource("1_kurny")
@@ -160,29 +169,17 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.0980392, 0.772549, 0.623529, 1)
-
-[node name="Timer" type="TextureProgressBar" parent="CanvasLayer/Game"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-value = 20.0
-fill_mode = 4
-nine_patch_stretch = true
-texture_progress = ExtResource("1_fvrs2")
+color = Color(0.752941, 0.705882, 0.682353, 1)
 
 [node name="Instruction" type="RichTextLabel" parent="CanvasLayer/Game"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -292.0
-offset_top = 132.0
-offset_right = 289.0
-offset_bottom = 395.0
+offset_left = -52.0
+offset_top = 122.0
+offset_right = 293.0
+offset_bottom = 228.0
 grow_horizontal = 2
 theme_override_font_sizes/normal_font_size = 27
 bbcode_enabled = true
@@ -204,8 +201,16 @@ grow_vertical = 2
 columns = 2
 
 [node name="Person" type="Button" parent="CanvasLayer/Game/GridContainer"]
+self_modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(250, 250)
 layout_mode = 2
+
+[node name="Paper" type="TextureRect" parent="CanvasLayer/Game/GridContainer/Person"]
+layout_mode = 0
+offset_right = 255.0
+offset_bottom = 254.0
+texture = ExtResource("5_whbib")
+expand_mode = 1
 
 [node name="Jaw" type="TextureRect" parent="CanvasLayer/Game/GridContainer/Person"]
 layout_mode = 0
@@ -255,6 +260,23 @@ texture = ExtResource("10_itdvt")
 expand_mode = 1
 stretch_mode = 5
 
+[node name="CIRCLE" type="TextureRect" parent="CanvasLayer/Game/GridContainer/Person"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -97.0
+offset_top = -96.0
+offset_right = 299.0
+offset_bottom = 301.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("11_lk27t")
+
 [node name="PauseGame" type="TextureButton" parent="CanvasLayer/Game"]
 layout_mode = 1
 anchors_preset = 1
@@ -267,3 +289,174 @@ offset_bottom = 127.0
 grow_horizontal = 0
 texture_normal = ExtResource("1_e6sl5")
 stretch_mode = 5
+
+[node name="Machine" type="Control" parent="CanvasLayer/Game"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BG" type="TextureRect" parent="CanvasLayer/Game/Machine"]
+layout_mode = 0
+offset_left = 29.0
+offset_top = 96.0
+offset_right = 308.0
+offset_bottom = 396.0
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("12_24flr")
+
+[node name="Clock" type="TextureProgressBar" parent="CanvasLayer/Game/Machine"]
+layout_mode = 0
+offset_left = 29.0
+offset_top = 96.0
+offset_right = 308.0
+offset_bottom = 396.0
+scale = Vector2(0.4, 0.4)
+value = 50.0
+fill_mode = 4
+texture_progress = ExtResource("13_2unfj")
+
+[node name="Machine" type="TextureRect" parent="CanvasLayer/Game/Machine"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 44.0
+offset_right = 668.0
+offset_bottom = 513.0
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("13_0ignt")
+
+[node name="CheckBtn" type="TextureButton" parent="CanvasLayer/Game"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -128.0
+offset_top = -314.0
+offset_right = 240.0
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.7, 0.7)
+texture_normal = ExtResource("14_2fegv")
+texture_pressed = ExtResource("16_p0mj2")
+
+[node name="Bulbs" type="Control" parent="CanvasLayer/Game"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+
+[node name="Control" type="Control" parent="CanvasLayer/Game/Bulbs"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Base" type="TextureRect" parent="CanvasLayer/Game/Bulbs/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -65.0
+offset_top = 338.0
+offset_right = 106.0
+offset_bottom = 461.0
+grow_horizontal = 2
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("15_re682")
+
+[node name="Light" type="TextureRect" parent="CanvasLayer/Game/Bulbs/Control"]
+layout_mode = 0
+offset_left = -12.0
+offset_top = 275.0
+offset_right = 63.0
+offset_bottom = 404.0
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("16_d1wfy")
+
+[node name="Bulb" type="TextureRect" parent="CanvasLayer/Game/Bulbs/Control"]
+layout_mode = 0
+offset_left = -18.0
+offset_top = 266.0
+offset_right = 75.0
+offset_bottom = 418.0
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("17_t4rav")
+
+[node name="Control2" type="Control" parent="CanvasLayer/Game/Bulbs"]
+anchors_preset = 0
+offset_left = 150.0
+offset_right = 190.0
+offset_bottom = 40.0
+
+[node name="Base" type="TextureRect" parent="CanvasLayer/Game/Bulbs/Control2"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -65.0
+offset_top = 338.0
+offset_right = 106.0
+offset_bottom = 461.0
+grow_horizontal = 2
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("15_re682")
+
+[node name="Light" type="TextureRect" parent="CanvasLayer/Game/Bulbs/Control2"]
+layout_mode = 0
+offset_left = -12.0
+offset_top = 275.0
+offset_right = 63.0
+offset_bottom = 404.0
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("16_d1wfy")
+
+[node name="Bulb" type="TextureRect" parent="CanvasLayer/Game/Bulbs/Control2"]
+layout_mode = 0
+offset_left = -18.0
+offset_top = 266.0
+offset_right = 75.0
+offset_bottom = 418.0
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("17_t4rav")
+
+[node name="Control3" type="Control" parent="CanvasLayer/Game/Bulbs"]
+anchors_preset = 0
+offset_left = -150.0
+offset_right = -110.0
+offset_bottom = 40.0
+
+[node name="Base" type="TextureRect" parent="CanvasLayer/Game/Bulbs/Control3"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -65.0
+offset_top = 338.0
+offset_right = 106.0
+offset_bottom = 461.0
+grow_horizontal = 2
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("15_re682")
+
+[node name="Light" type="TextureRect" parent="CanvasLayer/Game/Bulbs/Control3"]
+layout_mode = 0
+offset_left = -12.0
+offset_top = 275.0
+offset_right = 63.0
+offset_bottom = 404.0
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("16_d1wfy")
+
+[node name="Bulb" type="TextureRect" parent="CanvasLayer/Game/Bulbs/Control3"]
+layout_mode = 0
+offset_left = -18.0
+offset_top = 266.0
+offset_right = 75.0
+offset_bottom = 418.0
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("17_t4rav")

@@ -10,7 +10,11 @@ extends Node
 @onready var menu = $CanvasLayer/GameMenu
 @onready var game = $CanvasLayer/Game
 @onready var instruction = $CanvasLayer/Game/Instruction
-@onready var timer_progress_bar = $CanvasLayer/Game/Timer
+@onready var timer_progress_bar = $CanvasLayer/Game/Machine/Clock
+@onready var check_btn = $CanvasLayer/Game/CheckBtn
+
+@onready var bulbs = [$CanvasLayer/Game/Bulbs/Control/Light,$CanvasLayer/Game/Bulbs/Control2/Light,$CanvasLayer/Game/Bulbs/Control3/Light]
+var mistakes = 0
 
 var mouth_textures = [
 "res://Sprites/Games/Detector/Mouth_1.png",
@@ -71,12 +75,17 @@ func _ready() -> void:
 	person_template.hide()
 	back_to_game_menu_btn.connect("pressed", Callable(self, "_exit_game"))
 	start_game_btn.connect("pressed", Callable(self, "_start_game"))
+	check_btn.connect("pressed", Callable(self, "_on_check_btn_pressed"))
 	
 func _start_game() -> void:
 	menu.visible = false
 	game.visible = true
 	
 	start_next_round()
+	
+	for bulb in bulbs:
+		bulb.visible = true
+	mistakes = 0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -98,6 +107,15 @@ var grid_sizes = {
 var all_people = []
 var selected_people = []
 var clicked_people = {}
+
+func _on_check_btn_pressed():
+	if clicked_people.keys().filter(func(i): return i in selected_people).size() == selected_people.size() \
+	and clicked_people.keys().size() == selected_people.size():
+		start_next_round()
+	else:
+		register_mistake()
+
+
 
 func generate_grid(grid_size: int, flip_amount: int, people_to_detect: int, standout_type: int, seconds_amount: float):
 	# Clear previous people
@@ -145,12 +163,12 @@ func generate_grid(grid_size: int, flip_amount: int, people_to_detect: int, stan
 
 		# Get children
 		var parts = new_person.get_children()
-		if parts.size() >= 6:  # Ensure correct structure
-			parts[1].texture = load(mouth_textures.pick_random()) 
-			parts[2].texture = load(hair_textures.pick_random())  
-			parts[3].texture = load(eyes_textures.pick_random())  
-			parts[4].texture = load(brows_textures.pick_random())  
-			parts[5].texture = load(nose_textures.pick_random()) 
+		if parts.size() >= 7:  # Ensure correct structure
+			parts[2].texture = load(mouth_textures.pick_random()) 
+			parts[3].texture = load(hair_textures.pick_random())  
+			parts[4].texture = load(eyes_textures.pick_random())  
+			parts[5].texture = load(brows_textures.pick_random())  
+			parts[6].texture = load(nose_textures.pick_random()) 
 
 			# Resize each part
 			for part in parts:
@@ -193,28 +211,28 @@ func apply_standout_feature(person, standout_type):
 # Example condition function: apply sad face
 func _apply_sad(person):
 	var parts = person.get_children()
-	parts[1].texture = load("res://Sprites/Games/Detector/Mouth_0.png")  # Set a sad mouth
+	parts[2].texture = load("res://Sprites/Games/Detector/Mouth_0.png")  # Set a sad mouth
 
 # Example condition function: apply eyes closed
 func _apply_eyes_closed(person):
 	var parts = person.get_children()
-	parts[3].texture = load("res://Sprites/Games/Detector/Eyes_3.png")  # Set eyes closed texture
+	parts[4].texture = load("res://Sprites/Games/Detector/Eyes_3.png")  # Set eyes closed texture
 	
 func _apply_no_mouth(person):
 	var parts = person.get_children()
-	parts[1].texture = null 
+	parts[2].texture = null 
 
 func _apply_no_nose(person):
 	var parts = person.get_children()
-	parts[4].texture = null 
+	parts[5].texture = null 
 
 func _apply_no_brows(person):
 	var parts = person.get_children()
-	parts[5].texture = null 
+	parts[6].texture = null 
 
 func _apply_no_eyes(person):
 	var parts = person.get_children()
-	parts[3].texture = null
+	parts[4].texture = null
 
 func on_time_up():
 	print("Time's up!")
@@ -237,12 +255,21 @@ func start_next_round():
 
 func _on_person_clicked(event: InputEvent, index: int):
 	if event is InputEventMouseButton and event.pressed:
-		# Ignore if this person was already clicked
+		var person = all_people[index]
+		var circle = person.get_child(7)  # Circle is the 8th child (index 7)
+
+		# If already selected, deselect
 		if index in clicked_people:
-			return
-		
-		# Check if the person is in the correct ones
-		if index in selected_people:
+			clicked_people.erase(index)
+			circle.visible = false  # Hide the circle
+		else:
 			clicked_people[index] = true
-			if clicked_people.size() == selected_people.size():
-				start_next_round()
+			circle.visible = true  # Show the circle
+
+func register_mistake():
+	if mistakes < bulbs.size():
+		bulbs[mistakes].visible = false  # Turn off one light
+		mistakes += 1
+		if mistakes >= bulbs.size():
+			print("Game Over: too many mistakes")
+			_exit_game()  # Or show some 'game over' screen
