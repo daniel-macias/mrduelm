@@ -16,6 +16,13 @@ extends Node
 @onready var bulbs = [$CanvasLayer/Game/Bulbs/Control/Light,$CanvasLayer/Game/Bulbs/Control2/Light,$CanvasLayer/Game/Bulbs/Control3/Light]
 @onready var mistake_timer = $CanvasLayer/Game/MistakeTimer
 
+#GAME OVER SCREEN ELEMENTS
+@onready var gameover_menu = $CanvasLayer/GameOverMenu
+@onready var final_score_lbl = $CanvasLayer/GameOverMenu/Score
+@onready var play_again_btn = $CanvasLayer/GameOverMenu/StartBtn
+@onready var price_lbl = $CanvasLayer/GameOverMenu/Price
+
+var correct_amount = 0
 var mistakes = 0
 
 var mouth_textures = [
@@ -82,6 +89,7 @@ func _ready() -> void:
 	cat_anim.get_parent().mouse_filter = Control.MOUSE_FILTER_IGNORE
 	cat_anim.animation_finished.connect(_on_cat_anim_finished)
 	mistake_timer.timeout.connect(_on_mistake_timer_timeout)
+	play_again_btn.connect("pressed", Callable(self, "_on_play_again_pressed"))
 
 	
 func _start_game() -> void:
@@ -118,6 +126,7 @@ var clicked_people = {}
 func _on_check_btn_pressed():
 	if clicked_people.keys().filter(func(i): return i in selected_people).size() == selected_people.size() \
 	and clicked_people.keys().size() == selected_people.size():
+		correct_amount += 1
 		start_next_round()
 		mistake_timer.stop()
 	else:
@@ -285,7 +294,12 @@ func register_mistake():
 		if mistakes >= bulbs.size():
 			print("Game Over: too many mistakes")
 			mistake_timer.stop()
-			_exit_game()
+			timer_running = false
+			game.visible = false
+			gameover_menu.visible = true
+
+			final_score_lbl.text = "Puntaje final: " + str(correct_amount)
+			price_lbl.text = "Ganaste: $" + str(correct_amount * 100)
 
 func _on_cat_anim_finished(anim_name: String) -> void:
 	if anim_name == "angry_cat":
@@ -293,3 +307,15 @@ func _on_cat_anim_finished(anim_name: String) -> void:
 
 func _on_mistake_timer_timeout():
 	register_mistake()
+
+func _on_play_again_pressed():
+	gameover_menu.visible = false
+	correct_amount = 0
+	current_round = 0
+	mistakes = 0
+
+	for bulb in bulbs:
+		bulb.visible = true
+
+	start_next_round()
+	game.visible = true
