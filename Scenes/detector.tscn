@@ -534,3 +534,6 @@ root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_limcv")
 }
+
+[node name="MistakeTimer" type="Timer" parent="CanvasLayer/Game"]
+wait_time = 2.0

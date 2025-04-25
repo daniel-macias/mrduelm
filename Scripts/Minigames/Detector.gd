@@ -14,6 +14,8 @@ extends Node
 @onready var check_btn = $CanvasLayer/Game/CheckBtn
 @onready var cat_anim = $CanvasLayer/Game/AngryCat/AnimationPlayerCat
 @onready var bulbs = [$CanvasLayer/Game/Bulbs/Control/Light,$CanvasLayer/Game/Bulbs/Control2/Light,$CanvasLayer/Game/Bulbs/Control3/Light]
+@onready var mistake_timer = $CanvasLayer/Game/MistakeTimer
+
 var mistakes = 0
 
 var mouth_textures = [
@@ -79,6 +81,8 @@ func _ready() -> void:
 	cat_anim.get_parent().visible = false
 	cat_anim.get_parent().mouse_filter = Control.MOUSE_FILTER_IGNORE
 	cat_anim.animation_finished.connect(_on_cat_anim_finished)
+	mistake_timer.timeout.connect(_on_mistake_timer_timeout)
+
 	
 func _start_game() -> void:
 	menu.visible = false
@@ -115,10 +119,9 @@ func _on_check_btn_pressed():
 	if clicked_people.keys().filter(func(i): return i in selected_people).size() == selected_people.size() \
 	and clicked_people.keys().size() == selected_people.size():
 		start_next_round()
+		mistake_timer.stop()
 	else:
 		register_mistake()
-
-
 
 func generate_grid(grid_size: int, flip_amount: int, people_to_detect: int, standout_type: int, seconds_amount: float):
 	# Clear previous people
@@ -239,6 +242,8 @@ func _apply_no_eyes(person):
 
 func on_time_up():
 	print("Time's up!")
+	register_mistake()
+	mistake_timer.start()
 	
 
 func start_next_round():
@@ -279,8 +284,12 @@ func register_mistake():
 		
 		if mistakes >= bulbs.size():
 			print("Game Over: too many mistakes")
+			mistake_timer.stop()
 			_exit_game()
 
 func _on_cat_anim_finished(anim_name: String) -> void:
 	if anim_name == "angry_cat":
 		cat_anim.get_parent().visible = false
+
+func _on_mistake_timer_timeout():
+	register_mistake()
