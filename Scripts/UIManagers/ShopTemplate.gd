@@ -91,8 +91,8 @@ func display_page(page: int) -> void:
 		new_item.visible = true
 		new_item.get_node("ItemPicture").texture_normal = load(item_details["thumbnail"])
 		
-		new_item.get_node("ItemPicture").get_child(0).text = item_details["name"]
-		new_item.get_node("ItemPicture").get_child(1).text = "$" + str(item_details["cost"])
+		new_item.get_child(1).text = item_details["name"]
+		new_item.get_child(2).text = "$" + str(item_details["cost"])
 		
 		# Connect the item's button signal to update the "Currently Selected" section
 		var item_button = new_item  # Assuming the entire item is clickable
