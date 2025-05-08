@@ -1,21 +1,18 @@
 extends Node
 
 var food_catalog = {
-	"chicken": {"cost": 50, "thumbnail": "res://Sprites/Food/Chicken.png","name":"Chicken","fill":10, "health":5},
-	"broccoli": {"cost": 100, "thumbnail": "res://Sprites/Food/Broccolli.png","name":"Broccoli","fill":10, "health":6},
-	"pizza": {"cost": 100, "thumbnail": "res://Sprites/Food/Pizza.png","name":"Pizza","fill":10, "health":6},
-	"pizza1": {"cost": 100, "thumbnail": "res://Sprites/Food/Pizza.png","name":"Pizza","fill":10, "health":6},
-	"pizza2": {"cost": 100, "thumbnail": "res://Sprites/Food/Pizza.png","name":"Pizza","fill":10, "health":6},
-	"pizza3": {"cost": 100, "thumbnail": "res://Sprites/Food/Pizza.png","name":"Pizza","fill":10, "health":6},
-	"pizza4": {"cost": 100, "thumbnail": "res://Sprites/Food/Pizza.png","name":"Pizza","fill":10, "health":6},
-	"pizza5": {"cost": 100, "thumbnail": "res://Sprites/Food/Pizza.png","name":"Pizza","fill":10, "health":6},
-	"pizza6": {"cost": 100, "thumbnail": "res://Sprites/Food/Pizza.png","name":"Pizza","fill":10, "health":6},
-	"pizza7": {"cost": 100, "thumbnail": "res://Sprites/Food/Pizza.png","name":"Pizza","fill":10, "health":6},
-	"pizza8": {"cost": 100, "thumbnail": "res://Sprites/Food/Pizza.png","name":"Pizza","fill":10, "health":6},
-	"pizza9": {"cost": 100, "thumbnail": "res://Sprites/Food/Pizza.png","name":"Pizza","fill":10, "health":6},
-	"pizza10": {"cost": 100, "thumbnail": "res://Sprites/Food/Pizza.png","name":"Pizza","fill":10, "health":6},
-	"pizza11": {"cost": 100, "thumbnail": "res://Sprites/Food/Pizza.png","name":"Pizza","fill":10, "health":6},
-	"pizza12": {"cost": 100, "thumbnail": "res://Sprites/Food/Pizza.png","name":"Pizza","fill":10, "health":6}
+	"pizza_veggie": {"cost": 50, "thumbnail": "res://Sprites/Food/pizza_veggie.png","name":"Chicken","fill":10, "health":5},
+	"broccoli": {"cost": 100, "thumbnail": "res://Sprites/Food/broccolli.png","name":"Broccoli","fill":10, "health":6},
+	"rice": {"cost": 100, "thumbnail": "res://Sprites/Food/rice.png","name":"Pizza","fill":10, "health":6},
+	"khachapuri": {"cost": 100, "thumbnail": "res://Sprites/Food/khachapuri.png","name":"Pizza","fill":10, "health":6},
+	"pizza_metal": {"cost": 100, "thumbnail": "res://Sprites/Food/pizza_metal.png","name":"Pizza","fill":10, "health":6},
+	"petroleum_jelly": {"cost": 100, "thumbnail": "res://Sprites/Food/petroleum_jelly.png","name":"Pizza","fill":10, "health":6},
+	"oil_protein": {"cost": 100, "thumbnail": "res://Sprites/Food/oil_protein.png","name":"Pizza","fill":10, "health":6},
+	"metal_pop": {"cost": 100, "thumbnail": "res://Sprites/Food/metal_pop.png","name":"Pizza","fill":10, "health":6},
+	"pizza_pepperoni": {"cost": 100, "thumbnail": "res://Sprites/Food/pizza_pepperoni.png","name":"Pizza","fill":10, "health":6},
+	"chicken": {"cost": 100, "thumbnail": "res://Sprites/Food/chicken.png","name":"Pizza","fill":10, "health":6},
+	"steak": {"cost": 100, "thumbnail": "res://Sprites/Food/steak.png","name":"Pizza","fill":10, "health":6},
+	"beef_wellington": {"cost": 100, "thumbnail": "res://Sprites/Food/beef_wellington.png","name":"Pizza","fill":10, "health":6}
 }
 
 var body_parts_catalog = {

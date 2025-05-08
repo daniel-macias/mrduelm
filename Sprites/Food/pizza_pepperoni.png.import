@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bb56aoher0ca0"
-path="res://.godot/imported/broccolli.png-842c47ee95c28f38ec7a4bbbe755801b.ctex"
+uid="uid://bvflgvhlas8x5"
+path="res://.godot/imported/pizza_pepperoni.png-560f701f1af7e1837162c734e951168c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Food/broccolli.png"
-dest_files=["res://.godot/imported/broccolli.png-842c47ee95c28f38ec7a4bbbe755801b.ctex"]
+source_file="res://Sprites/Food/pizza_pepperoni.png"
+dest_files=["res://.godot/imported/pizza_pepperoni.png-560f701f1af7e1837162c734e951168c.ctex"]
 
 [params]
 

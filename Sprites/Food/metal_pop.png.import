@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bb56aoher0ca0"
-path="res://.godot/imported/broccolli.png-842c47ee95c28f38ec7a4bbbe755801b.ctex"
+uid="uid://8jqv7txu87tk"
+path="res://.godot/imported/metal_pop.png-304a22795443fd7928ac3cdcb30fa499.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Food/broccolli.png"
-dest_files=["res://.godot/imported/broccolli.png-842c47ee95c28f38ec7a4bbbe755801b.ctex"]
+source_file="res://Sprites/Food/metal_pop.png"
+dest_files=["res://.godot/imported/metal_pop.png-304a22795443fd7928ac3cdcb30fa499.ctex"]
 
 [params]
 

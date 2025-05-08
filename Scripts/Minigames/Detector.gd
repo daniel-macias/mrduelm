@@ -298,8 +298,10 @@ func register_mistake():
 			game.visible = false
 			gameover_menu.visible = true
 
-			final_score_lbl.text = "Puntaje final: " + str(correct_amount)
-			price_lbl.text = "Ganaste: $" + str(correct_amount * 100)
+			final_score_lbl.text = "Score: " + str(correct_amount)
+			price_lbl.text = "You earned: $" + str(correct_amount * 100)
+			#TODO: Add to wallet
+			#TODO: Maybe add the ad functionality
 
 func _on_cat_anim_finished(anim_name: String) -> void:
 	if anim_name == "angry_cat":

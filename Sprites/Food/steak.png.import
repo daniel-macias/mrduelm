@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bb56aoher0ca0"
-path="res://.godot/imported/broccolli.png-842c47ee95c28f38ec7a4bbbe755801b.ctex"
+uid="uid://clttkvabihjde"
+path="res://.godot/imported/steak.png-94cb20bf303caaf197a9b9080cc97d4d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Food/broccolli.png"
-dest_files=["res://.godot/imported/broccolli.png-842c47ee95c28f38ec7a4bbbe755801b.ctex"]
+source_file="res://Sprites/Food/steak.png"
+dest_files=["res://.godot/imported/steak.png-94cb20bf303caaf197a9b9080cc97d4d.ctex"]
 
 [params]
 
