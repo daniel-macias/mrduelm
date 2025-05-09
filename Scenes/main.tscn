@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://co8xhyknh7k7h"]
+[gd_scene load_steps=63 format=3 uid="uid://co8xhyknh7k7h"]
 
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_2ncyc"]
 [ext_resource type="PackedScene" uid="uid://bdd3fhta1x0ln" path="res://Scenes/pet.tscn" id="1_g06e1"]
@@ -29,11 +29,13 @@
 [ext_resource type="Texture2D" uid="uid://chaa0bocw2434" path="res://Sprites/UI/soap.png" id="10_xt54n"]
 [ext_resource type="Texture2D" uid="uid://digdmvn5mg8gr" path="res://Sprites/UI/ProgressBars/health.png" id="11_dhajy"]
 [ext_resource type="Script" path="res://Scripts/UIManagers/SleepGUI.gd" id="11_l60en"]
+[ext_resource type="Texture2D" uid="uid://bh412gdd5445f" path="res://Sprites/UI/arr_left.png" id="11_xp1sg"]
 [ext_resource type="Texture2D" uid="uid://bt43t0q64458k" path="res://Sprites/UI/ProgressBars/happy.png" id="12_5y17l"]
 [ext_resource type="Texture2D" uid="uid://3asydacx345v" path="res://Sprites/UI/garage_icon_pressed.png" id="12_mlgj4"]
 [ext_resource type="Texture2D" uid="uid://gjuk8rr85v5k" path="res://Sprites/UI/selector.png" id="12_vmcf3"]
 [ext_resource type="Texture2D" uid="uid://dpj6taf4klhoy" path="res://Sprites/UI/ProgressBars/energy.png" id="13_igeth"]
 [ext_resource type="Script" path="res://Scripts/UIManagers/GarageGUI.gd" id="13_yx62g"]
+[ext_resource type="Texture2D" uid="uid://wgdyp3dbbuuj" path="res://Sprites/UI/arr_right.png" id="14_jhsjt"]
 [ext_resource type="Texture2D" uid="uid://gh4om6nvi26n" path="res://Sprites/RoomStuff/showerhead/metal_showerhead.png" id="16_aocou"]
 [ext_resource type="Texture2D" uid="uid://dur5vqs0sqmtd" path="res://Sprites/RoomStuff/doors/normal_door.png" id="18_5j8d4"]
 [ext_resource type="Texture2D" uid="uid://b6i0tdw3d4nss" path="res://Sprites/RoomStuff/toybox/mahogany_toybox.png" id="19_6oscq"]
@@ -300,7 +302,9 @@ alignment = 1
 [node name="FoodArrowLeft" type="TextureButton" parent="CanvasLayer/FoodGUI/HBoxContainer"]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-texture_normal = ExtResource("4_t30x3")
+size_flags_horizontal = 3
+texture_normal = ExtResource("11_xp1sg")
+ignore_texture_size = true
 stretch_mode = 5
 
 [node name="FoodSelected" type="TextureButton" parent="CanvasLayer/FoodGUI/HBoxContainer"]
@@ -331,7 +335,9 @@ text = "Empty"
 [node name="FoodArrowRight" type="TextureButton" parent="CanvasLayer/FoodGUI/HBoxContainer"]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-texture_normal = ExtResource("6_i04jy")
+size_flags_horizontal = 3
+texture_normal = ExtResource("14_jhsjt")
+ignore_texture_size = true
 stretch_mode = 5
 
 [node name="BathroomGUI" type="Control" parent="CanvasLayer"]
@@ -1051,7 +1057,8 @@ offset_right = -16.0
 offset_bottom = 133.0
 grow_horizontal = 2
 grow_vertical = 2
-texture_normal = ExtResource("4_t30x3")
+texture_normal = ExtResource("11_xp1sg")
+ignore_texture_size = true
 stretch_mode = 5
 
 [node name="Right" type="TextureButton" parent="Outside/ShopTemplate/BrowserButtons"]
@@ -1068,7 +1075,8 @@ offset_right = 111.0
 offset_bottom = 133.0
 grow_horizontal = 2
 grow_vertical = 2
-texture_normal = ExtResource("6_i04jy")
+texture_normal = ExtResource("14_jhsjt")
+ignore_texture_size = true
 stretch_mode = 5
 
 [node name="Back" type="TextureButton" parent="Outside/ShopTemplate"]
@@ -1081,7 +1089,8 @@ offset_top = 23.0
 offset_right = -12.0
 offset_bottom = 94.0
 grow_horizontal = 0
-texture_normal = ExtResource("4_t30x3")
+texture_normal = ExtResource("11_xp1sg")
+ignore_texture_size = true
 stretch_mode = 5
 
 [node name="GamesMenu" type="Control" parent="Outside"]
@@ -1229,5 +1238,6 @@ offset_top = 23.0
 offset_right = -12.0
 offset_bottom = 94.0
 grow_horizontal = 0
-texture_normal = ExtResource("4_t30x3")
+texture_normal = ExtResource("11_xp1sg")
+ignore_texture_size = true
 stretch_mode = 5

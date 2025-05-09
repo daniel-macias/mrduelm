@@ -25,7 +25,7 @@ var minigame_catalog = {
 }
 
 var furniture_catalog = {
-	"detector" : {"name": "Detector", "thumbnail": "res://Sprites/table_normal.png", "scene": "res://Scenes/detector.tscn"}
+	"test_furniture" : {"name": "Test Furniture", "thumbnail": "res://Sprites/table_normal.png", "cost": 100}
 }
 
 func get_food_details(name):

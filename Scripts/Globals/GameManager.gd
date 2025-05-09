@@ -34,7 +34,9 @@ var current_room = "Play"
 # Inventory structure
 var inventory: Dictionary = {
 	"food": {"chicken":2, "broccoli":1},       # Stores food items and their quantities
-	"body_parts": {}  # Stores body parts and their quantities
+	"body_parts": {},  # Stores body parts and their quantities,
+	"furniture":{},
+	"special_items":{}
 }
 
 func modify_stat(stat_name: String, amount: int):
