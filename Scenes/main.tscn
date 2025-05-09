@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://co8xhyknh7k7h"]
+[gd_scene load_steps=61 format=3 uid="uid://co8xhyknh7k7h"]
 
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_2ncyc"]
 [ext_resource type="PackedScene" uid="uid://bdd3fhta1x0ln" path="res://Scenes/pet.tscn" id="1_g06e1"]
@@ -43,9 +43,14 @@
 [ext_resource type="Texture2D" uid="uid://5lvmfvex78sv" path="res://Sprites/RoomStuff/bg_walls.png" id="30_iwp8k"]
 [ext_resource type="Script" path="res://Scripts/UIManagers/ShopTemplate.gd" id="32_k4rhv"]
 [ext_resource type="Texture2D" uid="uid://b17at48ossvk6" path="res://Sprites/Food/Pizza.png" id="33_yhbi5"]
+[ext_resource type="Texture2D" uid="uid://bjldjya1xpagw" path="res://Sprites/Town/market.png" id="41_878pc"]
+[ext_resource type="Texture2D" uid="uid://n21ar5n6g67o" path="res://Sprites/Town/furniture.png" id="42_cltx0"]
 [ext_resource type="Texture2D" uid="uid://bvflgvhlas8x5" path="res://Sprites/Food/pizza_pepperoni.png" id="42_ga0e6"]
 [ext_resource type="FontFile" uid="uid://0ck5qg3fvfmb" path="res://Fonts/ArsenalSC-Regular.ttf" id="43_modri"]
+[ext_resource type="Texture2D" uid="uid://s4jpaqsnyj4l" path="res://Sprites/Town/therapy.png" id="43_pepv1"]
 [ext_resource type="FontFile" uid="uid://cdvk6e5mwlwn4" path="res://Fonts/ArsenalSC-Italic.ttf" id="44_0f0s0"]
+[ext_resource type="Texture2D" uid="uid://ca76wofavuayp" path="res://Sprites/Town/clothes.png" id="44_cjbvq"]
+[ext_resource type="Texture2D" uid="uid://tqphfrt8pcrq" path="res://Sprites/Town/home.png" id="45_ii3x7"]
 [ext_resource type="Script" path="res://Scripts/UIManagers/GamesMenu.gd" id="46_p701u"]
 
 [sub_resource type="Animation" id="Animation_3vylq"]
@@ -710,7 +715,7 @@ offset_bottom = -264.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(5, 5)
-texture_normal = ExtResource("2_t4d30")
+texture_normal = ExtResource("41_878pc")
 ignore_texture_size = true
 stretch_mode = 5
 
@@ -728,7 +733,7 @@ offset_bottom = 37.0001
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(5, 5)
-texture_normal = ExtResource("5_kml8w")
+texture_normal = ExtResource("42_cltx0")
 ignore_texture_size = true
 stretch_mode = 5
 
@@ -746,7 +751,7 @@ offset_bottom = -260.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(5, 5)
-texture_normal = ExtResource("3_vlkju")
+texture_normal = ExtResource("43_pepv1")
 ignore_texture_size = true
 stretch_mode = 5
 
@@ -764,7 +769,7 @@ offset_bottom = 17.0001
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(5, 5)
-texture_normal = ExtResource("6_lu5kk")
+texture_normal = ExtResource("44_cjbvq")
 ignore_texture_size = true
 stretch_mode = 5
 
@@ -775,14 +780,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -87.0
-offset_top = 464.0
-offset_right = -47.0
-offset_bottom = 504.0
+offset_left = -170.0
+offset_top = 348.0
+offset_right = -101.0
+offset_bottom = 411.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(5, 5)
-texture_normal = ExtResource("4_iuqi7")
+texture_normal = ExtResource("45_ii3x7")
 ignore_texture_size = true
 stretch_mode = 5
 
@@ -832,7 +837,7 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 
 [node name="ItemPicture" type="TextureButton" parent="Outside/ShopTemplate/InventoryContainer/List/ItemTemplate"]
-layout_mode = 2
+layout_mode = 1
 offset_right = 275.0
 offset_bottom = 341.0
 scale = Vector2(0.4, 0.4)
@@ -846,10 +851,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -32.0
-offset_top = -28.0
-offset_right = 78.0
-offset_bottom = 3.0
+offset_left = -54.0
+offset_top = -27.0
+offset_right = 56.0
+offset_bottom = 4.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -859,6 +864,7 @@ theme_override_font_sizes/font_size = 24
 text = "Food Name"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="Price" type="Label" parent="Outside/ShopTemplate/InventoryContainer/List/ItemTemplate"]
 layout_mode = 1
@@ -867,10 +873,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -25.6
-offset_top = -43.2
-offset_right = 52.4
-offset_bottom = -17.2
+offset_left = -38.0
+offset_top = -43.0
+offset_right = 40.0
+offset_bottom = -17.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("44_0f0s0")

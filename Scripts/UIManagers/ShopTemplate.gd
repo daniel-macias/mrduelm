@@ -26,6 +26,8 @@ extends Node
 
 @onready var return_home: TextureButton = $"../OutsideMenu/HouseBtn"
 
+@onready var shop_name: Label = $ShopName
+
 var selected_item_key: String = ""  # Store the key of the selected item
 var selected_item_details: Dictionary = {}  # Store the details of the selected item
 var current_page: int = 0
@@ -58,6 +60,7 @@ func _on_shop_load(shop_type_selected: String):
 	print("OPENED ", shop_type_selected, " SHOP")
 	shop_template.visible = true
 	item_template.visible = false
+	shop_name.text = shop_type_selected
 	load_items()
 	update_buttons()
 
