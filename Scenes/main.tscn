@@ -11,8 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://bwda35x8xer67" path="res://Sprites/UI/food_icon_pressed.png" id="4_2i2le"]
 [ext_resource type="Texture2D" uid="uid://b7hpmdjbf43oj" path="res://Sprites/UI/play_icon.png" id="4_iuqi7"]
 [ext_resource type="Texture2D" uid="uid://dtr6sl6i4ngy2" path="res://Sprites/UI/arrow_left.png" id="4_t30x3"]
+[ext_resource type="Texture2D" uid="uid://bxfnx0yr7fwh" path="res://Sprites/Food/pizza_metal.png" id="5_2i5p8"]
 [ext_resource type="Texture2D" uid="uid://dsx4h3mdbn8i4" path="res://Sprites/UI/sleep_icon.png" id="5_kml8w"]
-[ext_resource type="Texture2D" uid="uid://bxplxgkm8wcm8" path="res://Sprites/UI/empty_select.png" id="5_surhq"]
 [ext_resource type="Texture2D" uid="uid://bbfu11hb6lf4" path="res://Sprites/UI/shower_icon_pressed.png" id="6_0v3sx"]
 [ext_resource type="Texture2D" uid="uid://bjdeygiukkuec" path="res://Sprites/UI/arrow_right.png" id="6_i04jy"]
 [ext_resource type="Texture2D" uid="uid://ckiclgcvswhs7" path="res://Sprites/UI/garage_icon.png" id="6_lu5kk"]
@@ -31,6 +31,7 @@
 [ext_resource type="Script" path="res://Scripts/UIManagers/SleepGUI.gd" id="11_l60en"]
 [ext_resource type="Texture2D" uid="uid://bt43t0q64458k" path="res://Sprites/UI/ProgressBars/happy.png" id="12_5y17l"]
 [ext_resource type="Texture2D" uid="uid://3asydacx345v" path="res://Sprites/UI/garage_icon_pressed.png" id="12_mlgj4"]
+[ext_resource type="Texture2D" uid="uid://gjuk8rr85v5k" path="res://Sprites/UI/selector.png" id="12_vmcf3"]
 [ext_resource type="Texture2D" uid="uid://dpj6taf4klhoy" path="res://Sprites/UI/ProgressBars/energy.png" id="13_igeth"]
 [ext_resource type="Script" path="res://Scripts/UIManagers/GarageGUI.gd" id="13_yx62g"]
 [ext_resource type="Texture2D" uid="uid://gh4om6nvi26n" path="res://Sprites/RoomStuff/showerhead/metal_showerhead.png" id="16_aocou"]
@@ -39,7 +40,6 @@
 [ext_resource type="Texture2D" uid="uid://daco81bq84qqs" path="res://Sprites/RoomStuff/windows/normal_window.png" id="20_qlawt"]
 [ext_resource type="Texture2D" uid="uid://c7duollkt1d7e" path="res://Sprites/UI/charging_off.png" id="21_qcu7c"]
 [ext_resource type="Texture2D" uid="uid://c6q4symd1etrr" path="res://Sprites/UI/buy_money.png" id="22_pgui7"]
-[ext_resource type="Texture2D" uid="uid://bb56aoher0ca0" path="res://Sprites/Food/Broccolli.png" id="28_ub37l"]
 [ext_resource type="Texture2D" uid="uid://5lvmfvex78sv" path="res://Sprites/RoomStuff/bg_walls.png" id="30_iwp8k"]
 [ext_resource type="Script" path="res://Scripts/UIManagers/ShopTemplate.gd" id="32_k4rhv"]
 [ext_resource type="Texture2D" uid="uid://b17at48ossvk6" path="res://Sprites/Food/Pizza.png" id="33_yhbi5"]
@@ -213,8 +213,8 @@ scale_amount_min = 0.2
 scale_amount_max = 0.5
 
 [node name="DraggableFood" type="Sprite2D" parent="Camera2D"]
-scale = Vector2(5, 5)
-texture = ExtResource("28_ub37l")
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_2i5p8")
 
 [node name="DraggableSoap" type="Sprite2D" parent="Camera2D"]
 scale = Vector2(0.5, 0.5)
@@ -304,10 +304,11 @@ texture_normal = ExtResource("4_t30x3")
 stretch_mode = 5
 
 [node name="FoodSelected" type="TextureButton" parent="CanvasLayer/FoodGUI/HBoxContainer"]
-custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
-texture_normal = ExtResource("5_surhq")
-texture_disabled = ExtResource("5_surhq")
+size_flags_horizontal = 3
+texture_normal = ExtResource("12_vmcf3")
+texture_disabled = ExtResource("12_vmcf3")
+ignore_texture_size = true
 stretch_mode = 5
 
 [node name="FoodSelectedName" type="Label" parent="CanvasLayer/FoodGUI/HBoxContainer/FoodSelected"]
