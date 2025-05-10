@@ -13,6 +13,7 @@ extends Node
 @onready var right_button: TextureButton = $BrowserButtons/Right
 
 @onready var return_home: TextureButton = $"../OutsideMenu/HouseBtn"
+@onready var xo_anim: AnimationPlayer = $XO/AnimationPlayer
 
 var selected_item_key: String = ""  # Store the key of the selected item
 var selected_item_details: Dictionary = {}  # Store the details of the selected item
@@ -28,6 +29,8 @@ func _ready() -> void:
 	right_button.connect("pressed", Callable(self, "_on_right_button_pressed"))
 	
 	return_home.connect("pressed", Callable(self, "_on_return_home"))
+	
+	xo_anim.play("XO")
 	
 
 func _on_shop_load(shop_type_selected: String):

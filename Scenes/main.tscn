@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://co8xhyknh7k7h"]
+[gd_scene load_steps=65 format=3 uid="uid://co8xhyknh7k7h"]
 
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_2ncyc"]
 [ext_resource type="PackedScene" uid="uid://bdd3fhta1x0ln" path="res://Scenes/pet.tscn" id="1_g06e1"]
@@ -10,11 +10,9 @@
 [ext_resource type="Texture2D" uid="uid://chn7w0dkoqbus" path="res://Sprites/UI/shower_icon.png" id="3_vlkju"]
 [ext_resource type="Texture2D" uid="uid://bwda35x8xer67" path="res://Sprites/UI/food_icon_pressed.png" id="4_2i2le"]
 [ext_resource type="Texture2D" uid="uid://b7hpmdjbf43oj" path="res://Sprites/UI/play_icon.png" id="4_iuqi7"]
-[ext_resource type="Texture2D" uid="uid://dtr6sl6i4ngy2" path="res://Sprites/UI/arrow_left.png" id="4_t30x3"]
 [ext_resource type="Texture2D" uid="uid://bxfnx0yr7fwh" path="res://Sprites/Food/pizza_metal.png" id="5_2i5p8"]
 [ext_resource type="Texture2D" uid="uid://dsx4h3mdbn8i4" path="res://Sprites/UI/sleep_icon.png" id="5_kml8w"]
 [ext_resource type="Texture2D" uid="uid://bbfu11hb6lf4" path="res://Sprites/UI/shower_icon_pressed.png" id="6_0v3sx"]
-[ext_resource type="Texture2D" uid="uid://bjdeygiukkuec" path="res://Sprites/UI/arrow_right.png" id="6_i04jy"]
 [ext_resource type="Texture2D" uid="uid://ckiclgcvswhs7" path="res://Sprites/UI/garage_icon.png" id="6_lu5kk"]
 [ext_resource type="Texture2D" uid="uid://lkmfrvkmu8g6" path="res://Sprites/UI/Effects/bubble.png" id="6_yrfrm"]
 [ext_resource type="Texture2D" uid="uid://bxtusj4ktpwbh" path="res://icon.svg" id="7_edkl8"]
@@ -54,6 +52,7 @@
 [ext_resource type="Texture2D" uid="uid://ca76wofavuayp" path="res://Sprites/Town/clothes.png" id="44_cjbvq"]
 [ext_resource type="Texture2D" uid="uid://tqphfrt8pcrq" path="res://Sprites/Town/home.png" id="45_ii3x7"]
 [ext_resource type="Script" path="res://Scripts/UIManagers/GamesMenu.gd" id="46_p701u"]
+[ext_resource type="Texture2D" uid="uid://23pfyexvgsjw" path="res://Sprites/UI/Effects/xo.png" id="52_mh7by"]
 
 [sub_resource type="Animation" id="Animation_3vylq"]
 resource_name = "Conecting"
@@ -160,6 +159,44 @@ _data = {
 "Birth": SubResource("Animation_gxnwh"),
 "Death": SubResource("Animation_4vnpk"),
 "RESET": SubResource("Animation_s5ua3")
+}
+
+[sub_resource type="Animation" id="Animation_x66qn"]
+resource_name = "XO"
+length = 6.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 3, 3.03333, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-246, -226), Vector2(-1377, -600), Vector2(-2482, -281), Vector2(-1445, -676)]
+}
+
+[sub_resource type="Animation" id="Animation_6x2at"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-246, -226)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q1tsj"]
+_data = {
+"RESET": SubResource("Animation_6x2at"),
+"XO": SubResource("Animation_x66qn")
 }
 
 [node name="Node2D" type="Node2D"]
@@ -1112,6 +1149,20 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.483544, 0, 0.219302, 1)
 
+[node name="XO" type="TextureRect" parent="Outside/GamesMenu"]
+modulate = Color(1, 1, 1, 0.145098)
+layout_mode = 0
+offset_left = -246.0
+offset_top = -226.0
+offset_right = 3513.0
+offset_bottom = 2386.0
+texture = ExtResource("52_mh7by")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Outside/GamesMenu/XO"]
+libraries = {
+"": SubResource("AnimationLibrary_q1tsj")
+}
+
 [node name="InventoryContainer" type="Control" parent="Outside/GamesMenu"]
 layout_mode = 1
 anchors_preset = 15
@@ -1208,7 +1259,8 @@ offset_right = -16.0
 offset_bottom = -37.0
 grow_horizontal = 2
 grow_vertical = 2
-texture_normal = ExtResource("4_t30x3")
+texture_normal = ExtResource("11_xp1sg")
+ignore_texture_size = true
 stretch_mode = 5
 
 [node name="Right" type="TextureButton" parent="Outside/GamesMenu/BrowserButtons"]
@@ -1225,7 +1277,8 @@ offset_right = 111.0
 offset_bottom = -37.0
 grow_horizontal = 2
 grow_vertical = 2
-texture_normal = ExtResource("6_i04jy")
+texture_normal = ExtResource("14_jhsjt")
+ignore_texture_size = true
 stretch_mode = 5
 
 [node name="Back" type="TextureButton" parent="Outside/GamesMenu"]
