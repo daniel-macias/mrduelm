@@ -28,6 +28,8 @@ extends Node
 
 @onready var shop_name: Label = $ShopName
 
+@onready var xo_anim: AnimationPlayer = $XO/AnimationPlayer
+
 var selected_item_key: String = ""  # Store the key of the selected item
 var selected_item_details: Dictionary = {}  # Store the details of the selected item
 var current_page: int = 0
@@ -54,6 +56,10 @@ func _ready() -> void:
 	# Connect the BuyBtn signal
 	buy_button.connect("pressed", Callable(self, "_on_buy_button_pressed"))
 	buy_button.disabled = true  # Disable BuyBtn initially
+	
+	xo_anim.play("XO")
+	
+	xo_anim.animation_finished.connect(_on_xo_animation_finished)
 
 func _on_shop_load(shop_type_selected: String):
 	shop_type = shop_type_selected
@@ -152,3 +158,10 @@ func _on_right_button_pressed() -> void:
 func _on_back_button_pressed() -> void:
 	outside_menu.visible = true
 	shop_template.visible = false
+
+func _on_xo_animation_finished(anim_name: String) -> void:
+	if anim_name == "XO":
+		xo_anim.play("XO_REV")
+		print("EEE")
+	if anim_name == "XO_REV":
+		xo_anim.play("XO")

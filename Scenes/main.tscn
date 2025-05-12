@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://co8xhyknh7k7h"]
+[gd_scene load_steps=66 format=3 uid="uid://co8xhyknh7k7h"]
 
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_2ncyc"]
 [ext_resource type="PackedScene" uid="uid://bdd3fhta1x0ln" path="res://Scenes/pet.tscn" id="1_g06e1"]
@@ -161,23 +161,6 @@ _data = {
 "RESET": SubResource("Animation_s5ua3")
 }
 
-[sub_resource type="Animation" id="Animation_x66qn"]
-resource_name = "XO"
-length = 6.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.0333333, 3, 3.03333, 6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(-246, -226), Vector2(-1377, -600), Vector2(-2482, -281), Vector2(-1445, -676)]
-}
-
 [sub_resource type="Animation" id="Animation_6x2at"]
 length = 0.001
 tracks/0/type = "value"
@@ -193,10 +176,43 @@ tracks/0/keys = {
 "values": [Vector2(-246, -226)]
 }
 
+[sub_resource type="Animation" id="Animation_x66qn"]
+resource_name = "XO"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-246, -226), Vector2(-1377, -600)]
+}
+
+[sub_resource type="Animation" id="Animation_vmvfy"]
+resource_name = "XO_REV"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-2482, -281), Vector2(-1445, -676)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_q1tsj"]
 _data = {
 "RESET": SubResource("Animation_6x2at"),
-"XO": SubResource("Animation_x66qn")
+"XO": SubResource("Animation_x66qn"),
+"XO_REV": SubResource("Animation_vmvfy")
 }
 
 [node name="Node2D" type="Node2D"]
@@ -854,6 +870,20 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.483544, 0, 0.219302, 1)
 
+[node name="XO" type="TextureRect" parent="Outside/ShopTemplate"]
+modulate = Color(1, 1, 1, 0.145098)
+offset_left = -246.0
+offset_top = -226.0
+offset_right = 3513.0
+offset_bottom = 2386.0
+texture = ExtResource("52_mh7by")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Outside/ShopTemplate/XO"]
+libraries = {
+"": SubResource("AnimationLibrary_q1tsj")
+}
+movie_quit_on_finish = true
+
 [node name="InventoryContainer" type="Control" parent="Outside/ShopTemplate"]
 layout_mode = 1
 anchors_preset = 15
@@ -1162,6 +1192,7 @@ texture = ExtResource("52_mh7by")
 libraries = {
 "": SubResource("AnimationLibrary_q1tsj")
 }
+movie_quit_on_finish = true
 
 [node name="InventoryContainer" type="Control" parent="Outside/GamesMenu"]
 layout_mode = 1

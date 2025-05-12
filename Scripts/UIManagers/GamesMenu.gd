@@ -32,6 +32,9 @@ func _ready() -> void:
 	
 	xo_anim.play("XO")
 	
+	xo_anim.animation_finished.connect(_on_xo_animation_finished)
+
+	
 
 func _on_shop_load(shop_type_selected: String):
 	shop_type = shop_type_selected
@@ -111,3 +114,11 @@ func _open_game(scene_path: String) -> void:
 
 func _on_game_closed():
 	self.visible = true
+	
+
+func _on_xo_animation_finished(anim_name: String) -> void:
+	if anim_name == "XO":
+		xo_anim.play("XO_REV")
+		print("EEE")
+	if anim_name == "XO_REV":
+		xo_anim.play("XO")
