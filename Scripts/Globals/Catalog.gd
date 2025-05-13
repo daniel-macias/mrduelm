@@ -16,8 +16,20 @@ var food_catalog = {
 }
 
 var body_parts_catalog = {
-	"screen_01_green": {"cost": 50, "thumbnail": "res://Sprites/table_normal.png","name":"Early Screen", "category":"screen"},
-	"body_01_eggshell": {"cost": 100, "thumbnail": "res://Sprites/shelf_normal.png","name":"Vintage 80s", "category":"body"}
+	"plain_eggshell_body": {"cost": 50, "thumbnail": "res://Sprites/Body/plain_body.png","name":"Plain Eggshell", "category":"body"},
+	"sharp_eggshell_body": {"cost": 100, "thumbnail": "res://Sprites/Body/square_body.png","name":"Square Eggshell", "category":"body"},
+	"round_eggshell_body": {"cost": 50, "thumbnail": "res://Sprites/Body/round_body.png","name":"Round Eggshell", "category":"body"},
+	"chiseled_eggshell_body": {"cost": 100, "thumbnail": "res://Sprites/Body/chiseled_body.png","name":"Chiseled Eggshell", "category":"body"},
+	
+	"plain_eggshell_arm": {"cost": 50, "thumbnail": "res://Sprites/Arms/plain_arm.png","name":"Plain Egg Arm", "category":"arm"},
+	"hook_eggshell_arm": {"cost": 100, "thumbnail": "res://Sprites/Arms/hook_arm.png","name":"Hook Egg Arm", "category":"arm"},
+	"trident_eggshell_arm": {"cost": 50, "thumbnail": "res://Sprites/Arms/trident_arm.png","name":"Trident Egg Arm", "category":"arm"},
+	"spoon_eggshell_arm": {"cost": 100, "thumbnail": "res://Sprites/Arms/spoon_arm.png", "name":"Spoon Egg Arm", "category":"arm"},
+	
+	"plain_eggshell_leg": {"cost": 50, "thumbnail": "res://Sprites/Legs/plain_leg_l.png","name":"Plain Egg Leg", "category":"leg"},
+	"square_eggshell_leg": {"cost": 100, "thumbnail": "res://Sprites/Legs/square_leg_l.png","name":"Square Egg Arm", "category":"leg"},
+	"boot_eggshell_leg": {"cost": 50, "thumbnail": "res://Sprites/Legs/boot_leg_l.png","name":"Boot Egg Leg", "category":"leg"},
+	"ray_eggshell_leg": {"cost": 100, "thumbnail": "res://Sprites/Legs/ray_leg_l.png", "name":"Ray Egg Leg", "category":"leg"},
 }
 
 var minigame_catalog = {

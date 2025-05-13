@@ -5,6 +5,13 @@ extends Node2D
 @onready var animation_player_eyes = $Body/AnimationPlayerEyes
 @onready var interaction_space = $InteractSpace
 
+#body parts
+@onready var arms = $Arms
+@onready var legs = $Legs
+@onready var body = $Body/DefaultBod
+
+
+
 func _ready():
 	animation_player_arms.play("Idle")
 	animation_player_body.play("Idle")

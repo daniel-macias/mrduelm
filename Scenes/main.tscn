@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=3 uid="uid://co8xhyknh7k7h"]
+[gd_scene load_steps=67 format=3 uid="uid://co8xhyknh7k7h"]
 
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_2ncyc"]
 [ext_resource type="PackedScene" uid="uid://bdd3fhta1x0ln" path="res://Scenes/pet.tscn" id="1_g06e1"]
@@ -52,6 +52,7 @@
 [ext_resource type="Texture2D" uid="uid://ca76wofavuayp" path="res://Sprites/Town/clothes.png" id="44_cjbvq"]
 [ext_resource type="Texture2D" uid="uid://tqphfrt8pcrq" path="res://Sprites/Town/home.png" id="45_ii3x7"]
 [ext_resource type="Script" path="res://Scripts/UIManagers/GamesMenu.gd" id="46_p701u"]
+[ext_resource type="Texture2D" uid="uid://crgxeqdqyvr1h" path="res://Sprites/UI/Effects/check.png" id="51_cl760"]
 [ext_resource type="Texture2D" uid="uid://23pfyexvgsjw" path="res://Sprites/UI/Effects/xo.png" id="52_mh7by"]
 
 [sub_resource type="Animation" id="Animation_3vylq"]
@@ -872,6 +873,7 @@ color = Color(0.483544, 0, 0.219302, 1)
 
 [node name="XO" type="TextureRect" parent="Outside/ShopTemplate"]
 modulate = Color(1, 1, 1, 0.145098)
+layout_mode = 0
 offset_left = -246.0
 offset_top = -226.0
 offset_right = 3513.0
@@ -978,6 +980,15 @@ theme_override_font_sizes/font_size = 20
 text = "Other Stat"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Check" type="TextureRect" parent="Outside/ShopTemplate/InventoryContainer/List/ItemTemplate"]
+visible = false
+modulate = Color(0, 1, 0, 0.890196)
+layout_mode = 0
+offset_right = 315.0
+offset_bottom = 316.0
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("51_cl760")
 
 [node name="ShopName" type="Label" parent="Outside/ShopTemplate"]
 layout_mode = 1

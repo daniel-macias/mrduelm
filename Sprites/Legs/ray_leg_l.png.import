@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dqryo2s5vfals"
-path="res://.godot/imported/plain_leg_r.png-68195ae345c17c5ff39c3e6f55719d42.ctex"
+uid="uid://nscnyjdm1jef"
+path="res://.godot/imported/ray_leg_l.png-9354315848db936ae0ac67d71db92936.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Legs/plain_leg_r.png"
-dest_files=["res://.godot/imported/plain_leg_r.png-68195ae345c17c5ff39c3e6f55719d42.ctex"]
+source_file="res://Sprites/Legs/ray_leg_l.png"
+dest_files=["res://.godot/imported/ray_leg_l.png-9354315848db936ae0ac67d71db92936.ctex"]
 
 [params]
 

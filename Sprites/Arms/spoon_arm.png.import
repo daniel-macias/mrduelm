@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cfjexx1kcrgn5"
-path="res://.godot/imported/default_leg_r.png-2a64dee103ce92278b7adca2c2844dc3.ctex"
+uid="uid://c3028eeasn8dx"
+path="res://.godot/imported/spoon_arm.png-7649ece10a931abe01a60a710fd39482.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Legs/default_leg_r.png"
-dest_files=["res://.godot/imported/default_leg_r.png-2a64dee103ce92278b7adca2c2844dc3.ctex"]
+source_file="res://Sprites/Arms/spoon_arm.png"
+dest_files=["res://.godot/imported/spoon_arm.png-7649ece10a931abe01a60a710fd39482.ctex"]
 
 [params]
 

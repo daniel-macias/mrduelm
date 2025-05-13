@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d2c1kf6s6bk7a"
-path="res://.godot/imported/default_leg_l.png-1192e2bc15dcf2fe224d2c00a69358e1.ctex"
+uid="uid://8kmjcoicb8vk"
+path="res://.godot/imported/boot_leg_l.png-2395bc5443eeb946a37700e2482e4125.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Legs/default_leg_l.png"
-dest_files=["res://.godot/imported/default_leg_l.png-1192e2bc15dcf2fe224d2c00a69358e1.ctex"]
+source_file="res://Sprites/Legs/boot_leg_l.png"
+dest_files=["res://.godot/imported/boot_leg_l.png-2395bc5443eeb946a37700e2482e4125.ctex"]
 
 [params]
 
