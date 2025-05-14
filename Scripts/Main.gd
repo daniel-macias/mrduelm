@@ -41,6 +41,8 @@ func _ready():
 	# Start with "play" as the default active button
 	_set_default_active("play")
 	
+	$Outside/ClothesInventory.connect("pet_needs_update", Callable(self, "_update_pet_equipment"))
+	
 	
 func _on_stat_changed(stat_name: String, new_value: int):
 	match stat_name:
@@ -79,3 +81,8 @@ func _on_button_pressed(gui_name: String):
 	# Disable the new active button
 	active_button = buttons[gui_name]
 	active_button.disabled = true
+
+func _update_pet_equipment():
+	pet.change_part_appearance(GameManager.equipped["arms"])
+	pet.change_part_appearance(GameManager.equipped["legs"])
+	pet.change_part_appearance(GameManager.equipped["body"])

@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=3 uid="uid://co8xhyknh7k7h"]
+[gd_scene load_steps=75 format=3 uid="uid://co8xhyknh7k7h"]
 
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_2ncyc"]
 [ext_resource type="PackedScene" uid="uid://bdd3fhta1x0ln" path="res://Scenes/pet.tscn" id="1_g06e1"]
@@ -56,8 +56,12 @@
 [ext_resource type="Script" path="res://Scripts/UIManagers/GamesMenu.gd" id="46_p701u"]
 [ext_resource type="Texture2D" uid="uid://crgxeqdqyvr1h" path="res://Sprites/UI/Effects/check.png" id="51_cl760"]
 [ext_resource type="Texture2D" uid="uid://23pfyexvgsjw" path="res://Sprites/UI/Effects/xo.png" id="52_mh7by"]
+[ext_resource type="Texture2D" uid="uid://bwdrgyefrpps3" path="res://Sprites/UI/large_btn.png" id="54_ml7ck"]
+[ext_resource type="Texture2D" uid="uid://muteen3ysbrx" path="res://Sprites/UI/large_btn_act.png" id="55_asroi"]
 [ext_resource type="Texture2D" uid="uid://20gk0iui171n" path="res://Sprites/UI/arr_left_dis.png" id="55_cgn0s"]
 [ext_resource type="Texture2D" uid="uid://cijq4ddemveki" path="res://Sprites/UI/arr_right_dis.png" id="56_c5jgc"]
+[ext_resource type="Texture2D" uid="uid://du4k26cl2gtay" path="res://Sprites/UI/large_btn_dis.png" id="56_j456c"]
+[ext_resource type="Script" path="res://Scripts/UIManagers/ClothesInventory.gd" id="62_jjyvu"]
 
 [sub_resource type="Animation" id="Animation_3vylq"]
 resource_name = "Conecting"
@@ -1067,14 +1071,16 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -57.0
-offset_top = -186.0
-offset_right = -33.0
-offset_bottom = -162.0
+offset_left = -145.0
+offset_top = -236.0
+offset_right = -87.0
+offset_bottom = -197.0
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(5, 5)
-texture_normal = ExtResource("4_iuqi7")
+texture_normal = ExtResource("54_ml7ck")
+texture_pressed = ExtResource("55_asroi")
+texture_disabled = ExtResource("56_j456c")
 ignore_texture_size = true
 stretch_mode = 5
 
@@ -1396,5 +1402,214 @@ offset_right = -12.0
 offset_bottom = 94.0
 grow_horizontal = 0
 texture_normal = ExtResource("11_xp1sg")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="ClothesInventory" type="Control" parent="Outside"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("62_jjyvu")
+shop_type = "minigame_catalog"
+
+[node name="BGColor" type="ColorRect" parent="Outside/ClothesInventory"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.483544, 0, 0.219302, 1)
+
+[node name="PetDemo" parent="Outside/ClothesInventory" instance=ExtResource("1_g06e1")]
+
+[node name="XO" type="TextureRect" parent="Outside/ClothesInventory"]
+modulate = Color(1, 1, 1, 0.145098)
+layout_mode = 0
+offset_left = -246.0
+offset_top = -226.0
+offset_right = 3513.0
+offset_bottom = 2386.0
+texture = ExtResource("52_mh7by")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Outside/ClothesInventory/XO"]
+libraries = {
+"": SubResource("AnimationLibrary_q1tsj")
+}
+movie_quit_on_finish = true
+
+[node name="InventoryContainer" type="Control" parent="Outside/ClothesInventory"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 209.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="List" type="GridContainer" parent="Outside/ClothesInventory/InventoryContainer"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -266.0
+offset_right = 266.0
+offset_bottom = 364.0
+grow_horizontal = 2
+columns = 4
+
+[node name="ItemTemplate" type="Control" parent="Outside/ClothesInventory/InventoryContainer/List"]
+custom_minimum_size = Vector2(130, 180)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="ItemPicture" type="TextureButton" parent="Outside/ClothesInventory/InventoryContainer/List/ItemTemplate"]
+layout_mode = 2
+offset_right = 128.0
+offset_bottom = 128.0
+texture_normal = ExtResource("33_yhbi5")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="ItemName" type="Label" parent="Outside/ClothesInventory/InventoryContainer/List/ItemTemplate/ItemPicture"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -41.5
+offset_top = -11.5
+offset_right = 41.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = ExtResource("43_modri")
+theme_override_font_sizes/font_size = 24
+text = "Food Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="ShopName" type="Label" parent="Outside/ClothesInventory"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -210.0
+offset_top = 31.0
+offset_right = 215.0
+offset_bottom = 141.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("10_l4g7b")
+theme_override_font_sizes/font_size = 80
+text = "Body Parts"
+horizontal_alignment = 1
+
+[node name="BrowserButtons" type="Control" parent="Outside/ClothesInventory"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Left" type="TextureButton" parent="Outside/ClothesInventory/BrowserButtons"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -116.0
+offset_top = -370.0
+offset_right = -16.0
+offset_bottom = -270.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("11_xp1sg")
+texture_disabled = ExtResource("55_cgn0s")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Right" type="TextureButton" parent="Outside/ClothesInventory/BrowserButtons"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 11.0
+offset_top = -370.0
+offset_right = 111.0
+offset_bottom = -270.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("14_jhsjt")
+texture_disabled = ExtResource("56_c5jgc")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Back" type="TextureButton" parent="Outside/ClothesInventory"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -83.0
+offset_top = 23.0
+offset_right = -12.0
+offset_bottom = 94.0
+grow_horizontal = 0
+texture_normal = ExtResource("11_xp1sg")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="SelectedName" type="Label" parent="Outside/ClothesInventory"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -212.5
+offset_top = -278.0
+offset_right = 212.5
+offset_bottom = -195.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 60
+text = "Selected name"
+
+[node name="BuyBtn" type="TextureButton" parent="Outside/ClothesInventory"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -145.0
+offset_top = -236.0
+offset_right = -87.0
+offset_bottom = -197.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(5, 5)
+texture_normal = ExtResource("54_ml7ck")
+texture_pressed = ExtResource("55_asroi")
+texture_disabled = ExtResource("56_j456c")
 ignore_texture_size = true
 stretch_mode = 5
