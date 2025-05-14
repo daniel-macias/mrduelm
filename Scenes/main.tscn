@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=3 uid="uid://co8xhyknh7k7h"]
+[gd_scene load_steps=71 format=3 uid="uid://co8xhyknh7k7h"]
 
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_2ncyc"]
 [ext_resource type="PackedScene" uid="uid://bdd3fhta1x0ln" path="res://Scenes/pet.tscn" id="1_g06e1"]
@@ -56,6 +56,8 @@
 [ext_resource type="Script" path="res://Scripts/UIManagers/GamesMenu.gd" id="46_p701u"]
 [ext_resource type="Texture2D" uid="uid://crgxeqdqyvr1h" path="res://Sprites/UI/Effects/check.png" id="51_cl760"]
 [ext_resource type="Texture2D" uid="uid://23pfyexvgsjw" path="res://Sprites/UI/Effects/xo.png" id="52_mh7by"]
+[ext_resource type="Texture2D" uid="uid://20gk0iui171n" path="res://Sprites/UI/arr_left_dis.png" id="55_cgn0s"]
+[ext_resource type="Texture2D" uid="uid://cijq4ddemveki" path="res://Sprites/UI/arr_right_dis.png" id="56_c5jgc"]
 
 [sub_resource type="Animation" id="Animation_3vylq"]
 resource_name = "Conecting"
@@ -905,6 +907,8 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.483544, 0, 0.219302, 1)
 
+[node name="PetDemo" parent="Outside/ShopTemplate" instance=ExtResource("1_g06e1")]
+
 [node name="XO" type="TextureRect" parent="Outside/ShopTemplate"]
 modulate = Color(1, 1, 1, 0.145098)
 layout_mode = 0
@@ -1022,6 +1026,7 @@ layout_mode = 0
 offset_right = 315.0
 offset_bottom = 316.0
 scale = Vector2(0.4, 0.4)
+mouse_filter = 2
 texture = ExtResource("51_cl760")
 
 [node name="ShopName" type="Label" parent="Outside/ShopTemplate"]
@@ -1074,6 +1079,7 @@ ignore_texture_size = true
 stretch_mode = 5
 
 [node name="CurretlySelected" type="TextureRect" parent="Outside/ShopTemplate"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1170,6 +1176,7 @@ offset_bottom = 133.0
 grow_horizontal = 2
 grow_vertical = 2
 texture_normal = ExtResource("11_xp1sg")
+texture_disabled = ExtResource("55_cgn0s")
 ignore_texture_size = true
 stretch_mode = 5
 
@@ -1188,6 +1195,7 @@ offset_bottom = 133.0
 grow_horizontal = 2
 grow_vertical = 2
 texture_normal = ExtResource("14_jhsjt")
+texture_disabled = ExtResource("56_c5jgc")
 ignore_texture_size = true
 stretch_mode = 5
 
@@ -1204,6 +1212,24 @@ grow_horizontal = 0
 texture_normal = ExtResource("11_xp1sg")
 ignore_texture_size = true
 stretch_mode = 5
+
+[node name="EmptyCartLbl" type="Label" parent="Outside/ShopTemplate"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -283.0
+offset_top = -399.0
+offset_right = 284.0
+offset_bottom = -300.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("10_l4g7b")
+theme_override_font_sizes/font_size = 50
+text = "Select an item to preview!"
+horizontal_alignment = 1
 
 [node name="GamesMenu" type="Control" parent="Outside"]
 visible = false
@@ -1336,6 +1362,7 @@ offset_bottom = -37.0
 grow_horizontal = 2
 grow_vertical = 2
 texture_normal = ExtResource("11_xp1sg")
+texture_disabled = ExtResource("55_cgn0s")
 ignore_texture_size = true
 stretch_mode = 5
 
@@ -1354,6 +1381,7 @@ offset_bottom = -37.0
 grow_horizontal = 2
 grow_vertical = 2
 texture_normal = ExtResource("14_jhsjt")
+texture_disabled = ExtResource("56_c5jgc")
 ignore_texture_size = true
 stretch_mode = 5
 

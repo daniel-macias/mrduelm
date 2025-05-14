@@ -30,6 +30,12 @@ extends Node
 
 @onready var xo_anim: AnimationPlayer = $XO/AnimationPlayer
 
+@onready var pet_demo = $PetDemo
+
+@onready var empty_cart_lbl = $EmptyCartLbl
+
+@onready var transparent_sprite = "res://Sprites/UI/Effects/transparent.png"
+
 var selected_item_key: String = ""  # Store the key of the selected item
 var selected_item_details: Dictionary = {}  # Store the details of the selected item
 var current_page: int = 0
@@ -37,9 +43,6 @@ var items_per_page: int = 12
 var all_items: Array = []
 
 func _ready() -> void:
-	# Hide the template initially, this is for debugging
-	#_on_shop_load("food")
-	
 	back_button.connect("pressed", Callable(self, "_on_back_button_pressed"))
 	
 	left_button.connect("pressed", Callable(self, "_on_left_button_pressed"))
@@ -69,6 +72,22 @@ func _on_shop_load(shop_type_selected: String):
 	shop_name.text = shop_type_selected
 	load_items()
 	update_buttons()
+	
+	if shop_type == "body_parts":
+		pet_demo.visible = true
+		center_pet_demo()
+		equip_pet_demo(GameManager.equipped)
+	else:
+		pet_demo.visible = false
+	
+	reset_selection_state()
+
+func center_pet_demo():
+	var parent_size = pet_demo.get_parent().get_size()
+	var center_position = parent_size / 2
+	var offset = Vector2(0, 250)  # Push it downward 
+	pet_demo.position = center_position + offset
+	pet_demo.scale = Vector2(2, 2)  # Make it bigger
 
 func _on_return_home() -> void:
 	outside_menu.visible = false
@@ -79,6 +98,7 @@ func load_items() -> void:
 	for item_key in items.keys():
 		all_items.append(item_key)  # Store the keys, not the details
 	display_page(current_page)
+	current_gold.text = "Gold: $" + str(GameManager.player_money)
 
 func display_page(page: int) -> void:
 	# Clear existing items (except the template)
@@ -109,6 +129,18 @@ func display_page(page: int) -> void:
 		
 		# Add the new item to the container
 		inventory_container.add_child(new_item)
+		
+		# Check if already owned (only for body_parts)
+		var owned = false
+		if shop_type == "body_parts" and GameManager.inventory["body_parts"].has(item_key) and GameManager.inventory["body_parts"][item_key] == 1:
+			owned = true
+			# Show the checkmark (assuming it's child 4)
+			new_item.get_child(4).visible = true
+		else:
+			new_item.get_child(4).visible = false
+
+		# Store "owned" state in metadata for use when selected
+		new_item.set_meta("owned", owned)
 	
 	update_buttons()
 
@@ -117,16 +149,39 @@ func update_buttons() -> void:
 	right_button.disabled = (current_page + 1) * items_per_page >= all_items.size()
 
 func _on_item_selected(item_key: String) -> void:
-	selected_item_key = item_key  # Store the key of the selected item
-	selected_item_details = Catalog.get(shop_type + "_catalog")[item_key]  # Store the details
+	empty_cart_lbl.visible = false
+	selected_thumbnail.visible = true
+	buy_button.visible = true
 	
-	# Update the "Currently Selected" UI
+	selected_item_key = item_key
+	selected_item_details = Catalog.get(shop_type + "_catalog")[item_key]
+	
+	# Update UI
 	selected_price_label.text = "Price: $" + str(selected_item_details["cost"])
-	selected_thumbnail.texture = load(selected_item_details["thumbnail"])
+	selected_thumbnail.visible = true
 	selected_name.text = selected_item_details["name"]
 	
-	# Enable BuyBtn if the player can afford the item
-	buy_button.disabled = !GameManager.can_afford(selected_item_details["cost"])
+	if shop_type == "body_parts":
+		selected_thumbnail.texture = load(transparent_sprite)
+	else:
+		selected_thumbnail.texture = load(selected_item_details["thumbnail"])
+	
+
+	# Disable Buy button if owned
+	var owned = false
+	if shop_type == "body_parts" and GameManager.inventory["body_parts"].has(item_key) and GameManager.inventory["body_parts"][item_key] == 1:
+		owned = true
+
+	buy_button.disabled = owned or !GameManager.can_afford(selected_item_details["cost"])
+	
+	if shop_type == "body_parts":
+		var part_type = selected_item_details["category"]
+
+		# Clone equipped parts to avoid modifying GameManager.equipped directly
+		var preview_equipped = GameManager.equipped.duplicate()
+		preview_equipped[part_type] = selected_item_key  # Replace only the part being previewed
+
+		equip_pet_demo(preview_equipped)  # Apply preview
 
 func _on_buy_button_pressed() -> void:
 	if selected_item_key:
@@ -135,13 +190,12 @@ func _on_buy_button_pressed() -> void:
 			print("Successfully bought:", selected_item_details["name"])
 			# Update the UI
 			current_gold.text = "Gold: $" + str(GameManager.player_money)
-			selected_item_key = ""
-			selected_item_details = {}
-			selected_price_label.text = "Price: $0"
-			selected_thumbnail.texture = null
-			selected_name.text = ""
-			buy_button.disabled = true
+			
+			if shop_type == "body_parts":
+				reset_selection_state()
+			
 			print(GameManager.inventory)
+			display_page(current_page)
 		else:
 			print("Failed to buy:", selected_item_details["name"])
 
@@ -162,6 +216,19 @@ func _on_back_button_pressed() -> void:
 func _on_xo_animation_finished(anim_name: String) -> void:
 	if anim_name == "XO":
 		xo_anim.play("XO_REV")
-		print("EEE")
 	if anim_name == "XO_REV":
 		xo_anim.play("XO")
+
+func equip_pet_demo(parts: Dictionary) -> void:
+	for part_type in parts.keys():
+		pet_demo.change_part_appearance(parts[part_type])
+
+func reset_selection_state():
+	selected_item_key = ""
+	selected_item_details = {}
+	empty_cart_lbl.visible = true
+	selected_thumbnail.visible = false
+	selected_name.text = ""
+	selected_price_label.text = ""
+	buy_button.visible = false
+	buy_button.disabled = true

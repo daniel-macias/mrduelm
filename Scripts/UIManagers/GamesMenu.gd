@@ -49,6 +49,7 @@ func _on_return_home() -> void:
 
 func load_items() -> void:
 	all_items.clear()
+	
 	var items = Catalog.get(shop_type + "_catalog") if shop_type + "_catalog" in Catalog else {}
 	for item_key in items.keys():
 		all_items.append(item_key)  # Store the keys, not the details
@@ -119,6 +120,5 @@ func _on_game_closed():
 func _on_xo_animation_finished(anim_name: String) -> void:
 	if anim_name == "XO":
 		xo_anim.play("XO_REV")
-		print("EEE")
 	if anim_name == "XO_REV":
 		xo_anim.play("XO")

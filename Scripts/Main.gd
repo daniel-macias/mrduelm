@@ -1,7 +1,5 @@
 extends Node2D
 
-
-
 @onready var fun_bar = $CanvasLayer/TopBar/HBoxContainer/HappyBar
 @onready var hunger_bar = $CanvasLayer/TopBar/HBoxContainer/FoodBar
 @onready var health_bar = $CanvasLayer/TopBar/HBoxContainer/HealthBar
