@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=3 uid="uid://co8xhyknh7k7h"]
+[gd_scene load_steps=69 format=3 uid="uid://co8xhyknh7k7h"]
 
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_2ncyc"]
 [ext_resource type="PackedScene" uid="uid://bdd3fhta1x0ln" path="res://Scenes/pet.tscn" id="1_g06e1"]
@@ -40,6 +40,8 @@
 [ext_resource type="Texture2D" uid="uid://daco81bq84qqs" path="res://Sprites/RoomStuff/windows/normal_window.png" id="20_qlawt"]
 [ext_resource type="Texture2D" uid="uid://c7duollkt1d7e" path="res://Sprites/UI/charging_off.png" id="21_qcu7c"]
 [ext_resource type="Texture2D" uid="uid://c6q4symd1etrr" path="res://Sprites/UI/buy_money.png" id="22_pgui7"]
+[ext_resource type="Texture2D" uid="uid://d1ck464uoul4a" path="res://Sprites/RoomStuff/workshop/workshop_starter.png" id="24_1h0yi"]
+[ext_resource type="Texture2D" uid="uid://0ralxsg4raub" path="res://Sprites/RoomStuff/instruments/theremin.png" id="25_wakuc"]
 [ext_resource type="Texture2D" uid="uid://5lvmfvex78sv" path="res://Sprites/RoomStuff/bg_walls.png" id="30_iwp8k"]
 [ext_resource type="Script" path="res://Scripts/UIManagers/ShopTemplate.gd" id="32_k4rhv"]
 [ext_resource type="Texture2D" uid="uid://b17at48ossvk6" path="res://Sprites/Food/Pizza.png" id="33_yhbi5"]
@@ -610,6 +612,38 @@ grow_vertical = 2
 theme_override_fonts/font = ExtResource("10_l4g7b")
 theme_override_font_sizes/font_size = 80
 text = "Garagelandia"
+
+[node name="Workshop" type="TextureButton" parent="CanvasLayer/GarageGUI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 12.0
+offset_top = -362.0
+offset_right = 472.0
+offset_bottom = 130.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.7, 0.7)
+texture_normal = ExtResource("24_1h0yi")
+
+[node name="Instrument" type="TextureButton" parent="CanvasLayer/GarageGUI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -331.0
+offset_top = -356.0
+offset_right = 15.0
+offset_bottom = 68.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.7, 0.7)
+texture_normal = ExtResource("25_wakuc")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/GarageGUI"]
 layout_mode = 1

@@ -34,7 +34,7 @@ var current_room = "Play"
 # Inventory structure
 var inventory: Dictionary = {
 	"food": {"chicken":2, "broccoli":1},    
-	"body_parts": {}, 
+	"body_parts": {"plain_eggshell_body":1, "plain_eggshell_leg":1, "plain_eggshell_arm":1}, 
 	"furniture":{},
 	"special_items":{}
 }
