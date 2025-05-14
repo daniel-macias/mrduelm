@@ -33,10 +33,17 @@ var current_room = "Play"
 
 # Inventory structure
 var inventory: Dictionary = {
-	"food": {"chicken":2, "broccoli":1},       # Stores food items and their quantities
-	"body_parts": {},  # Stores body parts and their quantities,
+	"food": {"chicken":2, "broccoli":1},    
+	"body_parts": {}, 
 	"furniture":{},
 	"special_items":{}
+}
+
+
+var equipped: Dictionary = {
+	"body": "plain_eggshell_body",      
+	"legs": "plain_eggshell_leg", 
+	"arms": "plain_eggshell_arm",
 }
 
 func modify_stat(stat_name: String, amount: int):
@@ -115,7 +122,8 @@ func add_to_inventory(category: String, item_name: String, quantity: int = 1):
 			inventory[category][item_name] += quantity
 		else:
 			inventory[category][item_name] = quantity
-			
+	
+	print(inventory)
 
 func remove_from_inventory(category: String, item_name: String, quantity: int = 1):
 	if category in inventory:

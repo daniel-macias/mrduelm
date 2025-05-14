@@ -16,21 +16,94 @@ var food_catalog = {
 }
 
 var body_parts_catalog = {
-	"plain_eggshell_body": {"cost": 50, "thumbnail": "res://Sprites/Body/plain_body.png","name":"Plain Eggshell", "category":"body"},
-	"sharp_eggshell_body": {"cost": 100, "thumbnail": "res://Sprites/Body/square_body.png","name":"Square Eggshell", "category":"body"},
-	"round_eggshell_body": {"cost": 50, "thumbnail": "res://Sprites/Body/round_body.png","name":"Round Eggshell", "category":"body"},
-	"chiseled_eggshell_body": {"cost": 100, "thumbnail": "res://Sprites/Body/chiseled_body.png","name":"Chiseled Eggshell", "category":"body"},
-	
-	"plain_eggshell_arm": {"cost": 50, "thumbnail": "res://Sprites/Arms/plain_arm.png","name":"Plain Egg Arm", "category":"arm"},
-	"hook_eggshell_arm": {"cost": 100, "thumbnail": "res://Sprites/Arms/hook_arm.png","name":"Hook Egg Arm", "category":"arm"},
-	"trident_eggshell_arm": {"cost": 50, "thumbnail": "res://Sprites/Arms/trident_arm.png","name":"Trident Egg Arm", "category":"arm"},
-	"spoon_eggshell_arm": {"cost": 100, "thumbnail": "res://Sprites/Arms/spoon_arm.png", "name":"Spoon Egg Arm", "category":"arm"},
-	
-	"plain_eggshell_leg": {"cost": 50, "thumbnail": "res://Sprites/Legs/plain_leg_l.png","name":"Plain Egg Leg", "category":"leg"},
-	"square_eggshell_leg": {"cost": 100, "thumbnail": "res://Sprites/Legs/square_leg_l.png","name":"Square Egg Arm", "category":"leg"},
-	"boot_eggshell_leg": {"cost": 50, "thumbnail": "res://Sprites/Legs/boot_leg_l.png","name":"Boot Egg Leg", "category":"leg"},
-	"ray_eggshell_leg": {"cost": 100, "thumbnail": "res://Sprites/Legs/ray_leg_l.png", "name":"Ray Egg Leg", "category":"leg"},
+	"plain_eggshell_body": {
+		"cost": 50,
+		"thumbnail": "res://Sprites/Body/plain_body.png",
+		"name": "Plain Eggshell",
+		"category": "body",
+		"resource": "res://Sprites/Body/plain_body.png"
+	},
+	"sharp_eggshell_body": {
+		"cost": 100,
+		"thumbnail": "res://Sprites/Body/square_body.png",
+		"name": "Square Eggshell",
+		"category": "body",
+		"resource": "res://Sprites/Body/square_body.png"
+	},
+	"round_eggshell_body": {
+		"cost": 50,
+		"thumbnail": "res://Sprites/Body/round_body.png",
+		"name": "Round Eggshell",
+		"category": "body",
+		"resource": "res://Sprites/Body/round_body.png"
+	},
+	"chiseled_eggshell_body": {
+		"cost": 100,
+		"thumbnail": "res://Sprites/Body/chiseled_body.png",
+		"name": "Chiseled Eggshell",
+		"category": "body",
+		"resource": "res://Sprites/Body/chiseled_body.png"
+	},
+
+	"plain_eggshell_arm": {
+		"cost": 50,
+		"thumbnail": "res://Sprites/Arms/plain_arm.png",
+		"name": "Plain Egg Arm",
+		"category": "arm",
+		"resource": "res://Sprites/Arms/plain_arm.png"
+	},
+	"hook_eggshell_arm": {
+		"cost": 100,
+		"thumbnail": "res://Sprites/Arms/hook_arm.png",
+		"name": "Hook Egg Arm",
+		"category": "arm",
+		"resource": "res://Sprites/Arms/hook_arm.png"
+	},
+	"trident_eggshell_arm": {
+		"cost": 50,
+		"thumbnail": "res://Sprites/Arms/trident_arm.png",
+		"name": "Trident Egg Arm",
+		"category": "arm",
+		"resource": "res://Sprites/Arms/trident_arm.png"
+	},
+	"spoon_eggshell_arm": {
+		"cost": 100,
+		"thumbnail": "res://Sprites/Arms/spoon_arm.png",
+		"name": "Spoon Egg Arm",
+		"category": "arm",
+		"resource": "res://Sprites/Arms/spoon_arm.png"
+	},
+
+	"plain_eggshell_leg": {
+		"cost": 50,
+		"thumbnail": "res://Sprites/Legs/plain_leg_l.png",
+		"name": "Plain Egg Leg",
+		"category": "leg",
+		"resource": "res://Sprites/Legs/plain_leg_l.png"
+	},
+	"square_eggshell_leg": {
+		"cost": 100,
+		"thumbnail": "res://Sprites/Legs/square_leg_l.png",
+		"name": "Square Egg Arm",
+		"category": "leg",
+		"resource": "res://Sprites/Legs/square_leg_l.png"
+	},
+	"boot_eggshell_leg": {
+		"cost": 50,
+		"thumbnail": "res://Sprites/Legs/boot_leg_l.png",
+		"name": "Boot Egg Leg",
+		"category": "leg",
+		"resource": "res://Sprites/Legs/boot_leg_l.png"
+	},
+	"ray_eggshell_leg": {
+		"cost": 100,
+		"thumbnail": "res://Sprites/Legs/ray_leg_l.png",
+		"name": "Ray Egg Leg",
+		"category": "leg",
+		"resource": "res://Sprites/Legs/ray_leg_l.png"
+	}
 }
+
 
 var minigame_catalog = {
 	"detector" : {"name": "Detector", "thumbnail": "res://Sprites/table_normal.png", "scene": "res://Scenes/detector.tscn"}
