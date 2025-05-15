@@ -31,6 +31,8 @@ func change_part_appearance(part_key: String) -> void:
 
 	var texture = load(details["resource"])
 	var category = details["category"]
+	
+	
 
 	match category:
 		"body":

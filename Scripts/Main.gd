@@ -13,6 +13,8 @@ extends Node2D
 
 @onready var pet = $Camera2D/Pet
 
+@onready var money_lbl = $CanvasLayer/TopBar/Label
+
 @onready var guis = {
 	"food": $CanvasLayer/FoodGUI,
 	"bathroom": $CanvasLayer/BathroomGUI,
@@ -34,6 +36,7 @@ var active_button = null
 func _ready():
 	
 	GameManager.connect("stat_changed", Callable(self, "_on_stat_changed"))
+	money_lbl.text = str(GameManager.player_money)
 	
 	for name in buttons:
 		buttons[name].connect("pressed", Callable(self, "_on_button_pressed").bind(name))

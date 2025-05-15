@@ -18,9 +18,12 @@ extends Node
 
 #GAME OVER SCREEN ELEMENTS
 @onready var gameover_menu = $CanvasLayer/GameOverMenu
+@onready var menu_title = $CanvasLayer/GameOverMenu/Title
+@onready var menu_description = $CanvasLayer/GameOverMenu/RichTextLabel
 @onready var final_score_lbl = $CanvasLayer/GameOverMenu/Score
 @onready var play_again_btn = $CanvasLayer/GameOverMenu/StartBtn
 @onready var price_lbl = $CanvasLayer/GameOverMenu/Price
+@onready var back_btn = $CanvasLayer/GameOverMenu/BackHome
 
 var correct_amount = 0
 var mistakes = 0
@@ -83,6 +86,7 @@ func start_timer(duration: float):
 func _ready() -> void:
 	person_template.hide()
 	back_to_game_menu_btn.connect("pressed", Callable(self, "_exit_game"))
+	back_btn.connect("pressed", Callable(self, "_exit_game"))
 	start_game_btn.connect("pressed", Callable(self, "_start_game"))
 	check_btn.connect("pressed", Callable(self, "_on_check_btn_pressed"))
 	cat_anim.get_parent().visible = false
@@ -297,10 +301,15 @@ func register_mistake():
 			timer_running = false
 			game.visible = false
 			gameover_menu.visible = true
+			
+			var money_won = correct_amount * 100
 
-			final_score_lbl.text = "Score: " + str(correct_amount)
-			price_lbl.text = "You earned: $" + str(correct_amount * 100)
-			#TODO: Add to wallet
+			final_score_lbl.text = str(correct_amount)
+			price_lbl.text = "You earned: $" + str(money_won)
+			
+			#TODO: Do signa
+			GameManager.player_money += money_won
+			
 			#TODO: Maybe add the ad functionality
 
 func _on_cat_anim_finished(anim_name: String) -> void:

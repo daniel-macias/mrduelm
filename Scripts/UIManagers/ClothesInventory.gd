@@ -161,7 +161,7 @@ func _on_equip_button_pressed() -> void:
 		var category = selected_item_details["category"]
 		GameManager.equipped[category] = selected_item_key
 		print("Equipped", category, "with:", selected_item_key)
-		print(GameManager.equipped)
+		print("hola ", GameManager.equipped)
 		equip_pet_demo(GameManager.equipped)
 		reset_selection_state()
 		emit_signal("pet_needs_update")
