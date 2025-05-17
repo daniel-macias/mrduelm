@@ -22,6 +22,7 @@ extends Node
 @onready var menu_description = $CanvasLayer/GameOverMenu/RichTextLabel
 @onready var final_score_lbl = $CanvasLayer/GameOverMenu/Score
 @onready var play_again_btn = $CanvasLayer/GameOverMenu/StartBtn
+@onready var play_again_btn_lbl = $CanvasLayer/GameOverMenu/StartBtn/Label
 @onready var price_lbl = $CanvasLayer/GameOverMenu/Price
 @onready var back_btn = $CanvasLayer/GameOverMenu/BackHome
 
@@ -73,6 +74,7 @@ var standout_conditions = {
 var current_round = 0
 
 func _exit_game():
+	GameManager.has_played_minigame_once = false
 	game_closed.emit()  # Emit signal when exiting
 	queue_free()  # Remove this minigame scene
 	
@@ -94,9 +96,15 @@ func _ready() -> void:
 	cat_anim.animation_finished.connect(_on_cat_anim_finished)
 	mistake_timer.timeout.connect(_on_mistake_timer_timeout)
 	play_again_btn.connect("pressed", Callable(self, "_on_play_again_pressed"))
+	
+	if !GameManager.has_played_minigame_once:
+		menu_title.text = "Hello New Game"
+		menu_description.text = "New game description"
+		play_again_btn_lbl.text = "Start Game"
 
 	
 func _start_game() -> void:
+	
 	menu.visible = false
 	game.visible = true
 	
@@ -260,6 +268,7 @@ func on_time_up():
 	
 
 func start_next_round():
+	GameManager.has_played_minigame_once = true
 	if current_round < DetectorRounds.get_rounds().size():
 		var round_data = DetectorRounds.get_rounds()[current_round]
 		generate_grid(
@@ -309,6 +318,14 @@ func register_mistake():
 			
 			GameManager.player_money += money_won
 			GameManager.emit_signal("money_changed", GameManager.player_money)
+			
+			if GameManager.has_played_minigame_once:
+				menu_title.text = "Game Over"
+				menu_description.text = "You already played once... Let's see if you can do better!"
+				play_again_btn_lbl.text = "Play Again"
+			
+			print(GameManager.has_played_minigame_once)
+			
 			
 			#TODO: Maybe add the ad functionality
 
