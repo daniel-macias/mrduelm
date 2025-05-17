@@ -36,6 +36,8 @@ var active_button = null
 func _ready():
 	
 	GameManager.connect("stat_changed", Callable(self, "_on_stat_changed"))
+	GameManager.connect("money_changed", Callable(self, "_on_money_changed"))
+
 	money_lbl.text = str(GameManager.player_money)
 	
 	for name in buttons:
@@ -86,6 +88,9 @@ func _on_button_pressed(gui_name: String):
 	active_button.disabled = true
 
 func _update_pet_equipment():
-	pet.change_part_appearance(GameManager.equipped["arms"])
-	pet.change_part_appearance(GameManager.equipped["legs"])
+	pet.change_part_appearance(GameManager.equipped["arm"])
+	pet.change_part_appearance(GameManager.equipped["leg"])
 	pet.change_part_appearance(GameManager.equipped["body"])
+
+func _on_money_changed(new_amount):
+	money_lbl.text = str(new_amount)

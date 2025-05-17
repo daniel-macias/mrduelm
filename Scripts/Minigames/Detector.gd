@@ -307,8 +307,8 @@ func register_mistake():
 			final_score_lbl.text = str(correct_amount)
 			price_lbl.text = "You earned: $" + str(money_won)
 			
-			#TODO: Do signa
 			GameManager.player_money += money_won
+			GameManager.emit_signal("money_changed", GameManager.player_money)
 			
 			#TODO: Maybe add the ad functionality
 

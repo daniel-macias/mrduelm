@@ -11,6 +11,8 @@ var fun: int = 50
 var cleanliness: int = 100 #out of 1000
 
 signal stat_changed(stat_name: String, new_value: int)
+signal money_changed(new_amount)
+
 
 var decrease_amounts = {
 	"fun": 1,
@@ -42,8 +44,8 @@ var inventory: Dictionary = {
 
 var equipped: Dictionary = {
 	"body": "plain_eggshell_body",      
-	"legs": "plain_eggshell_leg", 
-	"arms": "plain_eggshell_arm",
+	"leg": "plain_eggshell_leg", 
+	"arm": "plain_eggshell_arm",
 }
 
 func modify_stat(stat_name: String, amount: int):
@@ -164,6 +166,7 @@ func buy_item(category: String, item_name: String, quantity: int = 1) -> bool:
 	if spend_money(total_cost):
 		add_to_inventory(category, item_name, quantity)
 		print("Successfully bought", quantity, "of", item_details["name"])
+		emit_signal("money_changed", player_money)
 		return true
 	
 	print("Not enough money to buy", item_details["name"])
@@ -173,3 +176,7 @@ func buy_item(category: String, item_name: String, quantity: int = 1) -> bool:
 func set_timers_paused(paused: bool):
 	for timer in timers.values():
 		timer.set_paused(paused)
+
+func add_money(amount):
+	player_money += amount
+	emit_signal("money_changed", player_money)

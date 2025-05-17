@@ -75,31 +75,34 @@ func display_page(page: int) -> void:
 		if child != item_template:
 			child.queue_free()
 	
-	# Calculate the range of items to display
 	var start_index = page * items_per_page
 	var end_index = min(start_index + items_per_page, all_items.size())
-	
-	# Populate the page with items
+
 	for i in range(start_index, end_index):
-		var item_key = all_items[i]  # Use the key directly
+		var item_key = all_items[i]
 		var item_details = Catalog.get("body_parts_catalog")[item_key]
-		
+		var category = item_details["category"]
+
 		# Duplicate the template and populate it
 		var new_item = item_template.duplicate()
 		new_item.visible = true
 		new_item.get_node("ItemPicture").texture_normal = load(item_details["thumbnail"])
-		
-		new_item.get_node("ItemPicture").get_child(0).text = item_details["name"]
-		
-		# Connect the item's button signal to update the "Currently Selected" section
-		var item_button = new_item  # Assuming the entire item is clickable
+
+		# Append [equipped] if the item is currently equipped
+		var item_name = item_details["name"]
+		if GameManager.equipped.has(category) and GameManager.equipped[category] == item_key:
+			item_name += " [equipped]"
+
+		new_item.get_node("ItemPicture").get_child(0).text = item_name
+
+		# Connect selection logic
+		var item_button = new_item
 		item_button.get_node("ItemPicture").connect("pressed", Callable(self, "_on_item_selected").bind(item_key))
 
-		
-		# Add the new item to the container
 		inventory_container.add_child(new_item)
-	
+
 	update_buttons()
+
 
 func update_buttons() -> void:
 	left_button.disabled = current_page == 0

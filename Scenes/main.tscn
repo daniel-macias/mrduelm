@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=3 uid="uid://co8xhyknh7k7h"]
+[gd_scene load_steps=90 format=3 uid="uid://co8xhyknh7k7h"]
 
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_2ncyc"]
 [ext_resource type="PackedScene" uid="uid://bdd3fhta1x0ln" path="res://Scenes/pet.tscn" id="1_g06e1"]
@@ -54,9 +54,17 @@
 [ext_resource type="Texture2D" uid="uid://ca76wofavuayp" path="res://Sprites/Town/clothes.png" id="44_cjbvq"]
 [ext_resource type="Texture2D" uid="uid://tqphfrt8pcrq" path="res://Sprites/Town/home.png" id="45_ii3x7"]
 [ext_resource type="Script" path="res://Scripts/UIManagers/GamesMenu.gd" id="46_p701u"]
+[ext_resource type="Texture2D" uid="uid://yapmm7w22t7y" path="res://Sprites/Anim/Out/flag-0.png" id="48_ulg48"]
+[ext_resource type="Script" path="res://Scripts/Anim/OutsideAnims.gd" id="48_wr0w7"]
+[ext_resource type="Texture2D" uid="uid://s6qpo36muhml" path="res://Sprites/Anim/Out/flag-1.png" id="49_jyit6"]
+[ext_resource type="Texture2D" uid="uid://dcc3wq3vboqh8" path="res://Sprites/Anim/Out/rocks.png" id="50_bp4lb"]
 [ext_resource type="Texture2D" uid="uid://crgxeqdqyvr1h" path="res://Sprites/UI/Effects/check.png" id="51_cl760"]
+[ext_resource type="Texture2D" uid="uid://cq5i4hh6aa2dv" path="res://Sprites/Anim/Out/grassa-0.png" id="51_d4xcc"]
+[ext_resource type="Texture2D" uid="uid://c4oq2i6fyktak" path="res://Sprites/Anim/Out/grassa-1.png" id="52_jiq2b"]
 [ext_resource type="Texture2D" uid="uid://23pfyexvgsjw" path="res://Sprites/UI/Effects/xo.png" id="52_mh7by"]
+[ext_resource type="Texture2D" uid="uid://1v3sxb4tpdvv" path="res://Sprites/Anim/Out/grassb-0.png" id="53_2cv4w"]
 [ext_resource type="Texture2D" uid="uid://bwdrgyefrpps3" path="res://Sprites/UI/large_btn.png" id="54_ml7ck"]
+[ext_resource type="Texture2D" uid="uid://cplswdx13mfos" path="res://Sprites/Anim/Out/grassb-1.png" id="54_xw8xg"]
 [ext_resource type="Texture2D" uid="uid://muteen3ysbrx" path="res://Sprites/UI/large_btn_act.png" id="55_asroi"]
 [ext_resource type="Texture2D" uid="uid://20gk0iui171n" path="res://Sprites/UI/arr_left_dis.png" id="55_cgn0s"]
 [ext_resource type="Texture2D" uid="uid://cijq4ddemveki" path="res://Sprites/UI/arr_right_dis.png" id="56_c5jgc"]
@@ -168,6 +176,98 @@ _data = {
 "Birth": SubResource("Animation_gxnwh"),
 "Death": SubResource("Animation_4vnpk"),
 "RESET": SubResource("Animation_s5ua3")
+}
+
+[sub_resource type="Animation" id="Animation_32vdl"]
+resource_name = "flag"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("48_ulg48"), ExtResource("49_jyit6")]
+}
+
+[sub_resource type="Animation" id="Animation_5afrw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("48_ulg48")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b82ue"]
+_data = {
+"RESET": SubResource("Animation_5afrw"),
+"flag": SubResource("Animation_32vdl")
+}
+
+[sub_resource type="Animation" id="Animation_p3sd6"]
+resource_name = "grassa"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("51_d4xcc"), ExtResource("52_jiq2b")]
+}
+
+[sub_resource type="Animation" id="Animation_dga5v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("51_d4xcc")]
+}
+
+[sub_resource type="Animation" id="Animation_ttaig"]
+resource_name = "grassb"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("53_2cv4w"), ExtResource("54_xw8xg")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5bujc"]
+_data = {
+"RESET": SubResource("Animation_dga5v"),
+"grassa": SubResource("Animation_p3sd6"),
+"grassb": SubResource("Animation_ttaig")
 }
 
 [sub_resource type="Animation" id="Animation_6x2at"]
@@ -828,10 +928,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -301.0
-offset_top = -104.0
-offset_right = -261.0
-offset_bottom = -63.9999
+offset_left = -327.0
+offset_top = -176.0
+offset_right = -287.0
+offset_bottom = -136.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(5, 5)
@@ -846,10 +946,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 34.0
-offset_top = -401.0
-offset_right = 74.0
-offset_bottom = -361.0
+offset_left = 46.0
+offset_top = -415.0
+offset_right = 86.0
+offset_bottom = -375.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(5, 5)
@@ -864,10 +964,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 139.0
-offset_top = -124.0
-offset_right = 179.0
-offset_bottom = -83.9999
+offset_left = 143.0
+offset_top = -150.0
+offset_right = 183.0
+offset_bottom = -110.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(5, 5)
@@ -882,16 +982,146 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -170.0
-offset_top = 247.0
-offset_right = -101.0
-offset_bottom = 310.0
+offset_left = -149.0
+offset_top = 304.0
+offset_right = -80.0
+offset_bottom = 367.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(5, 5)
 texture_normal = ExtResource("45_ii3x7")
 ignore_texture_size = true
 stretch_mode = 5
+
+[node name="AnimStuff" type="Control" parent="Outside/OutsideMenu"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("48_wr0w7")
+
+[node name="Flag" type="TextureRect" parent="Outside/OutsideMenu/AnimStuff"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 9.302
+anchor_top = 21.583
+anchor_right = 9.302
+anchor_bottom = 21.583
+offset_left = -1.08002
+offset_top = -291.32
+offset_right = 162.92
+offset_bottom = 515.68
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("48_ulg48")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Outside/OutsideMenu/AnimStuff/Flag"]
+libraries = {
+"": SubResource("AnimationLibrary_b82ue")
+}
+
+[node name="Rocks" type="TextureRect" parent="Outside/OutsideMenu/AnimStuff/Flag"]
+layout_mode = 0
+offset_left = -460.0
+offset_top = 520.0
+offset_right = 517.0
+offset_bottom = 1074.0
+texture = ExtResource("50_bp4lb")
+
+[node name="GrassA" type="TextureRect" parent="Outside/OutsideMenu/AnimStuff"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 9.617
+anchor_top = 22.203
+anchor_right = 9.617
+anchor_bottom = 22.203
+offset_left = -289.68
+offset_top = -53.1201
+offset_right = -189.68
+offset_bottom = 46.8799
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("51_d4xcc")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Outside/OutsideMenu/AnimStuff/GrassA"]
+libraries = {
+"": SubResource("AnimationLibrary_5bujc")
+}
+
+[node name="GrassA2" type="TextureRect" parent="Outside/OutsideMenu/AnimStuff"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 9.617
+anchor_top = 22.203
+anchor_right = 9.617
+anchor_bottom = 22.203
+offset_left = 221.32
+offset_top = 217.88
+offset_right = 321.32
+offset_bottom = 317.88
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("51_d4xcc")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Outside/OutsideMenu/AnimStuff/GrassA2"]
+libraries = {
+"": SubResource("AnimationLibrary_5bujc")
+}
+
+[node name="GrassA3" type="TextureRect" parent="Outside/OutsideMenu/AnimStuff"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 9.617
+anchor_top = 22.203
+anchor_right = 9.617
+anchor_bottom = 22.203
+offset_left = 166.32
+offset_top = -593.12
+offset_right = 266.32
+offset_bottom = -493.12
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("51_d4xcc")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Outside/OutsideMenu/AnimStuff/GrassA3"]
+libraries = {
+"": SubResource("AnimationLibrary_5bujc")
+}
+
+[node name="GrassB" type="TextureRect" parent="Outside/OutsideMenu/AnimStuff"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 9.617
+anchor_top = 22.203
+anchor_right = 9.617
+anchor_bottom = 22.203
+offset_left = -277.68
+offset_top = -569.12
+offset_right = -101.68
+offset_bottom = -415.12
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("51_d4xcc")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Outside/OutsideMenu/AnimStuff/GrassB"]
+libraries = {
+"": SubResource("AnimationLibrary_5bujc")
+}
+
+[node name="GrassB2" type="TextureRect" parent="Outside/OutsideMenu/AnimStuff"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 9.617
+anchor_top = 22.203
+anchor_right = 9.617
+anchor_bottom = 22.203
+offset_left = -315.68
+offset_top = 295.88
+offset_right = -139.68
+offset_bottom = 449.88
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("51_d4xcc")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Outside/OutsideMenu/AnimStuff/GrassB2"]
+libraries = {
+"": SubResource("AnimationLibrary_5bujc")
+}
 
 [node name="ShopTemplate" type="Control" parent="Outside"]
 visible = false
