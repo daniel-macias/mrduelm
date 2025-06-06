@@ -1,9 +1,5 @@
 extends Node
 
-@onready var back_to_game_menu_btn = $CanvasLayer/GameMenu/BackHome
-@onready var start_game_btn =  $CanvasLayer/GameMenu/StartBtn
-@onready var high_score_label = $CanvasLayer/GameMenu/HighScoreLabel
-
 @onready var pause_btn = $CanvasLayer/Game/PauseGame
 @onready var people_grid = $CanvasLayer/Game/GridContainer
 @onready var person_template = $CanvasLayer/Game/GridContainer/Person
@@ -89,9 +85,7 @@ func start_timer(duration: float):
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	person_template.hide()
-	back_to_game_menu_btn.connect("pressed", Callable(self, "_exit_game"))
 	back_btn.connect("pressed", Callable(self, "_exit_game"))
-	start_game_btn.connect("pressed", Callable(self, "_start_game"))
 	check_btn.connect("pressed", Callable(self, "_on_check_btn_pressed"))
 	cat_anim.get_parent().visible = false
 	cat_anim.get_parent().mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -105,25 +99,6 @@ func _ready() -> void:
 		menu_title.text = "Hello New Game"
 		menu_description.text = "New game description"
 		play_again_btn_lbl.text = "Start Game"
-
-	
-func _start_game() -> void:
-	#TODO: I think this is never called
-	menu.visible = false
-	game.visible = true
-	mistakes = 0
-	
-
-	for bulb in bulbs:
-		bulb.visible = true
-
-	await get_tree().create_timer(0.1).timeout  # tiny delay to ensure visibility
-	show_game_message("Ready?", 0.6)
-	await get_tree().create_timer(0.6).timeout
-	show_game_message("Go!", 0.4)
-	await get_tree().create_timer(0.4).timeout
-
-	start_next_round()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
