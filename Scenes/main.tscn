@@ -178,6 +178,21 @@ _data = {
 "RESET": SubResource("Animation_s5ua3")
 }
 
+[sub_resource type="Animation" id="Animation_5afrw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("48_ulg48")]
+}
+
 [sub_resource type="Animation" id="Animation_32vdl"]
 resource_name = "flag"
 length = 0.8
@@ -195,7 +210,13 @@ tracks/0/keys = {
 "values": [ExtResource("48_ulg48"), ExtResource("49_jyit6")]
 }
 
-[sub_resource type="Animation" id="Animation_5afrw"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b82ue"]
+_data = {
+"RESET": SubResource("Animation_5afrw"),
+"flag": SubResource("Animation_32vdl")
+}
+
+[sub_resource type="Animation" id="Animation_dga5v"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -207,13 +228,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("48_ulg48")]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_b82ue"]
-_data = {
-"RESET": SubResource("Animation_5afrw"),
-"flag": SubResource("Animation_32vdl")
+"values": [ExtResource("51_d4xcc")]
 }
 
 [sub_resource type="Animation" id="Animation_p3sd6"]
@@ -230,21 +245,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [ExtResource("51_d4xcc"), ExtResource("52_jiq2b")]
-}
-
-[sub_resource type="Animation" id="Animation_dga5v"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("51_d4xcc")]
 }
 
 [sub_resource type="Animation" id="Animation_ttaig"]

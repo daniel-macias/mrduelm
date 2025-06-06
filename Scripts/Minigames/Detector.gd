@@ -26,6 +26,8 @@ extends Node
 @onready var price_lbl = $CanvasLayer/GameOverMenu/Price
 @onready var back_btn = $CanvasLayer/GameOverMenu/BackHome
 
+@onready var game_message_lbl = $CanvasLayer/Game/GameMessage
+
 var correct_amount = 0
 var mistakes = 0
 
@@ -96,6 +98,8 @@ func _ready() -> void:
 	cat_anim.animation_finished.connect(_on_cat_anim_finished)
 	mistake_timer.timeout.connect(_on_mistake_timer_timeout)
 	play_again_btn.connect("pressed", Callable(self, "_on_play_again_pressed"))
+	pause_btn.connect("pressed", Callable(self, "_on_pause_pressed"))
+
 	
 	if !GameManager.has_played_minigame_once:
 		menu_title.text = "Hello New Game"
@@ -104,15 +108,23 @@ func _ready() -> void:
 
 	
 func _start_game() -> void:
-	
+	#TODO: I think this is never called
 	menu.visible = false
 	game.visible = true
+	mistakes = 0
 	
-	start_next_round()
-	
+
 	for bulb in bulbs:
 		bulb.visible = true
-	mistakes = 0
+
+	await get_tree().create_timer(0.1).timeout  # tiny delay to ensure visibility
+	show_game_message("Ready?", 0.6)
+	await get_tree().create_timer(0.6).timeout
+	show_game_message("Go!", 0.4)
+	await get_tree().create_timer(0.4).timeout
+
+	start_next_round()
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -305,6 +317,9 @@ func register_mistake():
 		cat_anim.play("angry_cat")
 		
 		if mistakes >= bulbs.size():
+			show_game_message("Fired!", 1.0)
+			await get_tree().create_timer(1.0).timeout
+
 			print("Game Over: too many mistakes")
 			mistake_timer.stop()
 			timer_running = false
@@ -344,6 +359,26 @@ func _on_play_again_pressed():
 
 	for bulb in bulbs:
 		bulb.visible = true
-
-	start_next_round()
+	
 	game.visible = true
+
+	await get_tree().create_timer(0.1).timeout  # tiny delay to ensure visibility
+	show_game_message("Ready?", 0.6)
+	await get_tree().create_timer(0.6).timeout
+	show_game_message("Go!", 0.4)
+	await get_tree().create_timer(0.4).timeout
+	
+	start_next_round()
+	
+
+func show_game_message(text: String, duration: float = 0.5):
+	game_message_lbl.text = text
+	game_message_lbl.visible = true
+	await get_tree().create_timer(duration).timeout
+	game_message_lbl.visible = false
+
+func _on_pause_pressed():
+	if get_tree().paused:
+		get_tree().paused = false
+	else:
+		get_tree().paused = true
