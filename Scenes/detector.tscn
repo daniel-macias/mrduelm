@@ -64,6 +64,7 @@ script = ExtResource("1_kurny")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="GameOverMenu" type="Control" parent="CanvasLayer"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -226,6 +227,102 @@ grow_vertical = 0
 theme_override_fonts/font = ExtResource("3_bv54c")
 theme_override_font_sizes/font_size = 64
 text = "0"
+horizontal_alignment = 1
+
+[node name="PauseMenu" type="Control" parent="CanvasLayer"]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/PauseMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(5.29438e-07, 0.469254, 0.396372, 1)
+
+[node name="BackHome" type="TextureButton" parent="CanvasLayer/PauseMenu"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -137.0
+offset_top = 40.0
+offset_right = -27.0
+offset_bottom = 142.0
+grow_horizontal = 0
+texture_normal = ExtResource("4_7pc20")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="ResumeBtn" type="TextureButton" parent="CanvasLayer/PauseMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -104.5
+offset_top = 161.0
+offset_right = 104.5
+offset_bottom = 245.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/PauseMenu/ResumeBtn"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_bv54c")
+theme_override_font_sizes/font_size = 64
+text = "Resume"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/PauseMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -290.0
+offset_top = -333.0
+offset_right = 290.0
+offset_bottom = -39.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 30
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+fit_content = true
+
+[node name="Title" type="Label" parent="CanvasLayer/PauseMenu"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -124.0
+offset_top = 163.0
+offset_right = 130.0
+offset_bottom = 244.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("3_bv54c")
+theme_override_font_sizes/font_size = 64
+text = "Pause"
 horizontal_alignment = 1
 
 [node name="Game" type="Control" parent="CanvasLayer"]

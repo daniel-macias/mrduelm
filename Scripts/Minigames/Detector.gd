@@ -24,6 +24,11 @@ extends Node
 
 @onready var game_message_lbl = $CanvasLayer/Game/GameMessage
 
+#PAUSE MENU ITEMS
+@onready var pause_menu = $CanvasLayer/PauseMenu
+@onready var resume_btn = $CanvasLayer/PauseMenu/ResumeBtn
+@onready var back_to_menu_pause_btn = $CanvasLayer/PauseMenu/BackHome
+
 var correct_amount = 0
 var mistakes = 0
 
@@ -93,6 +98,8 @@ func _ready() -> void:
 	mistake_timer.timeout.connect(_on_mistake_timer_timeout)
 	play_again_btn.connect("pressed", Callable(self, "_on_play_again_pressed"))
 	pause_btn.connect("pressed", Callable(self, "_on_pause_pressed"))
+	resume_btn.connect("pressed", Callable(self, "_on_resume_pressed"))
+	back_to_menu_pause_btn.connect("pressed", Callable(self, "_exit_game"))
 
 	
 	if !GameManager.has_played_minigame_once:
@@ -327,6 +334,11 @@ func _on_mistake_timer_timeout():
 	register_mistake()
 
 func _on_play_again_pressed():
+	if get_tree().paused:
+		get_tree().paused = false
+		gameover_menu.visible = false
+		return
+		
 	gameover_menu.visible = false
 	correct_amount = 0
 	current_round = 0
@@ -353,7 +365,11 @@ func show_game_message(text: String, duration: float = 0.5):
 	game_message_lbl.visible = false
 
 func _on_pause_pressed():
-	if get_tree().paused:
-		get_tree().paused = false
-	else:
-		get_tree().paused = true
+	pause_menu.visible = true
+	game.visible = false
+	get_tree().paused = true
+
+func _on_resume_pressed():
+	get_tree().paused = false
+	pause_menu.visible = false
+	game.visible = true
