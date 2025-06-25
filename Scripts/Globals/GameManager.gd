@@ -6,11 +6,25 @@ var hunger: int = 50
 var health: int = 50
 var energy: int = 50
 var fun: int = 50
+var level: int = 0
+var exp: int = 0
+
+# Player data
+var pet_name = "dwelm"
+var pet_uuid = "01"
 
 var has_played_minigame_once := false
 
 #Hidden atributes
 var cleanliness: int = 100 #out of 1000
+
+var minigame_stats: Dictionary = {
+	"detector": {
+		"high_score": 0,
+		"times_played": 0
+	}
+}
+
 
 signal stat_changed(stat_name: String, new_value: int)
 signal money_changed(new_amount)
@@ -24,10 +38,10 @@ var decrease_amounts = {
 }
 
 var decrease_intervals = {
-	"fun": 3.0,  # Every 3 seconds
-	"hunger": 2.0,     # Every 2 seconds
-	"health": 4.0,     # Every 4 seconds
-	"energy": 5.0,     # Every 5 seconds
+	"fun": 30.0,  # Every 30 seconds
+	"hunger": 20.0,     # Every 20 seconds
+	"health": 40.0,     # Every 40 seconds
+	"energy": 50.0,     # Every 50 seconds
 }
 
 var timers = {}
@@ -58,6 +72,7 @@ func modify_stat(stat_name: String, amount: int):
 		print("Stat not found:", stat_name)
 
 func _ready():
+	
 	# Create and start the timer
 	for stat_name in decrease_intervals.keys():
 		_setup_stat_timer(stat_name)
@@ -182,3 +197,39 @@ func set_timers_paused(paused: bool):
 func add_money(amount):
 	player_money += amount
 	emit_signal("money_changed", player_money)
+	
+func update_high_score(minigame_name: String, score: int):
+	if minigame_name in minigame_stats:
+		minigame_stats[minigame_name].high_score = max(score, minigame_stats[minigame_name].high_score)
+	else:
+		minigame_stats[minigame_name] = { "high_score": score, "times_played": 1 }
+
+func increment_times_played(minigame_name: String):
+	if minigame_name in minigame_stats:
+		minigame_stats[minigame_name].times_played += 1
+	else:
+		minigame_stats[minigame_name] = { "high_score": 0, "times_played": 1 }
+
+func get_minigame_stat(minigame_name: String, stat: String) -> int:
+	if minigame_name in minigame_stats and stat in minigame_stats[minigame_name]:
+		return minigame_stats[minigame_name][stat]
+	return 0
+
+func add_exp(amount: int):
+	exp += amount
+	while exp >= get_exp_required_for_next_level():
+		exp -= get_exp_required_for_next_level()
+		level += 1
+		print("Level Up! Now level", level)
+
+func get_exp_required_for_next_level() -> int:
+	return 100 + (level * 20)  # Slightly increasing cost per level
+	
+func get_exp_from_score(minigame_name: String, score: int) -> int:
+	match minigame_name:
+		"detector":
+			return score * 20  # 1 point = 20 exp
+		"reaction_game":
+			return score / 5  # Harder game, less exp per point
+		_:
+			return score  # Default

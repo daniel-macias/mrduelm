@@ -3,7 +3,6 @@ extends Node
 @onready var pause_btn = $CanvasLayer/Game/PauseGame
 @onready var people_grid = $CanvasLayer/Game/GridContainer
 @onready var person_template = $CanvasLayer/Game/GridContainer/Person
-@onready var menu = $CanvasLayer/GameMenu
 @onready var game = $CanvasLayer/Game
 @onready var instruction = $CanvasLayer/Game/Instruction
 @onready var timer_progress_bar = $CanvasLayer/Game/Machine/Clock
@@ -78,6 +77,7 @@ var current_round = 0
 
 func _exit_game():
 	GameManager.has_played_minigame_once = false
+	get_tree().paused = false
 	game_closed.emit()  # Emit signal when exiting
 	queue_free()  # Remove this minigame scene
 	
@@ -315,6 +315,7 @@ func register_mistake():
 			
 			GameManager.player_money += money_won
 			GameManager.emit_signal("money_changed", GameManager.player_money)
+			GameManager.add_exp(GameManager.get_exp_from_score("detector", correct_amount))
 			
 			if GameManager.has_played_minigame_once:
 				menu_title.text = "Game Over"

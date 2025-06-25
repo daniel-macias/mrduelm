@@ -48,6 +48,10 @@ func _ready():
 	
 	$Outside/ClothesInventory.connect("pet_needs_update", Callable(self, "_update_pet_equipment"))
 	
+	_on_stat_changed("fun", GameManager.fun)
+	_on_stat_changed("hunger", GameManager.hunger)
+	_on_stat_changed("health", GameManager.health)
+	_on_stat_changed("energy", GameManager.energy)
 	
 func _on_stat_changed(stat_name: String, new_value: int):
 	match stat_name:
