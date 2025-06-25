@@ -28,6 +28,7 @@ var minigame_stats: Dictionary = {
 
 signal stat_changed(stat_name: String, new_value: int)
 signal money_changed(new_amount)
+signal level_changed(new_amount)
 
 
 var decrease_amounts = {
@@ -221,6 +222,7 @@ func add_exp(amount: int):
 		exp -= get_exp_required_for_next_level()
 		level += 1
 		print("Level Up! Now level", level)
+		emit_signal("level_changed", level)
 
 func get_exp_required_for_next_level() -> int:
 	return 100 + (level * 20)  # Slightly increasing cost per level

@@ -14,6 +14,7 @@ extends Node2D
 @onready var pet = $Camera2D/Pet
 
 @onready var money_lbl = $CanvasLayer/TopBar/Label
+@onready var level_lbl = $CanvasLayer/TopBar/Level/LevelLabel
 
 @onready var guis = {
 	"food": $CanvasLayer/FoodGUI,
@@ -37,8 +38,10 @@ func _ready():
 	
 	GameManager.connect("stat_changed", Callable(self, "_on_stat_changed"))
 	GameManager.connect("money_changed", Callable(self, "_on_money_changed"))
+	GameManager.connect("level_changed", Callable(self, "_on_level_changed"))
 
 	money_lbl.text = str(GameManager.player_money)
+	level_lbl.text = str(GameManager.level)
 	
 	for name in buttons:
 		buttons[name].connect("pressed", Callable(self, "_on_button_pressed").bind(name))
@@ -98,3 +101,6 @@ func _update_pet_equipment():
 
 func _on_money_changed(new_amount):
 	money_lbl.text = str(new_amount)
+
+func _on_level_changed(new_amount):
+	level_lbl.text = str(new_amount)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=90 format=3 uid="uid://co8xhyknh7k7h"]
+[gd_scene load_steps=93 format=3 uid="uid://co8xhyknh7k7h"]
 
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_2ncyc"]
 [ext_resource type="PackedScene" uid="uid://bdd3fhta1x0ln" path="res://Scenes/pet.tscn" id="1_g06e1"]
@@ -25,7 +25,6 @@
 [ext_resource type="FontFile" uid="uid://biglirdu86eux" path="res://Fonts/ArsenalSC-Bold.ttf" id="10_l4g7b"]
 [ext_resource type="Texture2D" uid="uid://b3cdmltcbqcg5" path="res://Sprites/UI/sleep_icon_pressed.png" id="10_wapte"]
 [ext_resource type="Texture2D" uid="uid://chaa0bocw2434" path="res://Sprites/UI/soap.png" id="10_xt54n"]
-[ext_resource type="Texture2D" uid="uid://digdmvn5mg8gr" path="res://Sprites/UI/ProgressBars/health.png" id="11_dhajy"]
 [ext_resource type="Script" path="res://Scripts/UIManagers/SleepGUI.gd" id="11_l60en"]
 [ext_resource type="Texture2D" uid="uid://bh412gdd5445f" path="res://Sprites/UI/arr_left.png" id="11_xp1sg"]
 [ext_resource type="Texture2D" uid="uid://bt43t0q64458k" path="res://Sprites/UI/ProgressBars/happy.png" id="12_5y17l"]
@@ -42,8 +41,10 @@
 [ext_resource type="Texture2D" uid="uid://c6q4symd1etrr" path="res://Sprites/UI/buy_money.png" id="22_pgui7"]
 [ext_resource type="Texture2D" uid="uid://d1ck464uoul4a" path="res://Sprites/RoomStuff/workshop/workshop_starter.png" id="24_1h0yi"]
 [ext_resource type="Texture2D" uid="uid://0ralxsg4raub" path="res://Sprites/RoomStuff/instruments/theremin.png" id="25_wakuc"]
+[ext_resource type="Texture2D" uid="uid://bwyaiiiddm72n" path="res://Sprites/UI/level.png" id="27_66237"]
 [ext_resource type="Texture2D" uid="uid://5lvmfvex78sv" path="res://Sprites/RoomStuff/bg_walls.png" id="30_iwp8k"]
 [ext_resource type="Script" path="res://Scripts/UIManagers/ShopTemplate.gd" id="32_k4rhv"]
+[ext_resource type="Texture2D" uid="uid://dt6d5c5t0w8em" path="res://Sprites/UI/ProgressBars/affection.png" id="32_mcyy0"]
 [ext_resource type="Texture2D" uid="uid://b17at48ossvk6" path="res://Sprites/Food/Pizza.png" id="33_yhbi5"]
 [ext_resource type="Texture2D" uid="uid://bjldjya1xpagw" path="res://Sprites/Town/market.png" id="41_878pc"]
 [ext_resource type="Texture2D" uid="uid://n21ar5n6g67o" path="res://Sprites/Town/furniture.png" id="42_cltx0"]
@@ -70,6 +71,8 @@
 [ext_resource type="Texture2D" uid="uid://cijq4ddemveki" path="res://Sprites/UI/arr_right_dis.png" id="56_c5jgc"]
 [ext_resource type="Texture2D" uid="uid://du4k26cl2gtay" path="res://Sprites/UI/large_btn_dis.png" id="56_j456c"]
 [ext_resource type="Script" path="res://Scripts/UIManagers/ClothesInventory.gd" id="62_jjyvu"]
+[ext_resource type="Texture2D" uid="uid://bfifshi1di118" path="res://Sprites/UI/equip.png" id="72_rwris"]
+[ext_resource type="Texture2D" uid="uid://dqxyq2vu30j8b" path="res://Sprites/UI/equip_pressed.png" id="73_qst3u"]
 
 [sub_resource type="Animation" id="Animation_3vylq"]
 resource_name = "Conecting"
@@ -777,8 +780,33 @@ grow_horizontal = 2
 size_flags_horizontal = 3
 size_flags_vertical = 2
 
+[node name="Level" type="TextureButton" parent="CanvasLayer/TopBar"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture_normal = ExtResource("27_66237")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="LevelLabel" type="Label" parent="CanvasLayer/TopBar/Level"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -34.0
+offset_top = -30.0
+offset_right = 34.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("8_tpqmy")
+theme_override_font_sizes/font_size = 60
+text = "99"
+horizontal_alignment = 1
+
 [node name="CoinBtn" type="TextureButton" parent="CanvasLayer/TopBar"]
-custom_minimum_size = Vector2(50, 50)
+custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -813,7 +841,7 @@ layout_mode = 2
 fill_mode = 3
 nine_patch_stretch = true
 texture_under = ExtResource("8_sn7hm")
-texture_over = ExtResource("11_dhajy")
+texture_over = ExtResource("32_mcyy0")
 texture_progress = ExtResource("10_3nn5s")
 
 [node name="HappyBar" type="TextureProgressBar" parent="CanvasLayer/TopBar/HBoxContainer"]
@@ -1839,8 +1867,8 @@ offset_bottom = -197.0
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(5, 5)
-texture_normal = ExtResource("54_ml7ck")
-texture_pressed = ExtResource("55_asroi")
+texture_normal = ExtResource("72_rwris")
+texture_pressed = ExtResource("73_qst3u")
 texture_disabled = ExtResource("56_j456c")
 ignore_texture_size = true
 stretch_mode = 5
