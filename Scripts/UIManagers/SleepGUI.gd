@@ -47,6 +47,13 @@ func _on_chargebtn_pressed() -> void:
 		cable_animator.play("Deconecting")
 		charge_timer.stop()
 
+func disconnect_cable_for_signal():
+	if is_on:
+		cable_animator.play("Deconecting")
+		charge_timer.stop()
+		is_on = false
+		_update_button_texture()
+
 # Update the button texture based on the state
 func _update_button_texture() -> void:
 	if is_on:

@@ -34,6 +34,8 @@ extends Node2D
 
 var active_button = null
 
+@onready var sleep_gui = $CanvasLayer/SleepGUI #I know it is repetitive
+
 func _ready():
 	
 	GameManager.connect("stat_changed", Callable(self, "_on_stat_changed"))
@@ -81,6 +83,7 @@ func _set_default_active(gui_name: String):
 func _on_button_pressed(gui_name: String):
 	print("Pressed:", gui_name.capitalize(), "Button")
 	GameManager.current_room = gui_name.capitalize()
+	sleep_gui.disconnect_cable_for_signal()
 
 	# Toggle GUI visibility
 	for name in guis:
