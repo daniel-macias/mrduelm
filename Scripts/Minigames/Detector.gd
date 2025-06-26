@@ -299,6 +299,8 @@ func register_mistake():
 		cat_anim.play("angry_cat")
 		
 		if mistakes >= bulbs.size():
+			#GAME OVER
+			GameManager.save_game()
 			show_game_message("Fired!", 1.0)
 			await get_tree().create_timer(1.0).timeout
 

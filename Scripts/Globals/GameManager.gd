@@ -73,7 +73,7 @@ func modify_stat(stat_name: String, amount: int):
 		print("Stat not found:", stat_name)
 
 func _ready():
-	
+	load_game()
 	# Create and start the timer
 	for stat_name in decrease_intervals.keys():
 		_setup_stat_timer(stat_name)
@@ -235,3 +235,58 @@ func get_exp_from_score(minigame_name: String, score: int) -> int:
 			return score / 5  # Harder game, less exp per point
 		_:
 			return score  # Default
+
+
+#ALL OF THIS IS RELATED TO SAVING AND LOADING:
+const SAVE_PATH := "user://save_data.json"
+
+func save_game():
+	var save_data = {
+		"player_money": player_money,
+		"hunger": hunger,
+		"health": health,
+		"energy": energy,
+		"fun": fun,
+		"level": level,
+		"exp": exp,
+		"pet_name": pet_name,
+		"pet_uuid": pet_uuid,
+		"has_played_minigame_once": has_played_minigame_once,
+		"cleanliness": cleanliness,
+		"minigame_stats": minigame_stats,
+		"inventory": inventory,
+		"equipped": equipped
+	}
+
+	var file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
+	if file:
+		file.store_string(JSON.stringify(save_data))
+		file.close()
+		print("Game saved.")
+
+func load_game():
+	if not FileAccess.file_exists(SAVE_PATH):
+		print("No save file found.")
+		return
+	
+	var file = FileAccess.open(SAVE_PATH, FileAccess.READ)
+	if file:
+		var save_data = JSON.parse_string(file.get_as_text())
+		file.close()
+		
+		if typeof(save_data) == TYPE_DICTIONARY:
+			player_money = save_data.get("player_money", player_money)
+			hunger = save_data.get("hunger", hunger)
+			health = save_data.get("health", health)
+			energy = save_data.get("energy", energy)
+			fun = save_data.get("fun", fun)
+			level = save_data.get("level", level)
+			exp = save_data.get("exp", exp)
+			pet_name = save_data.get("pet_name", pet_name)
+			pet_uuid = save_data.get("pet_uuid", pet_uuid)
+			has_played_minigame_once = save_data.get("has_played_minigame_once", has_played_minigame_once)
+			cleanliness = save_data.get("cleanliness", cleanliness)
+			minigame_stats = save_data.get("minigame_stats", minigame_stats)
+			inventory = save_data.get("inventory", inventory)
+			equipped = save_data.get("equipped", equipped)
+			print("Game loaded.")

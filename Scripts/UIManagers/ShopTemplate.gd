@@ -190,7 +190,8 @@ func _on_buy_button_pressed() -> void:
 			print("Successfully bought:", selected_item_details["name"])
 			# Update the UI
 			current_gold.text = "Gold: $" + str(GameManager.player_money)
-			
+			GameManager.save_game()
+
 			if shop_type == "body_parts":
 				reset_selection_state()
 			
