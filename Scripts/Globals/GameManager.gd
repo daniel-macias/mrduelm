@@ -255,7 +255,8 @@ func save_game():
 		"cleanliness": cleanliness,
 		"minigame_stats": minigame_stats,
 		"inventory": inventory,
-		"equipped": equipped
+		"equipped": equipped,
+		"last_played": Time.get_unix_time_from_system()
 	}
 
 	var file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)

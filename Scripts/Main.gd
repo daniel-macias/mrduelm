@@ -107,3 +107,7 @@ func _on_money_changed(new_amount):
 
 func _on_level_changed(new_amount):
 	level_lbl.text = str(new_amount)
+	
+func _notification(what):
+	if what == NOTIFICATION_WM_CLOSE_REQUEST or what == NOTIFICATION_APPLICATION_PAUSED:
+		GameManager.save_game()
