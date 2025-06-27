@@ -291,3 +291,23 @@ func load_game():
 			inventory = save_data.get("inventory", inventory)
 			equipped = save_data.get("equipped", equipped)
 			print("Game loaded.")
+			
+			var last_played = save_data.get("last_played", Time.get_unix_time_from_system())
+			var now = Time.get_unix_time_from_system()
+			var time_away = now - last_played  # seconds away
+
+			print("Time away:", time_away, "seconds")
+
+			# Loop through each stat that decays and apply changes based on time away
+			for stat_name in decrease_amounts.keys():
+				var interval = decrease_intervals[stat_name]
+				var steps = int(time_away / interval)
+				var delta = steps * decrease_amounts[stat_name]
+
+				# Logic: energy REGENERATES, others DECREASE
+				if stat_name == "energy":
+					self[stat_name] = clamp(self[stat_name] + delta, 0, 100)
+				else:
+					self[stat_name] = clamp(self[stat_name] - delta, 0, 100)
+
+				emit_signal("stat_changed", stat_name, self[stat_name])
