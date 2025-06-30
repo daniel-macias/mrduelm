@@ -3,6 +3,7 @@ extends Node
 @onready var workbench : TextureButton = $Workshop
 @onready var instrument : TextureButton = $Instrument
 @onready var workbench_menu : Control = $"../../Outside/ClothesInventory"
+@onready var instrument_screen : Control = $"../../Outside/Instrument"
 
 func _ready() -> void:
 	workbench.connect("pressed", Callable(self, "_on_workbench_click"))
@@ -18,4 +19,4 @@ func _on_workbench_click() -> void:
 	workbench_menu.open_closet()
 	
 func _on_instrument_click() -> void:
-	print("Instrument Clicked")
+	instrument_screen.visible = true

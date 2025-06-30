@@ -1,4 +1,4 @@
-[gd_scene load_steps=93 format=3 uid="uid://co8xhyknh7k7h"]
+[gd_scene load_steps=94 format=3 uid="uid://co8xhyknh7k7h"]
 
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_2ncyc"]
 [ext_resource type="PackedScene" uid="uid://bdd3fhta1x0ln" path="res://Scenes/pet.tscn" id="1_g06e1"]
@@ -73,6 +73,7 @@
 [ext_resource type="Script" path="res://Scripts/UIManagers/ClothesInventory.gd" id="62_jjyvu"]
 [ext_resource type="Texture2D" uid="uid://bfifshi1di118" path="res://Sprites/UI/equip.png" id="72_rwris"]
 [ext_resource type="Texture2D" uid="uid://dqxyq2vu30j8b" path="res://Sprites/UI/equip_pressed.png" id="73_qst3u"]
+[ext_resource type="Script" path="res://Scripts/Theramin.gd" id="74_w8g4x"]
 
 [sub_resource type="Animation" id="Animation_3vylq"]
 resource_name = "Conecting"
@@ -1872,3 +1873,50 @@ texture_pressed = ExtResource("73_qst3u")
 texture_disabled = ExtResource("56_j456c")
 ignore_texture_size = true
 stretch_mode = 5
+
+[node name="Instrument" type="Control" parent="Outside"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("74_w8g4x")
+
+[node name="ColorRect" type="ColorRect" parent="Outside/Instrument"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.336608, 0.336608, 0.336608, 1)
+
+[node name="SoundSpace" type="ColorRect" parent="Outside/Instrument"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -322.0
+offset_top = -316.5
+offset_right = 322.0
+offset_bottom = 316.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SoundPlayer" type="AudioStreamPlayer" parent="Outside/Instrument"]
+
+[node name="Back" type="TextureButton" parent="Outside/Instrument"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -109.0
+offset_bottom = 115.0
+grow_horizontal = 0
+texture_normal = ExtResource("11_xp1sg")
+ignore_texture_size = true
+stretch_mode = 4
