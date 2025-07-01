@@ -1,4 +1,4 @@
-[gd_scene load_steps=94 format=3 uid="uid://co8xhyknh7k7h"]
+[gd_scene load_steps=96 format=3 uid="uid://co8xhyknh7k7h"]
 
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_2ncyc"]
 [ext_resource type="PackedScene" uid="uid://bdd3fhta1x0ln" path="res://Scenes/pet.tscn" id="1_g06e1"]
@@ -74,6 +74,8 @@
 [ext_resource type="Texture2D" uid="uid://bfifshi1di118" path="res://Sprites/UI/equip.png" id="72_rwris"]
 [ext_resource type="Texture2D" uid="uid://dqxyq2vu30j8b" path="res://Sprites/UI/equip_pressed.png" id="73_qst3u"]
 [ext_resource type="Script" path="res://Scripts/Theramin.gd" id="74_w8g4x"]
+[ext_resource type="Texture2D" uid="uid://hlcbdf1eoy3f" path="res://Sprites/UI/Instrument/Theramin.png" id="75_kkgtm"]
+[ext_resource type="Texture2D" uid="uid://c2l8ecntitqch" path="res://Sprites/UI/Instrument/crosshair.png" id="76_pcruh"]
 
 [sub_resource type="Animation" id="Animation_3vylq"]
 resource_name = "Conecting"
@@ -1894,16 +1896,17 @@ grow_vertical = 2
 color = Color(0.336608, 0.336608, 0.336608, 1)
 
 [node name="SoundSpace" type="ColorRect" parent="Outside/Instrument"]
+self_modulate = Color(1, 1, 1, 0.156863)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -322.0
-offset_top = -316.5
+offset_left = -302.0
+offset_top = -562.0
 offset_right = 322.0
-offset_bottom = 316.5
+offset_bottom = 439.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -1911,12 +1914,49 @@ grow_vertical = 2
 
 [node name="Back" type="TextureButton" parent="Outside/Instrument"]
 layout_mode = 1
-anchors_preset = 1
+anchors_preset = 3
 anchor_left = 1.0
+anchor_top = 1.0
 anchor_right = 1.0
+anchor_bottom = 1.0
 offset_left = -109.0
-offset_bottom = 115.0
+offset_top = -115.0
 grow_horizontal = 0
+grow_vertical = 0
+rotation = 1.5708
 texture_normal = ExtResource("11_xp1sg")
 ignore_texture_size = true
 stretch_mode = 4
+
+[node name="Theramin" type="TextureRect" parent="Outside/Instrument"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 280.0
+offset_top = -564.0
+offset_right = 1583.0
+offset_bottom = 147.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.5708
+texture = ExtResource("75_kkgtm")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Crosshair" type="TextureRect" parent="Outside/Instrument"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -78.0
+offset_top = -78.0
+offset_right = 78.0
+offset_bottom = 78.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("76_pcruh")
