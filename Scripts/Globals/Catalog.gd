@@ -106,7 +106,7 @@ var body_parts_catalog = {
 
 
 var minigame_catalog = {
-	"detector" : {"name": "Detector", "thumbnail": "res://Sprites/table_normal.png", "scene": "res://Scenes/detector.tscn"}
+	"detector" : {"name": "Detector", "thumbnail": "res://Sprites/Games/THUMB/detector.png", "scene": "res://Scenes/detector.tscn"}
 }
 
 var furniture_catalog = {
