@@ -1,4 +1,4 @@
-[gd_scene load_steps=99 format=3 uid="uid://co8xhyknh7k7h"]
+[gd_scene load_steps=104 format=3 uid="uid://co8xhyknh7k7h"]
 
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_2ncyc"]
 [ext_resource type="PackedScene" uid="uid://bdd3fhta1x0ln" path="res://Scenes/pet.tscn" id="1_g06e1"]
@@ -79,6 +79,8 @@
 [ext_resource type="Texture2D" uid="uid://hlcbdf1eoy3f" path="res://Sprites/UI/Instrument/Theramin.png" id="75_kkgtm"]
 [ext_resource type="Texture2D" uid="uid://c2l8ecntitqch" path="res://Sprites/UI/Instrument/crosshair.png" id="76_pcruh"]
 [ext_resource type="Script" path="res://Scripts/UIManagers/Settings.gd" id="79_pjtj4"]
+[ext_resource type="Script" path="res://Scripts/UIManagers/Dialog.gd" id="80_6w60o"]
+[ext_resource type="Texture2D" uid="uid://dsxhibw5csxxf" path="res://Sprites/UI/x-black-side.png" id="80_aeomi"]
 
 [sub_resource type="Animation" id="Animation_3vylq"]
 resource_name = "Conecting"
@@ -332,6 +334,27 @@ _data = {
 "XO": SubResource("Animation_x66qn"),
 "XO_REV": SubResource("Animation_vmvfy")
 }
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fmsnq"]
+bg_color = Color(1, 0.787882, 0.600723, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_size = 3
+shadow_offset = Vector2(5, 5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gkeuw"]
+bg_color = Color(1, 0.447059, 0, 1)
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Theme" id="Theme_xwmln"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_2ncyc")
@@ -2036,3 +2059,82 @@ grow_horizontal = 0
 texture_normal = ExtResource("11_xp1sg")
 ignore_texture_size = true
 stretch_mode = 5
+
+[node name="Dialog" type="Control" parent="Outside"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("80_6w60o")
+
+[node name="BGPanel" type="Panel" parent="Outside/Dialog"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Outside/Dialog"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -155.0
+offset_top = -48.5
+offset_right = 155.0
+offset_bottom = 48.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fmsnq")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Outside/Dialog/PanelContainer"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="Outside/Dialog/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_gkeuw")
+
+[node name="TopBar" type="HBoxContainer" parent="Outside/Dialog/PanelContainer/VBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Title" type="Label" parent="Outside/Dialog/PanelContainer/VBoxContainer/Panel/TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "Title title title"
+horizontal_alignment = 1
+
+[node name="Exit" type="TextureButton" parent="Outside/Dialog/PanelContainer/VBoxContainer/Panel/TopBar"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("80_aeomi")
+
+[node name="InfoText" type="Label" parent="Outside/Dialog/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "Desc DescDescDesc DescDescDesc DescDesc"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="SkipBtn" type="Button" parent="Outside/Dialog/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_xwmln")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "Skip tutorial"
