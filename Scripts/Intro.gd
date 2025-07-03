@@ -12,13 +12,21 @@ extends Node
 @onready var openbox_top : TextureRect = $CanvasLayer/Control/OpenBoxTop
 @onready var line : TextureRect = $CanvasLayer/Control/Line
 
-# First only show line, tape, closed box
-# Play tape_pull animation after pressing on tape
-# When finished tape_pull, hide tape
-# Show openbox_bg, openbox_top, letter, robot after pressing closedbox or line, then hide line
-# When pressing letter, play letter_pull, show glasses after animation ends and print something
-# When pressing robot, play robot_pull
-# When pressing glasses, play glasses_pull
+@onready var paper : TextureRect = $CanvasLayer/Control/Paper
+@onready var name_lineedit : LineEdit = $CanvasLayer/Control/Paper/LineEdit
+@onready var done_btn : Button = $CanvasLayer/Control/Paper/DoneBtn
+@onready var paper_anim : AnimationPlayer = $CanvasLayer/Control/Paper/AnimationPlayer
+
+var completed_steps := 0
+var steps_done := {
+	"robot": false,
+	"letter": false,
+	"glasses": false,
+	"done": false
+}
+
+
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -39,16 +47,20 @@ func _ready() -> void:
 	letter.gui_input.connect(_on_letter_input)
 	robot.gui_input.connect(_on_robot_input)
 	glasses.gui_input.connect(_on_glasses_input)
-
-	# Connect animation end signal
+	paper_anim.animation_finished.connect(_on_paper_animation_finished)
+	done_btn.pressed.connect(_on_done_pressed)
 	anim.animation_finished.connect(_on_animation_finished)
+
+	paper.modulate.a = 0.0
+	paper.visible = false
+	
 
 var current_step = ""
 
 func _on_tape_input(event):
 	if event is InputEventMouseButton and event.pressed and current_step == "":
 		current_step = "tape"
-		anim.play("tape_pull")  # Create this animation in the AnimationPlayer
+		anim.play("tape_pull")
 
 func _on_box_input(event):
 	if event is InputEventMouseButton and event.pressed and current_step == "":
@@ -73,6 +85,7 @@ func _on_robot_input(event):
 			_handle_interruption(anim.current_animation)
 		current_step = "robot"
 		anim.play("robot_pull")
+		_increment_step("robot")
 
 
 func _on_glasses_input(event):
@@ -87,12 +100,19 @@ func _on_animation_finished(anim_name: String):
 		glasses.visible = true
 		letter.visible = false
 		print("Letter opened!")
+		_increment_step("letter")
+		
+		# Animate paper showing up
+		paper.visible = true
+		paper_anim.play("OpeningLetter")
+		
 		current_step = ""
 	elif anim_name == "tape_pull" and current_step == "tape":
 		tape.visible = false
 		current_step = ""
 	elif anim_name == "glasses_pull":
 		glasses.visible = false
+		_increment_step("glasses")
 		current_step = ""
 		
 func _handle_interruption(interrupted_anim: String):
@@ -108,3 +128,24 @@ func _handle_interruption(interrupted_anim: String):
 			glasses.visible = false
 		_:
 			pass
+
+func _on_paper_animation_finished(anim_name: String):
+	if anim_name == "OpeningLetter":
+		paper.modulate.a = 1.0
+	elif anim_name == "ClosingLetter":
+		paper.modulate.a = 0.0
+		paper.visible = false
+
+
+
+func _on_done_pressed():
+	print("Entered name:", name_lineedit.text)
+	paper_anim.play("ClosingLetter")
+	_increment_step("done")
+
+func _increment_step(step: String):
+	if steps_done.has(step) and not steps_done[step]:
+		steps_done[step] = true
+		completed_steps += 1
+		if completed_steps == 4:
+			print("Every step is done!")
