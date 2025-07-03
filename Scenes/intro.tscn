@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bn0w6kbre5vai"]
+[gd_scene load_steps=19 format=3 uid="uid://bn0w6kbre5vai"]
 
 [ext_resource type="Script" path="res://Scripts/Intro.gd" id="1_gktpc"]
 [ext_resource type="Texture2D" uid="uid://dxttffvplw0wx" path="res://Sprites/Intro/closedbox.png" id="1_noyla"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://b06td3d5j8c8x" path="res://Sprites/Intro/tape.png" id="6_3jx8g"]
 [ext_resource type="Texture2D" uid="uid://d3wk05mvy25gp" path="res://Sprites/Intro/glasses.png" id="7_fdee0"]
 [ext_resource type="Texture2D" uid="uid://bk24vd5era1u4" path="res://Sprites/Intro/letter.png" id="8_yd4or"]
+[ext_resource type="Texture2D" uid="uid://rackdb0qcrp7" path="res://Sprites/UI/paper.png" id="10_vkfjy"]
 
 [sub_resource type="Animation" id="Animation_y7p1v"]
 resource_name = "glasses_pull"
@@ -226,6 +227,19 @@ _data = {
 "tape_pull": SubResource("Animation_42vsy")
 }
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dfati"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0jmuc"]
+bg_color = Color(0.665631, 7.65279e-06, 0.443932, 1)
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+shadow_color = Color(0, 0, 0, 0.286275)
+shadow_size = 10
+shadow_offset = Vector2(5, 5)
+
 [node name="Intro" type="Node2D"]
 script = ExtResource("1_gktpc")
 
@@ -394,3 +408,116 @@ stretch_mode = 4
 libraries = {
 "": SubResource("AnimationLibrary_frgnr")
 }
+
+[node name="Paper" type="TextureRect" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -304.0
+offset_top = -358.0
+offset_right = 304.0
+offset_bottom = 358.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_vkfjy")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="TitleLetter" type="Label" parent="CanvasLayer/Control/Paper"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -71.0
+offset_top = -302.0
+offset_right = 71.0
+offset_bottom = -279.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.10748, 0.10748, 0.10748, 1)
+theme_override_font_sizes/font_size = 32
+text = "Test test Title Title"
+horizontal_alignment = 1
+
+[node name="SignatureLetter" type="Label" parent="CanvasLayer/Control/Paper"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -269.0
+offset_top = 226.0
+offset_right = 14.0
+offset_bottom = 319.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.10748, 0.10748, 0.10748, 1)
+theme_override_font_sizes/font_size = 32
+text = "Mr Duelm
+CEO Yarumela"
+
+[node name="DescLetter" type="Label" parent="CanvasLayer/Control/Paper"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -251.0
+offset_top = -177.0
+offset_right = 249.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.10748, 0.10748, 0.10748, 1)
+theme_override_font_sizes/font_size = 32
+text = " Test test Title TitleTest test Title TitleTest test Title TitleTest test Title TitleTest test Title TitleTest test Title TitleTest test Title Title"
+autowrap_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="CanvasLayer/Control/Paper"]
+custom_minimum_size = Vector2(265, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -84.0
+offset_top = 99.0
+offset_right = 72.0
+offset_bottom = 162.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_placeholder_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_selected_color = Color(0, 0, 0, 1)
+theme_override_colors/font_uneditable_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_dfati")
+placeholder_text = "X-252"
+alignment = 1
+
+[node name="DoneBtn" type="Button" parent="CanvasLayer/Control/Paper"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = 178.0
+offset_right = 37.0
+offset_bottom = 230.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_0jmuc")
+text = "Done"
