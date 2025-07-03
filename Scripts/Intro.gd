@@ -62,16 +62,23 @@ func _on_box_input(event):
 
 func _on_letter_input(event):
 	if event is InputEventMouseButton and event.pressed:
+		if anim.is_playing():
+			_handle_interruption(anim.current_animation)
 		current_step = "letter"
 		anim.play("letter_pull") 
 
 func _on_robot_input(event):
 	if event is InputEventMouseButton and event.pressed:
+		if anim.is_playing():
+			_handle_interruption(anim.current_animation)
 		current_step = "robot"
 		anim.play("robot_pull")
 
+
 func _on_glasses_input(event):
 	if event is InputEventMouseButton and event.pressed:
+		if anim.is_playing():
+			_handle_interruption(anim.current_animation)
 		current_step = "glasses"
 		anim.play("glasses_pull")
 
@@ -87,3 +94,17 @@ func _on_animation_finished(anim_name: String):
 	elif anim_name == "glasses_pull":
 		glasses.visible = false
 		current_step = ""
+		
+func _handle_interruption(interrupted_anim: String):
+	match interrupted_anim:
+		"letter_pull":
+			glasses.visible = true
+			letter.visible = false
+		"tape_pull":
+			tape.visible = false
+		"robot_pull":
+			robot.visible = false
+		"glasses_pull":
+			glasses.visible = false
+		_:
+			pass
