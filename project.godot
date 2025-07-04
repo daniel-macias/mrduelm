@@ -21,6 +21,7 @@ Catalog="*res://Scripts/Globals/Catalog.gd"
 GameManager="*res://Scripts/Globals/GameManager.gd"
 DetectorRounds="*res://Scripts/Data/DetectorRounds.gd"
 TutorialManager="*res://Scripts/Globals/TutorialManager.gd"
+Utils="*res://Scripts/Globals/Utils.gd"
 
 [display]
 

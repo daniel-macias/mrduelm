@@ -567,9 +567,9 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.10748, 0.10748, 0.10748, 1)
 theme_override_font_sizes/font_size = 26
-text = "Hi <EmployeeName> I send you this very personalized letter to congratulate you for buying my X-252 Morale Booster kit! This will make your experience here at Yarumela Inc more fun and productive!
+text = "Hi <EmployeeName> Receive this very personalized letter as a congratulations on your excellent taste for buying X-252 Morale Booster Kit! This will make your experience here at Yarumela Inc more fun and productive!
 
-Feel free to name your new bot however you like!"
+Feel free to name your new bot however you like!"
 autowrap_mode = 2
 
 [node name="LineEdit" type="LineEdit" parent="CanvasLayer/Control/Paper"]

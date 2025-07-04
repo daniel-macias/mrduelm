@@ -25,8 +25,8 @@ var steps_done := {
 	"done": false
 }
 
-
-
+var is_paper_animating := false
+var UUID = Utils.generate_uuid()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -104,6 +104,7 @@ func _on_animation_finished(anim_name: String):
 		
 		# Animate paper showing up
 		paper.visible = true
+		
 		paper_anim.play("OpeningLetter")
 		
 		current_step = ""
@@ -116,10 +117,21 @@ func _on_animation_finished(anim_name: String):
 		current_step = ""
 		
 func _handle_interruption(interrupted_anim: String):
+	if is_paper_animating:
+		return  # Prevent interruptions while the paper is appearing
+
 	match interrupted_anim:
 		"letter_pull":
 			glasses.visible = true
 			letter.visible = false
+			print("Letter opened!")
+			_increment_step("letter")
+
+			# Trigger paper animation
+			paper.visible = true
+			is_paper_animating = true
+			paper_anim.play("OpeningLetter")
+
 		"tape_pull":
 			tape.visible = false
 		"robot_pull":
@@ -129,19 +141,25 @@ func _handle_interruption(interrupted_anim: String):
 		_:
 			pass
 
+
 func _on_paper_animation_finished(anim_name: String):
 	if anim_name == "OpeningLetter":
 		paper.modulate.a = 1.0
+		is_paper_animating = false
 	elif anim_name == "ClosingLetter":
 		paper.modulate.a = 0.0
 		paper.visible = false
 
-
-
 func _on_done_pressed():
 	print("Entered name:", name_lineedit.text)
+	if name_lineedit.text != "":
+		GameManager.pet_name = name_lineedit.text
+	else:
+		GameManager.pet_name = "X-252"
 	paper_anim.play("ClosingLetter")
 	_increment_step("done")
+	
+	GameManager.pet_uuid = UUID
 
 func _increment_step(step: String):
 	if steps_done.has(step) and not steps_done[step]:
