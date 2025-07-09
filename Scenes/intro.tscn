@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://bn0w6kbre5vai"]
+[gd_scene load_steps=31 format=3 uid="uid://bn0w6kbre5vai"]
 
 [ext_resource type="Script" path="res://Scripts/Intro.gd" id="1_gktpc"]
 [ext_resource type="Texture2D" uid="uid://dxttffvplw0wx" path="res://Sprites/Intro/closedbox.png" id="1_noyla"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://d3wk05mvy25gp" path="res://Sprites/Intro/glasses.png" id="7_fdee0"]
 [ext_resource type="Texture2D" uid="uid://bk24vd5era1u4" path="res://Sprites/Intro/letter.png" id="8_yd4or"]
 [ext_resource type="Texture2D" uid="uid://rackdb0qcrp7" path="res://Sprites/UI/paper.png" id="10_vkfjy"]
+[ext_resource type="Shader" path="res://Shaders/intro.gdshader" id="11_amngp"]
 [ext_resource type="Texture2D" uid="uid://b27n6fx5ckbqf" path="res://Sprites/UI/Effects/cat normal.png" id="11_lun0t"]
 [ext_resource type="FontFile" uid="uid://26j2gmbprlxk" path="res://Fonts/BIOSfontII.ttf" id="12_oefa5"]
 
@@ -329,6 +330,13 @@ _data = {
 "OpeningLetter": SubResource("Animation_rdjjb"),
 "RESET": SubResource("Animation_4m7wp")
 }
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s3j4t"]
+shader = ExtResource("11_amngp")
+shader_parameter/time = null
+shader_parameter/noise_strength = 0.2
+shader_parameter/scanline_strength = 0.1
+shader_parameter/scanline_frequency = 300.0
 
 [sub_resource type="Animation" id="Animation_dm2fk"]
 resource_name = "LoadingIn"
@@ -675,6 +683,7 @@ libraries = {
 
 [node name="LoadingBG" type="ColorRect" parent="CanvasLayer/Control"]
 visible = false
+material = SubResource("ShaderMaterial_s3j4t")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

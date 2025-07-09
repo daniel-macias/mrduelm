@@ -31,6 +31,9 @@ var steps_done := {
 var is_paper_animating := false
 var UUID = Utils.generate_uuid()
 
+#func _process(delta):
+	#loading_screen.material.set_shader_parameter("time", Time.get_ticks_msec() / 1000.0)
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	line.visible = true
