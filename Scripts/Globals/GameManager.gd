@@ -291,6 +291,10 @@ func load_game():
 			inventory = save_data.get("inventory", inventory)
 			equipped = save_data.get("equipped", equipped)
 			print("Game loaded.")
+
+			#TODO Equip the loaded equiped stuff
+			print("Equiped")
+			print(equipped)
 			
 			var last_played = save_data.get("last_played", Time.get_unix_time_from_system())
 			var now = Time.get_unix_time_from_system()

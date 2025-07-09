@@ -58,6 +58,8 @@ func _ready():
 	_on_stat_changed("health", GameManager.health)
 	_on_stat_changed("energy", GameManager.energy)
 	
+	_update_pet_equipment()
+	
 func _on_stat_changed(stat_name: String, new_value: int):
 	match stat_name:
 		"fun":

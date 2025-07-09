@@ -1978,6 +1978,7 @@ offset_bottom = 147.0
 grow_horizontal = 2
 grow_vertical = 2
 rotation = 1.5708
+mouse_filter = 2
 texture = ExtResource("75_kkgtm")
 expand_mode = 1
 stretch_mode = 4

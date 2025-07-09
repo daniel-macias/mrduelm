@@ -32,6 +32,7 @@ func _ready() -> void:
 	xo_anim.play("XO")
 	
 	xo_anim.animation_finished.connect(_on_xo_animation_finished)
+	
 
 	
 
