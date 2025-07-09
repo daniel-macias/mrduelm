@@ -151,13 +151,19 @@ func _on_item_selected(item_key: String) -> void:
 	selected_item_details = Catalog.get("body_parts_catalog")[item_key]
 
 	selected_name.text = selected_item_details["name"]
-	buy_button.visible = true
-	buy_button.disabled = false
+
+	var category = selected_item_details["category"]
+	var is_already_equipped = GameManager.equipped.has(category) and GameManager.equipped[category] == item_key
+	
+	# Only show buy button if it's not already equipped
+	buy_button.visible = not is_already_equipped
+	buy_button.disabled = is_already_equipped
 
 	# Preview equip
 	var preview = GameManager.equipped.duplicate()
-	preview[selected_item_details["category"]] = item_key
+	preview[category] = item_key
 	equip_pet_demo(preview)
+
 
 func _on_equip_button_pressed() -> void:
 	if selected_item_key != "":
