@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bn0w6kbre5vai"]
+[gd_scene load_steps=29 format=3 uid="uid://bn0w6kbre5vai"]
 
 [ext_resource type="Script" path="res://Scripts/Intro.gd" id="1_gktpc"]
 [ext_resource type="Texture2D" uid="uid://dxttffvplw0wx" path="res://Sprites/Intro/closedbox.png" id="1_noyla"]
@@ -10,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://d3wk05mvy25gp" path="res://Sprites/Intro/glasses.png" id="7_fdee0"]
 [ext_resource type="Texture2D" uid="uid://bk24vd5era1u4" path="res://Sprites/Intro/letter.png" id="8_yd4or"]
 [ext_resource type="Texture2D" uid="uid://rackdb0qcrp7" path="res://Sprites/UI/paper.png" id="10_vkfjy"]
+[ext_resource type="Texture2D" uid="uid://b27n6fx5ckbqf" path="res://Sprites/UI/Effects/cat normal.png" id="11_lun0t"]
+[ext_resource type="FontFile" uid="uid://26j2gmbprlxk" path="res://Fonts/BIOSfontII.ttf" id="12_oefa5"]
 
 [sub_resource type="Animation" id="Animation_mfj51"]
 length = 0.001
@@ -328,6 +330,59 @@ _data = {
 "RESET": SubResource("Animation_4m7wp")
 }
 
+[sub_resource type="Animation" id="Animation_dm2fk"]
+resource_name = "LoadingIn"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 1, 5),
+"transitions": PackedFloat32Array(0.203063, 0.0947323, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_rd045"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_wq0p3"]
+resource_name = "LoadingOut"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_eofr3"]
+_data = {
+"LoadingIn": SubResource("Animation_dm2fk"),
+"LoadingOut": SubResource("Animation_wq0p3"),
+"RESET": SubResource("Animation_rd045")
+}
+
 [node name="Intro" type="Node2D"]
 script = ExtResource("1_gktpc")
 
@@ -506,9 +561,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -304.0
-offset_top = 140.0
+offset_top = -358.0
 offset_right = 304.0
-offset_bottom = 856.0
+offset_bottom = 358.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("10_vkfjy")
@@ -616,4 +671,89 @@ text = "Done"
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Control/Paper"]
 libraries = {
 "": SubResource("AnimationLibrary_4le63")
+}
+
+[node name="LoadingBG" type="ColorRect" parent="CanvasLayer/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.124652, 0.278702, 0.121746, 1)
+
+[node name="LoadingCat" type="TextureRect" parent="CanvasLayer/Control/LoadingBG"]
+modulate = Color(0, 1, 0, 0.415686)
+self_modulate = Color(0.608128, 0.96831, 0.866205, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -319.5
+offset_top = -186.5
+offset_right = 319.5
+offset_bottom = 186.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_lun0t")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/LoadingBG/LoadingCat"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -205.5
+offset_top = 28.0
+offset_right = 205.5
+offset_bottom = 83.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("12_oefa5")
+theme_override_font_sizes/font_size = 40
+text = "Loading AR Goggles..."
+
+[node name="Label2" type="Label" parent="CanvasLayer/Control/LoadingBG/LoadingCat"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -210.0
+offset_top = -181.0
+offset_right = 210.0
+offset_bottom = -126.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("12_oefa5")
+theme_override_font_sizes/font_size = 40
+text = "====================="
+
+[node name="Label3" type="Label" parent="CanvasLayer/Control/LoadingBG/LoadingCat"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -210.0
+offset_top = 208.0
+offset_right = 210.0
+offset_bottom = 263.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("12_oefa5")
+theme_override_font_sizes/font_size = 40
+text = "====================="
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Control/LoadingBG"]
+libraries = {
+"": SubResource("AnimationLibrary_eofr3")
 }

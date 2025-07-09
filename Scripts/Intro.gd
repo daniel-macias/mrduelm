@@ -17,6 +17,9 @@ extends Node
 @onready var done_btn : Button = $CanvasLayer/Control/Paper/DoneBtn
 @onready var paper_anim : AnimationPlayer = $CanvasLayer/Control/Paper/AnimationPlayer
 
+@onready var loading_screen : ColorRect = $CanvasLayer/Control/LoadingBG
+@onready var loading_anim : AnimationPlayer = $CanvasLayer/Control/LoadingBG/AnimationPlayer
+
 var completed_steps := 0
 var steps_done := {
 	"robot": false,
@@ -50,6 +53,7 @@ func _ready() -> void:
 	paper_anim.animation_finished.connect(_on_paper_animation_finished)
 	done_btn.pressed.connect(_on_done_pressed)
 	anim.animation_finished.connect(_on_animation_finished)
+	loading_anim.animation_finished.connect(_on_loading_animation_finished)
 
 	paper.modulate.a = 0.0
 	paper.visible = false
@@ -167,3 +171,9 @@ func _increment_step(step: String):
 		completed_steps += 1
 		if completed_steps == 4:
 			print("Every step is done!")
+			loading_screen.visible = true
+			loading_anim.play("LoadingIn")
+
+func _on_loading_animation_finished(anim_name: String):
+	if anim_name == "LoadingIn":
+		print("Done Intro")
