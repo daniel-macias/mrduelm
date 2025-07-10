@@ -16,6 +16,9 @@ extends Node2D
 @onready var money_lbl = $CanvasLayer/TopBar/Label
 @onready var level_lbl = $CanvasLayer/TopBar/Level/LevelLabel
 
+@onready var loading_bg = $Outside/LoadingBG
+@onready var loading_anim = $Outside/LoadingBG/AnimationPlayer
+
 @onready var guis = {
 	"food": $CanvasLayer/FoodGUI,
 	"bathroom": $CanvasLayer/BathroomGUI,
@@ -59,6 +62,13 @@ func _ready():
 	_on_stat_changed("energy", GameManager.energy)
 	
 	_update_pet_equipment()
+	
+	if TutorialManager.get_current_step_id() == "INITIAL_GAME":
+		loading_bg.visible = true
+		loading_anim.play("LoadingOut")
+		loading_anim.animation_finished.connect(_on_loading_out_finished)
+	else:
+		loading_bg.queue_free()
 	
 func _on_stat_changed(stat_name: String, new_value: int):
 	match stat_name:
@@ -113,3 +123,7 @@ func _on_level_changed(new_amount):
 func _notification(what):
 	if what == NOTIFICATION_WM_CLOSE_REQUEST or what == NOTIFICATION_APPLICATION_PAUSED:
 		GameManager.save_game()
+		
+func _on_loading_out_finished(anim_name: String):
+	if anim_name == "LoadingOut":
+		loading_bg.queue_free()

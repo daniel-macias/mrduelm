@@ -20,6 +20,8 @@ extends Node
 @onready var loading_screen : ColorRect = $CanvasLayer/Control/LoadingBG
 @onready var loading_anim : AnimationPlayer = $CanvasLayer/Control/LoadingBG/AnimationPlayer
 
+@onready var main_scene = preload("res://Scenes/main.tscn")
+
 var completed_steps := 0
 var steps_done := {
 	"robot": false,
@@ -60,6 +62,8 @@ func _ready() -> void:
 
 	paper.modulate.a = 0.0
 	paper.visible = false
+	
+	TutorialManager.current_step = 0
 	
 
 var current_step = ""
@@ -174,9 +178,15 @@ func _increment_step(step: String):
 		completed_steps += 1
 		if completed_steps == 4:
 			print("Every step is done!")
+			
 			loading_screen.visible = true
 			loading_anim.play("LoadingIn")
 
 func _on_loading_animation_finished(anim_name: String):
 	if anim_name == "LoadingIn":
 		print("Done Intro")
+		TutorialManager.advance_step()
+		print(TutorialManager.get_current_step_id())
+		# Load main.tscn in Scenes
+		# Change to main.tscn
+		get_tree().change_scene_to_packed(main_scene)

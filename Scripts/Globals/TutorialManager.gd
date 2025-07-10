@@ -2,9 +2,7 @@ extends Node
 
 var intro_steps = [
 	"GREETING",
-	"SHOW_BOX",
-	"INTERACT_BOX",
-	"NAME_PET",
+	"INITIAL_GAME",
 	"TUTORIAL"
 ]
 
