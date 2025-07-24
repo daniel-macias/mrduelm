@@ -19,6 +19,8 @@ extends Node2D
 @onready var loading_bg = $Outside/LoadingBG
 @onready var loading_anim = $Outside/LoadingBG/AnimationPlayer
 
+@onready var dialog = $Outside/Dialog
+
 @onready var guis = {
 	"food": $CanvasLayer/FoodGUI,
 	"bathroom": $CanvasLayer/BathroomGUI,
@@ -127,3 +129,4 @@ func _notification(what):
 func _on_loading_out_finished(anim_name: String):
 	if anim_name == "LoadingOut":
 		loading_bg.queue_free()
+		dialog.show_dialog("Welcome", "Keep your pets needs met! Remember to charge it and do your \"tasks\" on the toy box. Have fun!", true)

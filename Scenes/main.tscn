@@ -339,7 +339,7 @@ _data = {
 }
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fmsnq"]
-bg_color = Color(1, 0.787882, 0.600723, 1)
+bg_color = Color(0.621992, 0.93022, 0.537777, 1)
 border_width_left = 5
 border_width_top = 5
 border_width_right = 5
@@ -353,7 +353,7 @@ shadow_size = 3
 shadow_offset = Vector2(5, 5)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gkeuw"]
-bg_color = Color(1, 0.447059, 0, 1)
+bg_color = Color(0.250268, 0.7484, 0.345279, 1)
 border_width_bottom = 5
 border_color = Color(0, 0, 0, 1)
 
@@ -382,21 +382,6 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_rd045"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="Animation" id="Animation_wq0p3"]
 resource_name = "LoadingOut"
 tracks/0/type = "value"
@@ -410,6 +395,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_rd045"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_eofr3"]
@@ -1122,6 +1122,101 @@ texture_normal = ExtResource("45_ii3x7")
 ignore_texture_size = true
 stretch_mode = 5
 
+[node name="Lbls" type="Control" parent="Outside/OutsideMenu"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Outside/OutsideMenu/Lbls"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 151.0
+offset_top = 309.0
+offset_right = 305.0
+offset_bottom = 351.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("84_ym73t")
+theme_override_font_sizes/font_size = 32
+text = "Food Shop"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Outside/OutsideMenu/Lbls"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 401.0
+offset_top = 294.0
+offset_right = 555.0
+offset_bottom = 336.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("84_ym73t")
+theme_override_font_sizes/font_size = 32
+text = "Psych"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="Outside/OutsideMenu/Lbls"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 36.0
+offset_top = 549.0
+offset_right = 190.0
+offset_bottom = 591.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("84_ym73t")
+theme_override_font_sizes/font_size = 32
+text = "Furniture Store"
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="Outside/OutsideMenu/Lbls"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 502.0
+offset_top = 566.0
+offset_right = 656.0
+offset_bottom = 608.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("84_ym73t")
+theme_override_font_sizes/font_size = 32
+text = "Clothing Store"
+horizontal_alignment = 1
+
+[node name="Label5" type="Label" parent="Outside/OutsideMenu/Lbls"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 259.0
+offset_top = 994.0
+offset_right = 413.0
+offset_bottom = 1036.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("84_ym73t")
+theme_override_font_sizes/font_size = 32
+text = "Home"
+horizontal_alignment = 1
+
 [node name="AnimStuff" type="Control" parent="Outside/OutsideMenu"]
 anchors_preset = 0
 offset_right = 40.0
@@ -1202,10 +1297,10 @@ anchor_left = 9.617
 anchor_top = 22.203
 anchor_right = 9.617
 anchor_bottom = 22.203
-offset_left = 166.32
-offset_top = -593.12
-offset_right = 266.32
-offset_bottom = -493.12
+offset_left = 172.32
+offset_top = -622.12
+offset_right = 272.32
+offset_bottom = -522.12
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("51_d4xcc")
 
@@ -2204,6 +2299,7 @@ theme_override_font_sizes/font_size = 24
 text = "Skip tutorial"
 
 [node name="LoadingBG" type="ColorRect" parent="Outside"]
+visible = false
 material = SubResource("ShaderMaterial_7u5ac")
 anchors_preset = 15
 anchor_right = 1.0
