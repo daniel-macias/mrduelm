@@ -1,0 +1,32 @@
+key,en,esp
+WELCOME_MSG_TITLE,Welcome!,¡Hola!
+WELCOME_MSG_MSG,"Keep your pets needs met! Remember to charge it and do your \""tasks\"" on the toy box. Have fun!","Cuidá de las necesidades de tu mascota. Recordá recargarlo y haz tus \""tareas\"" en el \""toy box\"". ¡Divertite!"
+SETTINGS_TITLE,Settings,Configuración
+OUTSIDE_TITLE_HOME,Home,Casa
+OUTSIDE_TITLE_FOOD_SHOP,Food Shop,Supermercado
+OUTSIDE_TITLE_FURNITURE_SHOP,Furniture Shop,Mueblería
+OUTSIDE_TITLE_PSYCH,Psych,Psicólogo
+OUTSIDE_TITLE_CLOTHING_STORE,Clothing Store,Tienda de Ropa
+MINIGAMES_MENU_TITLE,Minigames,Minijuegos
+EMPTY_TITLE,Empty,Vacío
+LOADING_AR_DESC,Loading AR Goggles...,Cargando Lentes RA
+CONGRATULATIONS_TITLE,Congratulations!,¡Felicidades!
+LETTER_DESC,"Hi <EmployeeName> Receive this very personalized letter as a congratulations on your excellent taste for buying X-252 Morale Booster Kit! This will make your experience here at Yarumela Inc more fun and productive!
+
+Feel free to name your new bot however you like!","Hola <NombreEmpleado>.
+
+Recibe esta carta muy personalizada como una felicitación por tu excelente gusto al comprar el Kit Elevador de Moral X-252. ¡Esto hará que tu experiencia aquí en Yarumela Inc sea más divertida y productiva!"
+DONE_BTN,Done,Listo
+BUY_BTN,Buy,Comprar
+SELECT_ITEM_PREVIEW,Select an item to preview!,Seleccione un elemento para obtener una vista previa
+BODY_PARTS_TITLE,Body Parts,Partes de Cuerpo
+FIRED_TITLE,Fired!,¡Despedido!
+DETECTOR_TITLE,Detector,Detector
+DETECTOR_INSTRUCTIONS,"Select the suspects using the printed out descriptions, when you are sure you got everyone, press the big red button. Be careful, Mr.Duelm will only allow 3 mistakes.","Selecciona los sospechosos usando sus descripciones, cuando ya los tengas a todos, presiona el botón rojo. Ten cuidado, Mr.Duelm solo permite 3 errores."
+START_GAME,Start Game,Iniciar Juego
+HIGH_SCORE,High Score,High Score
+PRICE,Price,Premio
+GAME_OVER,Game Over,Game Over
+PLAY_AGAIN,Play Again,Jugar Otra Vez
+SCORE,Score,Puntaje
+YOU_EARNED_MINIGAME,You Earned:,Ganaste:
