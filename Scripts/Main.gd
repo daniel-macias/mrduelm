@@ -39,6 +39,8 @@ extends Node2D
 
 var active_button = null
 
+@onready var loading_ar_lbl : Label = $Outside/LoadingBG/LoadingCat/Label
+
 @onready var sleep_gui = $CanvasLayer/SleepGUI #I know it is repetitive
 
 func _ready():
@@ -49,6 +51,7 @@ func _ready():
 
 	money_lbl.text = str(GameManager.player_money)
 	level_lbl.text = str(GameManager.level)
+	loading_ar_lbl.text = tr("LOADING_AR_DESC")
 	
 	for name in buttons:
 		buttons[name].connect("pressed", Callable(self, "_on_button_pressed").bind(name))
@@ -129,4 +132,4 @@ func _notification(what):
 func _on_loading_out_finished(anim_name: String):
 	if anim_name == "LoadingOut":
 		loading_bg.queue_free()
-		dialog.show_dialog("Welcome", "Keep your pets needs met! Remember to charge it and do your \"tasks\" on the toy box. Have fun!", true)
+		dialog.show_dialog(tr("WELCOME_MSG_TITLE"), tr("WELCOME_MSG_MSG"), true)

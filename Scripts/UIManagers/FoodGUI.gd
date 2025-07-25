@@ -64,7 +64,7 @@ func _update_food_display():
 			print("Error: Thumbnail not found for food item:", current_food)
 	else:
 		print("No food items in inventory!")
-		food_selected_text.text = "Empty"
+		food_selected_text.text = tr("EMPTY_TITLE")
 		food_selected.disabled = true
 		food_arrow_left.disabled = true
 		food_arrow_right.disabled = true

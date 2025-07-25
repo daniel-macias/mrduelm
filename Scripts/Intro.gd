@@ -20,7 +20,12 @@ extends Node
 @onready var loading_screen : ColorRect = $CanvasLayer/Control/LoadingBG
 @onready var loading_anim : AnimationPlayer = $CanvasLayer/Control/LoadingBG/AnimationPlayer
 
+@onready var letter_title : Label = $CanvasLayer/Control/Paper/TitleLetter
+@onready var letter_dec : Label = $CanvasLayer/Control/Paper/DescLetter
+@onready var loading_dec : Label = $CanvasLayer/Control/LoadingBG/LoadingCat/Label
+
 @onready var main_scene = preload("res://Scenes/main.tscn")
+
 
 var completed_steps := 0
 var steps_done := {
@@ -65,6 +70,10 @@ func _ready() -> void:
 	
 	TutorialManager.current_step = 0
 	
+	letter_title.text = tr("CONGRATULATIONS_TITLE")
+	letter_dec.text = tr("LETTER_DESC")
+	done_btn.text = tr("DONE_BTN")
+	loading_dec.text = tr("LOADING_AR_DESC")
 
 var current_step = ""
 

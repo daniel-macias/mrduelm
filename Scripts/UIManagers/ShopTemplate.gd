@@ -24,6 +24,12 @@ extends Node
 @onready var doctor_shop_btn: TextureButton = $"../OutsideMenu/DoctorBtn"
 @onready var body_shop_btn: TextureButton = $"../OutsideMenu/BodyShopBtn"
 
+@onready var food_shop_lbl: Label = $"../OutsideMenu/Lbls/Label"
+@onready var psych_lbl: Label = $"../OutsideMenu/Lbls/Label2"
+@onready var furniture_shop_lbl: Label = $"../OutsideMenu/Lbls/Label3"
+@onready var clothing_shop_lbl: Label = $"../OutsideMenu/Lbls/Label4"
+@onready var home_lbl: Label = $"../OutsideMenu/Lbls/Label5"
+
 @onready var return_home: TextureButton = $"../OutsideMenu/HouseBtn"
 
 @onready var shop_name: Label = $ShopName
@@ -63,6 +69,13 @@ func _ready() -> void:
 	xo_anim.play("XO")
 	
 	xo_anim.animation_finished.connect(_on_xo_animation_finished)
+	
+	food_shop_lbl.text = tr("OUTSIDE_TITLE_FOOD_SHOP")
+	psych_lbl.text = tr("OUTSIDE_TITLE_PSYCH")
+	furniture_shop_lbl.text = tr("OUTSIDE_TITLE_FURNITURE_SHOP")
+	clothing_shop_lbl.text = tr("OUTSIDE_TITLE_CLOTHING_STORE")
+	home_lbl.text = tr("OUTSIDE_TITLE_HOME")
+	empty_cart_lbl.text = tr("SELECT_ITEM_PREVIEW")
 
 func _on_shop_load(shop_type_selected: String):
 	shop_type = shop_type_selected

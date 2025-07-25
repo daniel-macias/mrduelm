@@ -1,4 +1,4 @@
-[gd_scene load_steps=112 format=3 uid="uid://co8xhyknh7k7h"]
+[gd_scene load_steps=114 format=3 uid="uid://co8xhyknh7k7h"]
 
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_2ncyc"]
 [ext_resource type="PackedScene" uid="uid://bdd3fhta1x0ln" path="res://Scenes/pet.tscn" id="1_g06e1"]
@@ -81,7 +81,9 @@
 [ext_resource type="Script" path="res://Scripts/UIManagers/Settings.gd" id="79_pjtj4"]
 [ext_resource type="Script" path="res://Scripts/UIManagers/Dialog.gd" id="80_6w60o"]
 [ext_resource type="Texture2D" uid="uid://dsxhibw5csxxf" path="res://Sprites/UI/x-black-side.png" id="80_aeomi"]
+[ext_resource type="Texture2D" uid="uid://ckx6xirj78lhx" path="res://Sprites/UI/Settings/eng.png" id="81_cfao6"]
 [ext_resource type="Shader" path="res://Shaders/intro.gdshader" id="82_othti"]
+[ext_resource type="Texture2D" uid="uid://j1v0vb7djqy2" path="res://Sprites/UI/Settings/esp.png" id="82_y581u"]
 [ext_resource type="Texture2D" uid="uid://b27n6fx5ckbqf" path="res://Sprites/UI/Effects/cat normal.png" id="83_2xa7i"]
 [ext_resource type="FontFile" uid="uid://26j2gmbprlxk" path="res://Fonts/BIOSfontII.ttf" id="84_ym73t"]
 
@@ -2217,6 +2219,83 @@ offset_bottom = 94.0
 grow_horizontal = 0
 texture_normal = ExtResource("11_xp1sg")
 ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Items" type="Control" parent="Outside/Settings"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
+
+[node name="LangLbl" type="Label" parent="Outside/Settings/Items"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -49.5
+offset_top = 160.0
+offset_right = 49.5
+offset_bottom = 183.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+text = "Language"
+
+[node name="EngBtn" type="TextureButton" parent="Outside/Settings/Items"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -274.0
+offset_top = 259.0
+offset_right = -16.0
+offset_bottom = 370.0
+grow_horizontal = 2
+texture_normal = ExtResource("81_cfao6")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Check" type="TextureRect" parent="Outside/Settings/Items/EngBtn"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -74.0
+offset_top = 9.0
+offset_right = 76.0
+offset_bottom = 103.0
+grow_horizontal = 2
+texture = ExtResource("51_cl760")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="EspBtn" type="TextureButton" parent="Outside/Settings/Items"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 15.0
+offset_top = 259.0
+offset_right = 273.0
+offset_bottom = 370.0
+grow_horizontal = 2
+texture_normal = ExtResource("82_y581u")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Check" type="TextureRect" parent="Outside/Settings/Items/EspBtn"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -74.0
+offset_top = 9.0
+offset_right = 76.0
+offset_bottom = 103.0
+grow_horizontal = 2
+texture = ExtResource("51_cl760")
+expand_mode = 1
 stretch_mode = 5
 
 [node name="Dialog" type="Control" parent="Outside"]

@@ -7,6 +7,7 @@ extends Node
 @onready var shop_template: Control = $"."
 @onready var inventory_container: Control = $InventoryContainer/List
 @onready var item_template: Control = $InventoryContainer/List/ItemTemplate
+@onready var title: Label = $ShopName
 
 @onready var left_button: TextureButton = $BrowserButtons/Left
 @onready var right_button: TextureButton = $BrowserButtons/Right
@@ -30,6 +31,8 @@ func _ready() -> void:
 	return_home.connect("pressed", Callable(self, "_on_return_home"))
 	
 	xo_anim.play("XO")
+	
+	title.text = tr("MINIGAMES_MENU_TITLE")
 	
 	xo_anim.animation_finished.connect(_on_xo_animation_finished)
 	

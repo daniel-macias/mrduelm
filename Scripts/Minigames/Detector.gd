@@ -65,12 +65,12 @@ var timer_running = false
 
 
 var standout_conditions = {
-	"sad": {"name": "Sad", "apply_condition": "_apply_sad"},
-	"eyes_closed": {"name": "Eyes Closed", "apply_condition": "_apply_eyes_closed"},
-	"no_mouth": {"name": "No Mouth", "apply_condition": "_apply_no_mouth"},
-	"no_nose": {"name": "No Nose", "apply_condition": "_apply_no_nose"},
-	"no_brows": {"name": "No Brows", "apply_condition": "_apply_no_brows"},
-	"no_eyes": {"name": "No Eyes", "apply_condition": "_apply_no_eyes"}
+	"sad": {"name": "CONDITION_SAD", "apply_condition": "_apply_sad"},
+	"eyes_closed": {"name": "CONDITION_EYES_CLOSED", "apply_condition": "_apply_eyes_closed"},
+	"no_mouth": {"name": "CONDITION_NO_MOUTH", "apply_condition": "_apply_no_mouth"},
+	"no_nose": {"name": "CONDITION_NO_NOSE", "apply_condition": "_apply_no_nose"},
+	"no_brows": {"name": "CONDITION_NO_BROWS", "apply_condition": "_apply_no_brows"},
+	"no_eyes": {"name": "CONDITION_NO_EYES", "apply_condition": "_apply_no_eyes"}
 }
 
 var current_round = 0
@@ -103,9 +103,9 @@ func _ready() -> void:
 
 	
 	if !GameManager.has_played_minigame_once:
-		menu_title.text = "Hello New Game"
-		menu_description.text = "New game description"
-		play_again_btn_lbl.text = "Start Game"
+		menu_title.text = tr("DETECTOR_TITLE")
+		menu_description.text = tr("DETECTOR_INSTRUCTIONS")
+		play_again_btn_lbl.text = tr("START_GAME")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -145,7 +145,12 @@ func generate_grid(grid_size: int, flip_amount: int, people_to_detect: int, stan
 			child.queue_free()
 	all_people.clear()
 	
-	instruction.bbcode_text = "Detect [color=red]" + str(people_to_detect) + "[/color] people with the feature: " + standout_conditions.keys()[standout_type]
+	var standout_keys = standout_conditions.keys()
+
+	var key = standout_keys[standout_type]
+	var condition_name = standout_conditions[key]["name"]
+
+	instruction.bbcode_text = tr("INSTRUCTION_DETECTOR") + "[color=red]" + str(people_to_detect) + tr("PEOPLE_WITH_CONDITION_DETECTOR") + tr(condition_name)
 	start_timer(seconds_amount)
 	
 	round_duration = round_duration
@@ -313,16 +318,16 @@ func register_mistake():
 			var money_won = correct_amount * 100
 
 			final_score_lbl.text = str(correct_amount)
-			price_lbl.text = "You earned: $" + str(money_won)
+			price_lbl.text = tr("YOUR_EARNED_MINIGAME") + str(money_won)
 			
 			GameManager.player_money += money_won
 			GameManager.emit_signal("money_changed", GameManager.player_money)
 			GameManager.add_exp(GameManager.get_exp_from_score("detector", correct_amount))
 			
 			if GameManager.has_played_minigame_once:
-				menu_title.text = "Game Over"
-				menu_description.text = "You already played once... Let's see if you can do better!"
-				play_again_btn_lbl.text = "Play Again"
+				menu_title.text = tr("GAME_OVER")
+				menu_description.text = tr("TRY_AGAIN_DESC")
+				play_again_btn_lbl.text = tr("PLAY_AGAIN")
 			
 			print(GameManager.has_played_minigame_once)
 			
